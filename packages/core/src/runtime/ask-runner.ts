@@ -350,7 +350,11 @@ export class AskRunner {
     const early = stoppedEarly();
     if (early !== null) return early;
 
-    const folder = await fsp.mkdtemp(path.join(this.options.tempRoot ?? os.tmpdir(), 'huddle-ask-'));
+    // The canonical path (8.3 short names like RUNNER~1 expanded, junctions resolved), so the guard and Claude Code's
+    // hooks see one spelling of the ask's folder.
+    const folder = await fsp.realpath(
+      await fsp.mkdtemp(path.join(this.options.tempRoot ?? os.tmpdir(), 'huddle-ask-')),
+    );
     ctl.setFolder(folder);
     const early2 = stoppedEarly();
     if (early2 !== null) return early2;

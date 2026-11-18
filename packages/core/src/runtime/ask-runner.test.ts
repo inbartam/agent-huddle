@@ -108,6 +108,20 @@ function alive(pid: number): boolean {
 }
 
 describe('AskRunner with the fake claude', () => {
+  // A temp folder reached through a short 8.3 name (C:\Users\RUNNER~1\…, as on CI runners and for long user names)
+  // or a junction must still give the ask its canonical folder, so the guard and Claude Code see the same path.
+  it('runs in the canonical folder when the temp root is reached through a junction', async () => {
+    const root = await tempDir();
+    const real = path.join(root, 'real-temp');
+    const link = path.join(root, 'linked-temp');
+    await fsp.mkdir(real);
+    await fsp.symlink(real, link, 'junction');
+    const t = await makeRunner('ok', { tempRoot: link });
+    await t.runner.run('Question\nwho?\n');
+    const seen = await t.logged();
+    expect(path.dirname(seen.cwd).toLowerCase()).toBe((await fsp.realpath(real)).toLowerCase());
+  });
+
   it('spawns the exact argv with shell:false in a fresh temp folder, writes stdin, reads the json result', async () => {
     const t = await makeRunner('ok');
     const stdin = 'Instructions\n…\nQuestion\nwho? ✓\n';
