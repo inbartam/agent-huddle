@@ -53,8 +53,10 @@ async function main() {
   };
   if (cmd) {
     if (cmd.endsWith('.mjs')) {
-      // The fake claude: spawn it under this node, the way the core's own launch tests do.
+      // The fake claude: spawn it under this node, the way the core's own launch tests do. Naming it as the command too
+      // keeps the core from looking `claude` up on PATH, which fails on a machine without Claude Code (CI).
       const { spawn } = await import('node:child_process');
+      launch.claudeCommand = cmd;
       launch.spawn = (_command, argv, options) => spawn(process.execPath, [cmd, ...argv], options);
     } else {
       launch.claudeCommand = cmd;
