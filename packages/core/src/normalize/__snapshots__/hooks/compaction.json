@@ -1,0 +1,266 @@
+[
+  {
+    "t": "2026-11-13T16:12:01.473Z",
+    "hook": "SessionStart",
+    "events": [
+      {
+        "id": "evt-0001",
+        "type": "session.started",
+        "ts": 1794586321473,
+        "sessionId": "session-1",
+        "agentKey": "session-1",
+        "source": "hook",
+        "origin": "attached",
+        "cwd": "C:/Users/user/project",
+        "title": null,
+        "model": null,
+        "startKind": "startup"
+      }
+    ]
+  },
+  {
+    "t": "2026-11-13T16:12:01.568Z",
+    "hook": "InstructionsLoaded",
+    "events": [
+      {
+        "id": "evt-0002",
+        "type": "instructions.loaded",
+        "ts": 1794586321568,
+        "sessionId": "session-1",
+        "agentKey": "session-1",
+        "source": "hook",
+        "filePath": "C:/Users/user/project\\.claude\\CLAUDE.md"
+      }
+    ]
+  },
+  {
+    "t": "2026-11-13T16:12:01.570Z",
+    "hook": "InstructionsLoaded",
+    "events": [
+      {
+        "id": "evt-0003",
+        "type": "instructions.loaded",
+        "ts": 1794586321570,
+        "sessionId": "session-1",
+        "agentKey": "session-1",
+        "source": "hook",
+        "filePath": "C:/Users/user/project\\CLAUDE.md"
+      }
+    ]
+  },
+  {
+    "t": "2026-11-13T16:12:02.661Z",
+    "hook": "UserPromptSubmit",
+    "events": [
+      {
+        "id": "evt-0004",
+        "type": "prompt.submitted",
+        "ts": 1794586322661,
+        "sessionId": "session-1",
+        "agentKey": "session-1",
+        "source": "hook",
+        "text": "(scrubbed text)",
+        "promptId": "prompt-1",
+        "kind": "user",
+        "cwd": "C:/Users/user/project"
+      }
+    ]
+  },
+  {
+    "t": "2026-11-13T16:12:06.746Z",
+    "hook": "PreToolUse",
+    "events": [
+      {
+        "id": "evt-0005",
+        "type": "tool.started",
+        "ts": 1794586326746,
+        "sessionId": "session-1",
+        "agentKey": "session-1",
+        "source": "hook",
+        "toolUseId": "tool_use-1",
+        "toolName": "Read",
+        "summary": "C:/Users/user/project\\README.md",
+        "filePath": "C:/Users/user/project\\README.md",
+        "inputDigest": "9d36decc1c993c906d53e762ac3b6734"
+      }
+    ]
+  },
+  {
+    "t": "2026-11-13T16:12:07.313Z",
+    "hook": "PostToolUse",
+    "events": [
+      {
+        "id": "evt-0006",
+        "type": "tool.finished",
+        "ts": 1794586327313,
+        "sessionId": "session-1",
+        "agentKey": "session-1",
+        "source": "hook",
+        "toolUseId": "tool_use-1",
+        "toolName": "Read",
+        "durationMs": 26
+      }
+    ]
+  },
+  {
+    "t": "2026-11-13T16:12:10.795Z",
+    "hook": "Stop",
+    "events": [
+      {
+        "id": "evt-0007",
+        "type": "turn.ended",
+        "ts": 1794586330795,
+        "sessionId": "session-1",
+        "agentKey": "session-1",
+        "source": "hook",
+        "lastMessage": "(scrubbed text)",
+        "backgroundAgentIds": []
+      }
+    ]
+  },
+  {
+    "t": "2026-11-13T16:12:11.927Z",
+    "hook": "PreCompact",
+    "events": [
+      {
+        "id": "evt-0008",
+        "type": "context.compacted",
+        "ts": 1794586331927,
+        "sessionId": "session-1",
+        "agentKey": "session-1",
+        "source": "hook",
+        "phase": "before",
+        "trigger": "manual"
+      }
+    ]
+  },
+  {
+    "t": "2026-11-13T16:12:23.762Z",
+    "hook": "SubagentStop",
+    "events": []
+  },
+  {
+    "t": "2026-11-13T16:12:25.371Z",
+    "hook": "SessionStart",
+    "events": [
+      {
+        "id": "evt-0009",
+        "type": "session.started",
+        "ts": 1794586345371,
+        "sessionId": "session-1",
+        "agentKey": "session-1",
+        "source": "hook",
+        "origin": "attached",
+        "cwd": "C:/Users/user/project",
+        "title": null,
+        "model": "claude-opus-5-5",
+        "startKind": "compact"
+      },
+      {
+        "id": "evt-0010",
+        "type": "model.observed",
+        "ts": 1794586345371,
+        "sessionId": "session-1",
+        "agentKey": "session-1",
+        "source": "hook",
+        "model": "claude-opus-5-5",
+        "via": "session_start"
+      }
+    ]
+  },
+  {
+    "t": "2026-11-13T16:12:26.202Z",
+    "hook": "PostCompact",
+    "events": [
+      {
+        "id": "evt-0011",
+        "type": "context.compacted",
+        "ts": 1794586346202,
+        "sessionId": "session-1",
+        "agentKey": "session-1",
+        "source": "hook",
+        "phase": "after",
+        "trigger": "manual"
+      }
+    ]
+  },
+  {
+    "t": "2026-11-13T16:12:26.481Z",
+    "hook": "InstructionsLoaded",
+    "events": [
+      {
+        "id": "evt-0012",
+        "type": "instructions.loaded",
+        "ts": 1794586346481,
+        "sessionId": "session-1",
+        "agentKey": "session-1",
+        "source": "hook",
+        "filePath": "C:/Users/user/project\\.claude\\CLAUDE.md"
+      }
+    ]
+  },
+  {
+    "t": "2026-11-13T16:12:26.523Z",
+    "hook": "InstructionsLoaded",
+    "events": [
+      {
+        "id": "evt-0013",
+        "type": "instructions.loaded",
+        "ts": 1794586346523,
+        "sessionId": "session-1",
+        "agentKey": "session-1",
+        "source": "hook",
+        "filePath": "C:/Users/user/project\\CLAUDE.md"
+      }
+    ]
+  },
+  {
+    "t": "2026-11-13T16:12:26.547Z",
+    "hook": "UserPromptSubmit",
+    "events": [
+      {
+        "id": "evt-0014",
+        "type": "prompt.submitted",
+        "ts": 1794586346547,
+        "sessionId": "session-1",
+        "agentKey": "session-1",
+        "source": "hook",
+        "text": "(scrubbed text)",
+        "promptId": "prompt-3",
+        "kind": "user",
+        "cwd": "C:/Users/user/project"
+      }
+    ]
+  },
+  {
+    "t": "2026-11-13T16:12:29.369Z",
+    "hook": "Stop",
+    "events": [
+      {
+        "id": "evt-0015",
+        "type": "turn.ended",
+        "ts": 1794586349369,
+        "sessionId": "session-1",
+        "agentKey": "session-1",
+        "source": "hook",
+        "lastMessage": "(scrubbed text)",
+        "backgroundAgentIds": []
+      }
+    ]
+  },
+  {
+    "t": "2026-11-13T16:12:31.052Z",
+    "hook": "SessionEnd",
+    "events": [
+      {
+        "id": "evt-0016",
+        "type": "session.ended",
+        "ts": 1794586351052,
+        "sessionId": "session-1",
+        "agentKey": "session-1",
+        "source": "hook",
+        "reason": "other"
+      }
+    ]
+  }
+]

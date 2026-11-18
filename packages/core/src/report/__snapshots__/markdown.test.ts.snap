@@ -1,0 +1,71 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`renderReportMarkdown > matches the snapshot 1`] = `
+"# Run report: \\# \\[x\\]\\(javascript:alert\\(1\\)\\) \\<img src=x\\>
+
+- **Session:** sess-report
+- **Topic:** \\\`\\\`\\\`
+- **Folder:** C:/p
+- **Model:** claude-opus-5-5
+- **Launched by:** the user (attached session)
+- **Started:** 2027-01-15T08:00:01.000Z
+- **Ended:** 2027-01-15T08:00:27.000Z (prompt\\_input\\_exit)
+- **Duration:** 26 s
+- **Outcome:** completed
+- **Work:** 2 agents, 0 tasks completed, 4 tool calls (2 failed), 1 approval, 2 stuck incidents
+- **Tokens:** input 2,100, output 350, cache read 6,000, cache write 10 (2 requests)
+- **Helper requests:** input 40, output 8, cache read 0, cache write 0 (1 request)
+- **Cost:** $0.2110 (estimate by Claude Code, not money spent)
+
+## Agents
+
+| Agent | Role | Model | Outcome | Time | Tasks done | Tool calls | Failed calls | Approvals | Stuck | Tokens in / out |
+|---|---|---|---|---|---|---|---|---|---|---|
+| \\# \\[x\\]\\(javascript:alert\\(1\\)\\) \\<img src=x\\> | main | claude-opus-5-5 | completed | 26 s | 0/0 | 1 | 0 | 0 | 0 | 2,000 / 300 |
+| \\!\\[i\\]\\(http\\://x/track.png\\) | core-engineer | claude-sonnet-5-5 | completed | 17 s | 0/0 | 3 | 2 | 1 | 2 | 100 / 50 |
+
+### \\# \\[x\\]\\(javascript:alert\\(1\\)\\) \\<img src=x\\>
+
+- **Role:** main
+- **Model:** claude-opus-5-5
+- **Outcome:** completed
+- **Time:** 26 s (2027-01-15T08:00:01.000Z to 2027-01-15T08:00:27.000Z)
+- **Tasks:** 0 of 0 completed
+- **Tools:** Agent 1
+- **Files written:** 0
+- **Approvals:** none
+- **Stuck incidents:** 0
+- **Tokens:** input 2,000, output 300, cache read 5,000, cache write 0 (1 request)
+- **Cost:** $0.2000 (estimate by Claude Code, not money spent)
+
+### \\!\\[i\\]\\(http\\://x/track.png\\)
+
+- **Role:** core-engineer
+- **Model:** claude-sonnet-5-5
+- **Started by:** \\# \\[x\\]\\(javascript:alert\\(1\\)\\) \\<img src=x\\> (main)
+- **Asked to:** \\!\\[i\\]\\(http\\://x/track.png\\)
+- **Outcome:** completed
+- **Time:** 17 s (2027-01-15T08:00:05.000Z to 2027-01-15T08:00:22.000Z)
+- **Tasks:** 0 of 0 completed
+- **Tools:** Bash 1 (1 failed), Edit 1, Write 1 (1 failed)
+- **Files written:** 1
+- **Approvals:** 1 requested: 1 by the user
+- **Stuck incidents:** 2
+- **Tokens:** input 100, output 50, cache read 1,000, cache write 10 (1 request)
+- **Cost:** $0.0100 (estimate by Claude Code, not money spent)
+- **Result:** \\- \\[click\\]\\(https\\://evil.example\\) www\\.evil.example
+
+## Files changed
+
+- C:/p/src/\\[a\\]\\(b\\).ts (Edit, 1 write, by \\!\\[i\\]\\(http\\://x/track.png\\) (core-engineer))
+
+## Failures
+
+- 2027-01-15T08:00:12.000Z, \\!\\[i\\]\\(http\\://x/track.png\\) (core-engineer): Bash failed: \\\`boom\\\` \\*bold\\* \\| pipe \\_u\\_ \\<b\\>
+- 2027-01-15T08:00:14.000Z, \\!\\[i\\]\\(http\\://x/track.png\\) (core-engineer): Write failed: denied
+
+## Approvals
+
+- 2027-01-15T08:00:10.000Z, \\!\\[i\\]\\(http\\://x/track.png\\) (core-engineer): Bash: npm test \\<script\\>alert\\(1\\)\\</script\\>: allowed by user
+"
+`;

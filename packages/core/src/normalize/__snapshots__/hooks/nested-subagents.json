@@ -1,0 +1,364 @@
+[
+  {
+    "t": "2026-11-13T16:01:54.344Z",
+    "hook": "SessionStart",
+    "events": [
+      {
+        "id": "evt-0001",
+        "type": "session.started",
+        "ts": 1794585714344,
+        "sessionId": "session-1",
+        "agentKey": "session-1",
+        "source": "hook",
+        "origin": "attached",
+        "cwd": "C:/Users/user/project",
+        "title": null,
+        "model": null,
+        "startKind": "startup"
+      }
+    ]
+  },
+  {
+    "t": "2026-11-13T16:01:54.799Z",
+    "hook": "InstructionsLoaded",
+    "events": [
+      {
+        "id": "evt-0002",
+        "type": "instructions.loaded",
+        "ts": 1794585714799,
+        "sessionId": "session-1",
+        "agentKey": "session-1",
+        "source": "hook",
+        "filePath": "C:/Users/user/project\\.claude\\CLAUDE.md"
+      }
+    ]
+  },
+  {
+    "t": "2026-11-13T16:01:54.800Z",
+    "hook": "InstructionsLoaded",
+    "events": [
+      {
+        "id": "evt-0003",
+        "type": "instructions.loaded",
+        "ts": 1794585714800,
+        "sessionId": "session-1",
+        "agentKey": "session-1",
+        "source": "hook",
+        "filePath": "C:/Users/user/project\\CLAUDE.md"
+      }
+    ]
+  },
+  {
+    "t": "2026-11-13T16:01:57.092Z",
+    "hook": "UserPromptSubmit",
+    "events": [
+      {
+        "id": "evt-0004",
+        "type": "prompt.submitted",
+        "ts": 1794585717092,
+        "sessionId": "session-1",
+        "agentKey": "session-1",
+        "source": "hook",
+        "text": "(scrubbed text)",
+        "promptId": "prompt-1",
+        "kind": "user",
+        "cwd": "C:/Users/user/project"
+      }
+    ]
+  },
+  {
+    "t": "2026-11-13T16:02:02.905Z",
+    "hook": "PreToolUse",
+    "events": [
+      {
+        "id": "evt-0005",
+        "type": "tool.started",
+        "ts": 1794585722905,
+        "sessionId": "session-1",
+        "agentKey": "session-1",
+        "source": "hook",
+        "toolUseId": "tool_use-1",
+        "toolName": "Agent",
+        "summary": "general-purpose: (scrubbed text)",
+        "filePath": null,
+        "inputDigest": "ea13a145ec0d79ee4ad1885a84511e44"
+      },
+      {
+        "id": "evt-0006",
+        "type": "agent.spawn_requested",
+        "ts": 1794585722905,
+        "sessionId": "session-1",
+        "agentKey": "session-1",
+        "source": "hook",
+        "toolUseId": "tool_use-1",
+        "role": "general-purpose",
+        "title": "(scrubbed text)",
+        "brief": "(scrubbed text)",
+        "model": null
+      }
+    ]
+  },
+  {
+    "t": "2026-11-13T16:02:03.426Z",
+    "hook": "SubagentStart",
+    "events": [
+      {
+        "id": "evt-0007",
+        "type": "agent.started",
+        "ts": 1794585723426,
+        "sessionId": "session-1",
+        "agentKey": "session-1::agent-1",
+        "source": "hook",
+        "agentId": "agent-1",
+        "role": "general-purpose",
+        "parentKey": "session-1"
+      }
+    ]
+  },
+  {
+    "t": "2026-11-13T16:02:06.605Z",
+    "hook": "PreToolUse",
+    "events": [
+      {
+        "id": "evt-0008",
+        "type": "tool.started",
+        "ts": 1794585726605,
+        "sessionId": "session-1",
+        "agentKey": "session-1::agent-1",
+        "source": "hook",
+        "toolUseId": "tool_use-2",
+        "toolName": "Agent",
+        "summary": "Explore: (scrubbed text)",
+        "filePath": null,
+        "inputDigest": "7dd42a8f06bc60113dc83e699a9ca91d"
+      },
+      {
+        "id": "evt-0009",
+        "type": "agent.spawn_requested",
+        "ts": 1794585726605,
+        "sessionId": "session-1",
+        "agentKey": "session-1::agent-1",
+        "source": "hook",
+        "toolUseId": "tool_use-2",
+        "role": "Explore",
+        "title": "(scrubbed text)",
+        "brief": "(scrubbed text)",
+        "model": null
+      }
+    ]
+  },
+  {
+    "t": "2026-11-13T16:02:07.079Z",
+    "hook": "SubagentStart",
+    "events": [
+      {
+        "id": "evt-0010",
+        "type": "agent.started",
+        "ts": 1794585727079,
+        "sessionId": "session-1",
+        "agentKey": "session-1::agent-2",
+        "source": "hook",
+        "agentId": "agent-2",
+        "role": "Explore",
+        "parentKey": "session-1"
+      }
+    ]
+  },
+  {
+    "t": "2026-11-13T16:02:09.575Z",
+    "hook": "PreToolUse",
+    "events": [
+      {
+        "id": "evt-0011",
+        "type": "tool.started",
+        "ts": 1794585729575,
+        "sessionId": "session-1",
+        "agentKey": "session-1::agent-2",
+        "source": "hook",
+        "toolUseId": "tool_use-3",
+        "toolName": "Glob",
+        "summary": "(scrubbed text) in C:/Users/user/project",
+        "filePath": null,
+        "inputDigest": "81c145edaf377a631f88ce861f31aad3"
+      }
+    ]
+  },
+  {
+    "t": "2026-11-13T16:02:09.993Z",
+    "hook": "PostToolUse",
+    "events": [
+      {
+        "id": "evt-0012",
+        "type": "tool.finished",
+        "ts": 1794585729993,
+        "sessionId": "session-1",
+        "agentKey": "session-1::agent-2",
+        "source": "hook",
+        "toolUseId": "tool_use-3",
+        "toolName": "Glob",
+        "durationMs": 61
+      }
+    ]
+  },
+  {
+    "t": "2026-11-13T16:02:12.097Z",
+    "hook": "SubagentStop",
+    "events": [
+      {
+        "id": "evt-0013",
+        "type": "turn.ended",
+        "ts": 1794585732097,
+        "sessionId": "session-1",
+        "agentKey": "session-1::agent-2",
+        "source": "hook",
+        "lastMessage": "(scrubbed text)",
+        "backgroundAgentIds": []
+      },
+      {
+        "id": "evt-0014",
+        "type": "agent.stopped",
+        "ts": 1794585732097,
+        "sessionId": "session-1",
+        "agentKey": "session-1::agent-2",
+        "source": "hook",
+        "agentId": "agent-2",
+        "result": "(scrubbed text)"
+      }
+    ]
+  },
+  {
+    "t": "2026-11-13T16:02:12.525Z",
+    "hook": "PostToolUse",
+    "events": [
+      {
+        "id": "evt-0015",
+        "type": "tool.finished",
+        "ts": 1794585732525,
+        "sessionId": "session-1",
+        "agentKey": "session-1::agent-1",
+        "source": "hook",
+        "toolUseId": "tool_use-2",
+        "toolName": "Agent",
+        "durationMs": 5453
+      },
+      {
+        "id": "evt-0016",
+        "type": "agent.linked",
+        "ts": 1794585732525,
+        "sessionId": "session-1",
+        "agentKey": "session-1::agent-2",
+        "source": "hook",
+        "toolUseId": "tool_use-2",
+        "childAgentId": "agent-2",
+        "parentKey": "session-1::agent-1",
+        "link": "exact"
+      },
+      {
+        "id": "evt-0017",
+        "type": "model.observed",
+        "ts": 1794585732525,
+        "sessionId": "session-1",
+        "agentKey": "session-1::agent-2",
+        "source": "hook",
+        "model": "claude-opus-5-5",
+        "via": "agent_call"
+      }
+    ]
+  },
+  {
+    "t": "2026-11-13T16:02:14.556Z",
+    "hook": "SubagentStop",
+    "events": [
+      {
+        "id": "evt-0018",
+        "type": "turn.ended",
+        "ts": 1794585734556,
+        "sessionId": "session-1",
+        "agentKey": "session-1::agent-1",
+        "source": "hook",
+        "lastMessage": "(scrubbed text)",
+        "backgroundAgentIds": []
+      },
+      {
+        "id": "evt-0019",
+        "type": "agent.stopped",
+        "ts": 1794585734556,
+        "sessionId": "session-1",
+        "agentKey": "session-1::agent-1",
+        "source": "hook",
+        "agentId": "agent-1",
+        "result": "(scrubbed text)"
+      }
+    ]
+  },
+  {
+    "t": "2026-11-13T16:02:14.997Z",
+    "hook": "PostToolUse",
+    "events": [
+      {
+        "id": "evt-0020",
+        "type": "tool.finished",
+        "ts": 1794585734997,
+        "sessionId": "session-1",
+        "agentKey": "session-1",
+        "source": "hook",
+        "toolUseId": "tool_use-1",
+        "toolName": "Agent",
+        "durationMs": 11589
+      },
+      {
+        "id": "evt-0021",
+        "type": "agent.linked",
+        "ts": 1794585734997,
+        "sessionId": "session-1",
+        "agentKey": "session-1::agent-1",
+        "source": "hook",
+        "toolUseId": "tool_use-1",
+        "childAgentId": "agent-1",
+        "parentKey": "session-1",
+        "link": "exact"
+      },
+      {
+        "id": "evt-0022",
+        "type": "model.observed",
+        "ts": 1794585734997,
+        "sessionId": "session-1",
+        "agentKey": "session-1::agent-1",
+        "source": "hook",
+        "model": "claude-opus-5-5",
+        "via": "agent_call"
+      }
+    ]
+  },
+  {
+    "t": "2026-11-13T16:02:18.916Z",
+    "hook": "Stop",
+    "events": [
+      {
+        "id": "evt-0023",
+        "type": "turn.ended",
+        "ts": 1794585738916,
+        "sessionId": "session-1",
+        "agentKey": "session-1",
+        "source": "hook",
+        "lastMessage": "(scrubbed text)",
+        "backgroundAgentIds": []
+      }
+    ]
+  },
+  {
+    "t": "2026-11-13T16:02:19.661Z",
+    "hook": "SessionEnd",
+    "events": [
+      {
+        "id": "evt-0024",
+        "type": "session.ended",
+        "ts": 1794585739661,
+        "sessionId": "session-1",
+        "agentKey": "session-1",
+        "source": "hook",
+        "reason": "other"
+      }
+    ]
+  }
+]

@@ -1,0 +1,4 @@
+# Keep LF line endings on Windows too, so scripts and hooks behave the same everywhere.
+* text=auto eol=lf
+*.png binary
+*.ico binary

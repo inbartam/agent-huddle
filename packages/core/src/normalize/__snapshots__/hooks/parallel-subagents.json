@@ -1,0 +1,1293 @@
+[
+  {
+    "t": "2026-11-13T16:00:11.420Z",
+    "hook": "SessionStart",
+    "events": [
+      {
+        "id": "evt-0001",
+        "type": "session.started",
+        "ts": 1794585611420,
+        "sessionId": "session-1",
+        "agentKey": "session-1",
+        "source": "hook",
+        "origin": "attached",
+        "cwd": "C:/Users/user/project",
+        "title": null,
+        "model": null,
+        "startKind": "startup"
+      }
+    ]
+  },
+  {
+    "t": "2026-11-13T16:00:11.871Z",
+    "hook": "InstructionsLoaded",
+    "events": [
+      {
+        "id": "evt-0002",
+        "type": "instructions.loaded",
+        "ts": 1794585611871,
+        "sessionId": "session-1",
+        "agentKey": "session-1",
+        "source": "hook",
+        "filePath": "C:/Users/user/project\\.claude\\CLAUDE.md"
+      }
+    ]
+  },
+  {
+    "t": "2026-11-13T16:00:11.872Z",
+    "hook": "InstructionsLoaded",
+    "events": [
+      {
+        "id": "evt-0003",
+        "type": "instructions.loaded",
+        "ts": 1794585611872,
+        "sessionId": "session-1",
+        "agentKey": "session-1",
+        "source": "hook",
+        "filePath": "C:/Users/user/project\\CLAUDE.md"
+      }
+    ]
+  },
+  {
+    "t": "2026-11-13T16:00:14.148Z",
+    "hook": "UserPromptSubmit",
+    "events": [
+      {
+        "id": "evt-0004",
+        "type": "prompt.submitted",
+        "ts": 1794585614148,
+        "sessionId": "session-1",
+        "agentKey": "session-1",
+        "source": "hook",
+        "text": "(scrubbed text)",
+        "promptId": "prompt-1",
+        "kind": "user",
+        "cwd": "C:/Users/user/project"
+      }
+    ]
+  },
+  {
+    "t": "2026-11-13T16:00:16.915Z",
+    "hook": "PreToolUse",
+    "events": [
+      {
+        "id": "evt-0005",
+        "type": "tool.started",
+        "ts": 1794585616915,
+        "sessionId": "session-1",
+        "agentKey": "session-1",
+        "source": "hook",
+        "toolUseId": "tool_use-1",
+        "toolName": "ToolSearch",
+        "summary": "(scrubbed text)",
+        "filePath": null,
+        "inputDigest": "a163313cf8c85f21071d01a122870f22"
+      }
+    ]
+  },
+  {
+    "t": "2026-11-13T16:00:17.338Z",
+    "hook": "PostToolUse",
+    "events": [
+      {
+        "id": "evt-0006",
+        "type": "tool.finished",
+        "ts": 1794585617338,
+        "sessionId": "session-1",
+        "agentKey": "session-1",
+        "source": "hook",
+        "toolUseId": "tool_use-1",
+        "toolName": "ToolSearch",
+        "durationMs": 12
+      }
+    ]
+  },
+  {
+    "t": "2026-11-13T16:00:23.192Z",
+    "hook": "PreToolUse",
+    "events": [
+      {
+        "id": "evt-0007",
+        "type": "tool.started",
+        "ts": 1794585623192,
+        "sessionId": "session-1",
+        "agentKey": "session-1",
+        "source": "hook",
+        "toolUseId": "tool_use-2",
+        "toolName": "Agent",
+        "summary": "Explore: (scrubbed text)",
+        "filePath": null,
+        "inputDigest": "9571351b6138ca9e97464d33f800ee7c"
+      },
+      {
+        "id": "evt-0008",
+        "type": "agent.spawn_requested",
+        "ts": 1794585623192,
+        "sessionId": "session-1",
+        "agentKey": "session-1",
+        "source": "hook",
+        "toolUseId": "tool_use-2",
+        "role": "Explore",
+        "title": "(scrubbed text)",
+        "brief": "(scrubbed text)",
+        "model": null
+      }
+    ]
+  },
+  {
+    "t": "2026-11-13T16:00:23.601Z",
+    "hook": "SubagentStart",
+    "events": [
+      {
+        "id": "evt-0009",
+        "type": "agent.started",
+        "ts": 1794585623601,
+        "sessionId": "session-1",
+        "agentKey": "session-1::agent-1",
+        "source": "hook",
+        "agentId": "agent-1",
+        "role": "Explore",
+        "parentKey": "session-1"
+      }
+    ]
+  },
+  {
+    "t": "2026-11-13T16:00:23.627Z",
+    "hook": "PostToolUse",
+    "events": [
+      {
+        "id": "evt-0010",
+        "type": "tool.finished",
+        "ts": 1794585623627,
+        "sessionId": "session-1",
+        "agentKey": "session-1",
+        "source": "hook",
+        "toolUseId": "tool_use-2",
+        "toolName": "Agent",
+        "durationMs": 28
+      },
+      {
+        "id": "evt-0011",
+        "type": "agent.linked",
+        "ts": 1794585623627,
+        "sessionId": "session-1",
+        "agentKey": "session-1::agent-1",
+        "source": "hook",
+        "toolUseId": "tool_use-2",
+        "childAgentId": "agent-1",
+        "parentKey": "session-1",
+        "link": "exact"
+      },
+      {
+        "id": "evt-0012",
+        "type": "model.observed",
+        "ts": 1794585623627,
+        "sessionId": "session-1",
+        "agentKey": "session-1::agent-1",
+        "source": "hook",
+        "model": "claude-opus-5-5",
+        "via": "agent_call"
+      }
+    ]
+  },
+  {
+    "t": "2026-11-13T16:00:25.995Z",
+    "hook": "PreToolUse",
+    "events": [
+      {
+        "id": "evt-0013",
+        "type": "tool.started",
+        "ts": 1794585625995,
+        "sessionId": "session-1",
+        "agentKey": "session-1",
+        "source": "hook",
+        "toolUseId": "tool_use-3",
+        "toolName": "Agent",
+        "summary": "Explore: (scrubbed text)",
+        "filePath": null,
+        "inputDigest": "9571351b6138ca9e97464d33f800ee7c"
+      },
+      {
+        "id": "evt-0014",
+        "type": "agent.spawn_requested",
+        "ts": 1794585625995,
+        "sessionId": "session-1",
+        "agentKey": "session-1",
+        "source": "hook",
+        "toolUseId": "tool_use-3",
+        "role": "Explore",
+        "title": "(scrubbed text)",
+        "brief": "(scrubbed text)",
+        "model": null
+      }
+    ]
+  },
+  {
+    "t": "2026-11-13T16:00:26.329Z",
+    "hook": "SubagentStart",
+    "events": [
+      {
+        "id": "evt-0015",
+        "type": "agent.started",
+        "ts": 1794585626329,
+        "sessionId": "session-1",
+        "agentKey": "session-1::agent-2",
+        "source": "hook",
+        "agentId": "agent-2",
+        "role": "Explore",
+        "parentKey": "session-1"
+      }
+    ]
+  },
+  {
+    "t": "2026-11-13T16:00:26.329Z",
+    "hook": "PostToolUse",
+    "events": [
+      {
+        "id": "evt-0016",
+        "type": "tool.finished",
+        "ts": 1794585626329,
+        "sessionId": "session-1",
+        "agentKey": "session-1",
+        "source": "hook",
+        "toolUseId": "tool_use-3",
+        "toolName": "Agent",
+        "durationMs": 4
+      },
+      {
+        "id": "evt-0017",
+        "type": "agent.linked",
+        "ts": 1794585626329,
+        "sessionId": "session-1",
+        "agentKey": "session-1::agent-2",
+        "source": "hook",
+        "toolUseId": "tool_use-3",
+        "childAgentId": "agent-2",
+        "parentKey": "session-1",
+        "link": "exact"
+      },
+      {
+        "id": "evt-0018",
+        "type": "model.observed",
+        "ts": 1794585626329,
+        "sessionId": "session-1",
+        "agentKey": "session-1::agent-2",
+        "source": "hook",
+        "model": "claude-opus-5-5",
+        "via": "agent_call"
+      }
+    ]
+  },
+  {
+    "t": "2026-11-13T16:00:26.441Z",
+    "hook": "PreToolUse",
+    "events": [
+      {
+        "id": "evt-0019",
+        "type": "tool.started",
+        "ts": 1794585626441,
+        "sessionId": "session-1",
+        "agentKey": "session-1::agent-1",
+        "source": "hook",
+        "toolUseId": "tool_use-4",
+        "toolName": "Bash",
+        "summary": "cd \"C:/Users/user/project\" && find docs .claude -type f | head -50 && wc -l docs/* 2>/dev/null",
+        "filePath": null,
+        "inputDigest": "ff16fa7af1f30540eeb59267da7af9fa"
+      }
+    ]
+  },
+  {
+    "t": "2026-11-13T16:00:26.921Z",
+    "hook": "PermissionRequest",
+    "events": [
+      {
+        "id": "evt-0021",
+        "type": "approval.requested",
+        "ts": 1794585626921,
+        "sessionId": "session-1",
+        "agentKey": "session-1::agent-1",
+        "source": "hook",
+        "request": {
+          "requestId": "evt-0020",
+          "agentKey": "session-1::agent-1",
+          "toolName": "Bash",
+          "toolInput": {
+            "command": "cd \"C:/Users/user/project\" && find docs .claude -type f | head -50 && wc -l docs/* 2>/dev/null",
+            "description": "(scrubbed text)"
+          },
+          "summary": "cd \"C:/Users/user/project\" && find docs .claude -type f | head -50 && wc -l docs/* 2>/dev/null",
+          "receivedAt": 1794585626921,
+          "expiresAt": null,
+          "channel": "hook"
+        }
+      }
+    ]
+  },
+  {
+    "t": "2026-11-13T16:00:28.521Z",
+    "hook": "Stop",
+    "events": [
+      {
+        "id": "evt-0022",
+        "type": "turn.ended",
+        "ts": 1794585628521,
+        "sessionId": "session-1",
+        "agentKey": "session-1",
+        "source": "hook",
+        "lastMessage": "(scrubbed text)",
+        "backgroundAgentIds": [
+          "agent-1",
+          "agent-2"
+        ]
+      }
+    ]
+  },
+  {
+    "t": "2026-11-13T16:00:28.993Z",
+    "hook": "PreToolUse",
+    "events": [
+      {
+        "id": "evt-0023",
+        "type": "tool.started",
+        "ts": 1794585628993,
+        "sessionId": "session-1",
+        "agentKey": "session-1::agent-1",
+        "source": "hook",
+        "toolUseId": "tool_use-5",
+        "toolName": "Glob",
+        "summary": "(scrubbed text) in C:/Users/user/project",
+        "filePath": null,
+        "inputDigest": "81c145edaf377a631f88ce861f31aad3"
+      }
+    ]
+  },
+  {
+    "t": "2026-11-13T16:00:29.101Z",
+    "hook": "PreToolUse",
+    "events": [
+      {
+        "id": "evt-0024",
+        "type": "tool.started",
+        "ts": 1794585629101,
+        "sessionId": "session-1",
+        "agentKey": "session-1::agent-2",
+        "source": "hook",
+        "toolUseId": "tool_use-6",
+        "toolName": "Bash",
+        "summary": "cd \"C:/Users/user/project\" && find . -path ./node_modules -prune -o -path ./docs -prune -o -type f -print | grep -v node_modules | head -100 && cat package.json",
+        "filePath": null,
+        "inputDigest": "f5e4140184fca3892f30bb4813f7c29e"
+      }
+    ]
+  },
+  {
+    "t": "2026-11-13T16:00:29.427Z",
+    "hook": "PostToolUse",
+    "events": [
+      {
+        "id": "evt-0025",
+        "type": "tool.finished",
+        "ts": 1794585629427,
+        "sessionId": "session-1",
+        "agentKey": "session-1::agent-1",
+        "source": "hook",
+        "toolUseId": "tool_use-5",
+        "toolName": "Glob",
+        "durationMs": 57
+      }
+    ]
+  },
+  {
+    "t": "2026-11-13T16:00:29.469Z",
+    "hook": "PermissionRequest",
+    "events": [
+      {
+        "id": "evt-0027",
+        "type": "approval.requested",
+        "ts": 1794585629469,
+        "sessionId": "session-1",
+        "agentKey": "session-1::agent-2",
+        "source": "hook",
+        "request": {
+          "requestId": "evt-0026",
+          "agentKey": "session-1::agent-2",
+          "toolName": "Bash",
+          "toolInput": {
+            "command": "cd \"C:/Users/user/project\" && find . -path ./node_modules -prune -o -path ./docs -prune -o -type f -print | grep -v node_modules | head -100 && cat package.json",
+            "description": "(scrubbed text)"
+          },
+          "summary": "cd \"C:/Users/user/project\" && find . -path ./node_modules -prune -o -path ./docs -prune -o -type f -print | grep -v node_modules | head -100 && cat package.json",
+          "receivedAt": 1794585629469,
+          "expiresAt": null,
+          "channel": "hook"
+        }
+      }
+    ]
+  },
+  {
+    "t": "2026-11-13T16:00:31.410Z",
+    "hook": "PreToolUse",
+    "events": [
+      {
+        "id": "evt-0028",
+        "type": "tool.started",
+        "ts": 1794585631410,
+        "sessionId": "session-1",
+        "agentKey": "session-1::agent-2",
+        "source": "hook",
+        "toolUseId": "tool_use-7",
+        "toolName": "Glob",
+        "summary": "(scrubbed text) in C:/Users/user/project",
+        "filePath": null,
+        "inputDigest": "81c145edaf377a631f88ce861f31aad3"
+      }
+    ]
+  },
+  {
+    "t": "2026-11-13T16:00:31.646Z",
+    "hook": "PreToolUse",
+    "events": [
+      {
+        "id": "evt-0029",
+        "type": "tool.started",
+        "ts": 1794585631646,
+        "sessionId": "session-1",
+        "agentKey": "session-1::agent-1",
+        "source": "hook",
+        "toolUseId": "tool_use-8",
+        "toolName": "Read",
+        "summary": "C:/Users/user/project\\docs\\ROADMAP.md",
+        "filePath": "C:/Users/user/project\\docs\\ROADMAP.md",
+        "inputDigest": "91e1a912ede34484dd435ae318d687fa"
+      }
+    ]
+  },
+  {
+    "t": "2026-11-13T16:00:31.924Z",
+    "hook": "PostToolUse",
+    "events": [
+      {
+        "id": "evt-0030",
+        "type": "tool.finished",
+        "ts": 1794585631924,
+        "sessionId": "session-1",
+        "agentKey": "session-1::agent-2",
+        "source": "hook",
+        "toolUseId": "tool_use-7",
+        "toolName": "Glob",
+        "durationMs": 62
+      }
+    ]
+  },
+  {
+    "t": "2026-11-13T16:00:32.118Z",
+    "hook": "PostToolUse",
+    "events": [
+      {
+        "id": "evt-0031",
+        "type": "tool.finished",
+        "ts": 1794585632118,
+        "sessionId": "session-1",
+        "agentKey": "session-1::agent-1",
+        "source": "hook",
+        "toolUseId": "tool_use-8",
+        "toolName": "Read",
+        "durationMs": 33
+      }
+    ]
+  },
+  {
+    "t": "2026-11-13T16:00:32.540Z",
+    "hook": "PreToolUse",
+    "events": [
+      {
+        "id": "evt-0032",
+        "type": "tool.started",
+        "ts": 1794585632540,
+        "sessionId": "session-1",
+        "agentKey": "session-1::agent-1",
+        "source": "hook",
+        "toolUseId": "tool_use-9",
+        "toolName": "Read",
+        "summary": "C:/Users/user/project\\docs\\SPIKES.md",
+        "filePath": "C:/Users/user/project\\docs\\SPIKES.md",
+        "inputDigest": "9be99f5f10c52ec074d3280931c06c30"
+      }
+    ]
+  },
+  {
+    "t": "2026-11-13T16:00:32.976Z",
+    "hook": "PostToolUse",
+    "events": [
+      {
+        "id": "evt-0033",
+        "type": "tool.finished",
+        "ts": 1794585632976,
+        "sessionId": "session-1",
+        "agentKey": "session-1::agent-1",
+        "source": "hook",
+        "toolUseId": "tool_use-9",
+        "toolName": "Read",
+        "durationMs": 21
+      }
+    ]
+  },
+  {
+    "t": "2026-11-13T16:00:33.649Z",
+    "hook": "PreToolUse",
+    "events": [
+      {
+        "id": "evt-0034",
+        "type": "tool.started",
+        "ts": 1794585633649,
+        "sessionId": "session-1",
+        "agentKey": "session-1::agent-1",
+        "source": "hook",
+        "toolUseId": "tool_use-10",
+        "toolName": "Read",
+        "summary": "C:/Users/user/project\\docs\\DECISIONS.md",
+        "filePath": "C:/Users/user/project\\docs\\DECISIONS.md",
+        "inputDigest": "04f40c73fec19dd6edd865ddabed6c30"
+      }
+    ]
+  },
+  {
+    "t": "2026-11-13T16:00:34.052Z",
+    "hook": "PostToolUse",
+    "events": [
+      {
+        "id": "evt-0035",
+        "type": "tool.finished",
+        "ts": 1794585634052,
+        "sessionId": "session-1",
+        "agentKey": "session-1::agent-1",
+        "source": "hook",
+        "toolUseId": "tool_use-10",
+        "toolName": "Read",
+        "durationMs": 22
+      }
+    ]
+  },
+  {
+    "t": "2026-11-13T16:00:34.188Z",
+    "hook": "PreToolUse",
+    "events": [
+      {
+        "id": "evt-0036",
+        "type": "tool.started",
+        "ts": 1794585634188,
+        "sessionId": "session-1",
+        "agentKey": "session-1::agent-2",
+        "source": "hook",
+        "toolUseId": "tool_use-11",
+        "toolName": "Read",
+        "summary": "C:/Users/user/project\\package.json",
+        "filePath": "C:/Users/user/project\\package.json",
+        "inputDigest": "3934b103d0481a2a1d4bfebf194e931f"
+      }
+    ]
+  },
+  {
+    "t": "2026-11-13T16:00:34.342Z",
+    "hook": "PreToolUse",
+    "events": [
+      {
+        "id": "evt-0037",
+        "type": "tool.started",
+        "ts": 1794585634342,
+        "sessionId": "session-1",
+        "agentKey": "session-1::agent-1",
+        "source": "hook",
+        "toolUseId": "tool_use-12",
+        "toolName": "Read",
+        "summary": "C:/Users/user/project\\docs\\SPEC.md",
+        "filePath": "C:/Users/user/project\\docs\\SPEC.md",
+        "inputDigest": "40b8d62f2b7cb35f92e16e4fbd687f08"
+      }
+    ]
+  },
+  {
+    "t": "2026-11-13T16:00:34.705Z",
+    "hook": "PostToolUse",
+    "events": [
+      {
+        "id": "evt-0038",
+        "type": "tool.finished",
+        "ts": 1794585634705,
+        "sessionId": "session-1",
+        "agentKey": "session-1::agent-2",
+        "source": "hook",
+        "toolUseId": "tool_use-11",
+        "toolName": "Read",
+        "durationMs": 9
+      }
+    ]
+  },
+  {
+    "t": "2026-11-13T16:00:34.838Z",
+    "hook": "PostToolUse",
+    "events": [
+      {
+        "id": "evt-0039",
+        "type": "tool.finished",
+        "ts": 1794585634838,
+        "sessionId": "session-1",
+        "agentKey": "session-1::agent-1",
+        "source": "hook",
+        "toolUseId": "tool_use-12",
+        "toolName": "Read",
+        "durationMs": 27
+      }
+    ]
+  },
+  {
+    "t": "2026-11-13T16:00:35.092Z",
+    "hook": "PreToolUse",
+    "events": [
+      {
+        "id": "evt-0040",
+        "type": "tool.started",
+        "ts": 1794585635092,
+        "sessionId": "session-1",
+        "agentKey": "session-1::agent-2",
+        "source": "hook",
+        "toolUseId": "tool_use-13",
+        "toolName": "Read",
+        "summary": "C:/Users/user/project\\packages\\shared\\src\\events.ts",
+        "filePath": "C:/Users/user/project\\packages\\shared\\src\\events.ts",
+        "inputDigest": "8c927ccbd6f5d2470ae38549ff41312b"
+      }
+    ]
+  },
+  {
+    "t": "2026-11-13T16:00:35.292Z",
+    "hook": "PreToolUse",
+    "events": [
+      {
+        "id": "evt-0041",
+        "type": "tool.started",
+        "ts": 1794585635292,
+        "sessionId": "session-1",
+        "agentKey": "session-1::agent-1",
+        "source": "hook",
+        "toolUseId": "tool_use-14",
+        "toolName": "Read",
+        "summary": "C:/Users/user/project\\docs\\ARCHITECTURE.md",
+        "filePath": "C:/Users/user/project\\docs\\ARCHITECTURE.md",
+        "inputDigest": "567e5f899a802da330fea2ee54dfe343"
+      }
+    ]
+  },
+  {
+    "t": "2026-11-13T16:00:35.703Z",
+    "hook": "PostToolUse",
+    "events": [
+      {
+        "id": "evt-0042",
+        "type": "tool.finished",
+        "ts": 1794585635703,
+        "sessionId": "session-1",
+        "agentKey": "session-1::agent-2",
+        "source": "hook",
+        "toolUseId": "tool_use-13",
+        "toolName": "Read",
+        "durationMs": 38
+      }
+    ]
+  },
+  {
+    "t": "2026-11-13T16:00:35.854Z",
+    "hook": "PostToolUse",
+    "events": [
+      {
+        "id": "evt-0043",
+        "type": "tool.finished",
+        "ts": 1794585635854,
+        "sessionId": "session-1",
+        "agentKey": "session-1::agent-1",
+        "source": "hook",
+        "toolUseId": "tool_use-14",
+        "toolName": "Read",
+        "durationMs": 30
+      }
+    ]
+  },
+  {
+    "t": "2026-11-13T16:00:35.989Z",
+    "hook": "PreToolUse",
+    "events": [
+      {
+        "id": "evt-0044",
+        "type": "tool.started",
+        "ts": 1794585635989,
+        "sessionId": "session-1",
+        "agentKey": "session-1::agent-2",
+        "source": "hook",
+        "toolUseId": "tool_use-15",
+        "toolName": "Read",
+        "summary": "C:/Users/user/project\\packages\\shared\\src\\hooks.ts",
+        "filePath": "C:/Users/user/project\\packages\\shared\\src\\hooks.ts",
+        "inputDigest": "5ef4f0acb03a71d2169cee708ae96da3"
+      }
+    ]
+  },
+  {
+    "t": "2026-11-13T16:00:36.553Z",
+    "hook": "PostToolUse",
+    "events": [
+      {
+        "id": "evt-0045",
+        "type": "tool.finished",
+        "ts": 1794585636553,
+        "sessionId": "session-1",
+        "agentKey": "session-1::agent-2",
+        "source": "hook",
+        "toolUseId": "tool_use-15",
+        "toolName": "Read",
+        "durationMs": 41
+      }
+    ]
+  },
+  {
+    "t": "2026-11-13T16:00:36.841Z",
+    "hook": "PreToolUse",
+    "events": [
+      {
+        "id": "evt-0046",
+        "type": "tool.started",
+        "ts": 1794585636841,
+        "sessionId": "session-1",
+        "agentKey": "session-1::agent-2",
+        "source": "hook",
+        "toolUseId": "tool_use-16",
+        "toolName": "Read",
+        "summary": "C:/Users/user/project\\packages\\shared\\src\\index.ts",
+        "filePath": "C:/Users/user/project\\packages\\shared\\src\\index.ts",
+        "inputDigest": "ee8d9285ea9310b3838b83c330a1b36a"
+      }
+    ]
+  },
+  {
+    "t": "2026-11-13T16:00:37.368Z",
+    "hook": "PostToolUse",
+    "events": [
+      {
+        "id": "evt-0047",
+        "type": "tool.finished",
+        "ts": 1794585637368,
+        "sessionId": "session-1",
+        "agentKey": "session-1::agent-2",
+        "source": "hook",
+        "toolUseId": "tool_use-16",
+        "toolName": "Read",
+        "durationMs": 8
+      }
+    ]
+  },
+  {
+    "t": "2026-11-13T16:00:37.738Z",
+    "hook": "PreToolUse",
+    "events": [
+      {
+        "id": "evt-0048",
+        "type": "tool.started",
+        "ts": 1794585637738,
+        "sessionId": "session-1",
+        "agentKey": "session-1::agent-2",
+        "source": "hook",
+        "toolUseId": "tool_use-17",
+        "toolName": "Read",
+        "summary": "C:/Users/user/project\\packages\\shared\\package.json",
+        "filePath": "C:/Users/user/project\\packages\\shared\\package.json",
+        "inputDigest": "459456586c1dd3f20ff8520e9d9d06f4"
+      }
+    ]
+  },
+  {
+    "t": "2026-11-13T16:00:38.170Z",
+    "hook": "PostToolUse",
+    "events": [
+      {
+        "id": "evt-0049",
+        "type": "tool.finished",
+        "ts": 1794585638170,
+        "sessionId": "session-1",
+        "agentKey": "session-1::agent-2",
+        "source": "hook",
+        "toolUseId": "tool_use-17",
+        "toolName": "Read",
+        "durationMs": 8
+      }
+    ]
+  },
+  {
+    "t": "2026-11-13T16:00:38.488Z",
+    "hook": "PreToolUse",
+    "events": [
+      {
+        "id": "evt-0050",
+        "type": "tool.started",
+        "ts": 1794585638488,
+        "sessionId": "session-1",
+        "agentKey": "session-1::agent-2",
+        "source": "hook",
+        "toolUseId": "tool_use-18",
+        "toolName": "Read",
+        "summary": "C:/Users/user/project\\fixtures\\README.md",
+        "filePath": "C:/Users/user/project\\fixtures\\README.md",
+        "inputDigest": "7c06c4f59a90ae0aeb03dbdf5c8acdff"
+      }
+    ]
+  },
+  {
+    "t": "2026-11-13T16:00:38.960Z",
+    "hook": "PostToolUse",
+    "events": [
+      {
+        "id": "evt-0051",
+        "type": "tool.finished",
+        "ts": 1794585638960,
+        "sessionId": "session-1",
+        "agentKey": "session-1::agent-2",
+        "source": "hook",
+        "toolUseId": "tool_use-18",
+        "toolName": "Read",
+        "durationMs": 8
+      }
+    ]
+  },
+  {
+    "t": "2026-11-13T16:00:39.555Z",
+    "hook": "PreToolUse",
+    "events": [
+      {
+        "id": "evt-0052",
+        "type": "tool.started",
+        "ts": 1794585639555,
+        "sessionId": "session-1",
+        "agentKey": "session-1::agent-1",
+        "source": "hook",
+        "toolUseId": "tool_use-19",
+        "toolName": "Read",
+        "summary": "C:/Users/user/project\\docs\\superpowers\\plans\\2026-11-13-m0-prove-it.md",
+        "filePath": "C:/Users/user/project\\docs\\superpowers\\plans\\2026-11-13-m0-prove-it.md",
+        "inputDigest": "0101aa9d77f8128b15f67fc36a2bad62"
+      }
+    ]
+  },
+  {
+    "t": "2026-11-13T16:00:39.577Z",
+    "hook": "InstructionsLoaded",
+    "events": [
+      {
+        "id": "evt-0053",
+        "type": "instructions.loaded",
+        "ts": 1794585639577,
+        "sessionId": "session-1",
+        "agentKey": "session-1::agent-2",
+        "source": "hook",
+        "filePath": "C:/Users/user/project\\.claude\\rules\\events-and-state.md"
+      }
+    ]
+  },
+  {
+    "t": "2026-11-13T16:00:39.963Z",
+    "hook": "PostToolUse",
+    "events": [
+      {
+        "id": "evt-0054",
+        "type": "tool.finished",
+        "ts": 1794585639963,
+        "sessionId": "session-1",
+        "agentKey": "session-1::agent-1",
+        "source": "hook",
+        "toolUseId": "tool_use-19",
+        "toolName": "Read",
+        "durationMs": 27
+      }
+    ]
+  },
+  {
+    "t": "2026-11-13T16:00:41.860Z",
+    "hook": "PreToolUse",
+    "events": [
+      {
+        "id": "evt-0055",
+        "type": "tool.started",
+        "ts": 1794585641860,
+        "sessionId": "session-1",
+        "agentKey": "session-1::agent-2",
+        "source": "hook",
+        "toolUseId": "tool_use-20",
+        "toolName": "Read",
+        "summary": "C:/Users/user/project\\scripts\\spike-server.mjs",
+        "filePath": "C:/Users/user/project\\scripts\\spike-server.mjs",
+        "inputDigest": "8d776f9bcc6daba778f7766b1e5f89e3"
+      }
+    ]
+  },
+  {
+    "t": "2026-11-13T16:00:42.503Z",
+    "hook": "PostToolUse",
+    "events": [
+      {
+        "id": "evt-0056",
+        "type": "tool.finished",
+        "ts": 1794585642503,
+        "sessionId": "session-1",
+        "agentKey": "session-1::agent-2",
+        "source": "hook",
+        "toolUseId": "tool_use-20",
+        "toolName": "Read",
+        "durationMs": 265
+      }
+    ]
+  },
+  {
+    "t": "2026-11-13T16:00:42.601Z",
+    "hook": "PreToolUse",
+    "events": [
+      {
+        "id": "evt-0057",
+        "type": "tool.started",
+        "ts": 1794585642601,
+        "sessionId": "session-1",
+        "agentKey": "session-1::agent-2",
+        "source": "hook",
+        "toolUseId": "tool_use-21",
+        "toolName": "Read",
+        "summary": "C:/Users/user/project\\scripts\\install-hooks.mjs",
+        "filePath": "C:/Users/user/project\\scripts\\install-hooks.mjs",
+        "inputDigest": "8fa6454dc832656480a2d62cc94ebef9"
+      }
+    ]
+  },
+  {
+    "t": "2026-11-13T16:00:43.106Z",
+    "hook": "PostToolUse",
+    "events": [
+      {
+        "id": "evt-0058",
+        "type": "tool.finished",
+        "ts": 1794585643106,
+        "sessionId": "session-1",
+        "agentKey": "session-1::agent-2",
+        "source": "hook",
+        "toolUseId": "tool_use-21",
+        "toolName": "Read",
+        "durationMs": 41
+      }
+    ]
+  },
+  {
+    "t": "2026-11-13T16:00:43.593Z",
+    "hook": "PreToolUse",
+    "events": [
+      {
+        "id": "evt-0059",
+        "type": "tool.started",
+        "ts": 1794585643593,
+        "sessionId": "session-1",
+        "agentKey": "session-1::agent-2",
+        "source": "hook",
+        "toolUseId": "tool_use-22",
+        "toolName": "Read",
+        "summary": "C:/Users/user/project\\scripts\\lib\\spike-decisions.mjs",
+        "filePath": "C:/Users/user/project\\scripts\\lib\\spike-decisions.mjs",
+        "inputDigest": "249006dbdbeab174ec0896d18acb5f04"
+      }
+    ]
+  },
+  {
+    "t": "2026-11-13T16:00:43.994Z",
+    "hook": "PostToolUse",
+    "events": [
+      {
+        "id": "evt-0060",
+        "type": "tool.finished",
+        "ts": 1794585643994,
+        "sessionId": "session-1",
+        "agentKey": "session-1::agent-2",
+        "source": "hook",
+        "toolUseId": "tool_use-22",
+        "toolName": "Read",
+        "durationMs": 22
+      }
+    ]
+  },
+  {
+    "t": "2026-11-13T16:00:44.399Z",
+    "hook": "PreToolUse",
+    "events": [
+      {
+        "id": "evt-0061",
+        "type": "tool.started",
+        "ts": 1794585644399,
+        "sessionId": "session-1",
+        "agentKey": "session-1::agent-2",
+        "source": "hook",
+        "toolUseId": "tool_use-23",
+        "toolName": "Read",
+        "summary": "C:/Users/user/project\\scripts\\huddle-forward-hook.mjs",
+        "filePath": "C:/Users/user/project\\scripts\\huddle-forward-hook.mjs",
+        "inputDigest": "3db7a51692184fe0e03a9dd9353612df"
+      }
+    ]
+  },
+  {
+    "t": "2026-11-13T16:00:44.915Z",
+    "hook": "PostToolUse",
+    "events": [
+      {
+        "id": "evt-0062",
+        "type": "tool.finished",
+        "ts": 1794585644915,
+        "sessionId": "session-1",
+        "agentKey": "session-1::agent-2",
+        "source": "hook",
+        "toolUseId": "tool_use-23",
+        "toolName": "Read",
+        "durationMs": 35
+      }
+    ]
+  },
+  {
+    "t": "2026-11-13T16:00:48.252Z",
+    "hook": "SubagentStop",
+    "events": [
+      {
+        "id": "evt-0063",
+        "type": "turn.ended",
+        "ts": 1794585648252,
+        "sessionId": "session-1",
+        "agentKey": "session-1::agent-1",
+        "source": "hook",
+        "lastMessage": "(scrubbed text)",
+        "backgroundAgentIds": [
+          "agent-1",
+          "agent-2"
+        ]
+      },
+      {
+        "id": "evt-0064",
+        "type": "agent.stopped",
+        "ts": 1794585648252,
+        "sessionId": "session-1",
+        "agentKey": "session-1::agent-1",
+        "source": "hook",
+        "agentId": "agent-1",
+        "result": "(scrubbed text)"
+      }
+    ]
+  },
+  {
+    "t": "2026-11-13T16:00:48.674Z",
+    "hook": "UserPromptSubmit",
+    "events": [
+      {
+        "id": "evt-0065",
+        "type": "prompt.submitted",
+        "ts": 1794585648674,
+        "sessionId": "session-1",
+        "agentKey": "session-1",
+        "source": "hook",
+        "text": "<task-notification><task-id>agent-1</task-id><tool-use-id>tool_use-2</tool-use-id><status>completed</status>(scrubbed text)",
+        "promptId": "prompt-2",
+        "kind": "task_notification",
+        "cwd": "C:/Users/user/project"
+      },
+      {
+        "id": "evt-0066",
+        "type": "agent.linked",
+        "ts": 1794585648674,
+        "sessionId": "session-1",
+        "agentKey": "session-1::agent-1",
+        "source": "hook",
+        "toolUseId": "tool_use-2",
+        "childAgentId": "agent-1",
+        "parentKey": "session-1",
+        "link": "exact"
+      }
+    ]
+  },
+  {
+    "t": "2026-11-13T16:00:49.599Z",
+    "hook": "PreToolUse",
+    "events": [
+      {
+        "id": "evt-0067",
+        "type": "tool.started",
+        "ts": 1794585649599,
+        "sessionId": "session-1",
+        "agentKey": "session-1::agent-2",
+        "source": "hook",
+        "toolUseId": "tool_use-24",
+        "toolName": "Grep",
+        "summary": "(scrubbed text) in C:/Users/user/project\\scripts",
+        "filePath": null,
+        "inputDigest": "63eae3f4c688daf50cf6484a28e11f60"
+      }
+    ]
+  },
+  {
+    "t": "2026-11-13T16:00:50.185Z",
+    "hook": "PostToolUse",
+    "events": [
+      {
+        "id": "evt-0068",
+        "type": "tool.finished",
+        "ts": 1794585650185,
+        "sessionId": "session-1",
+        "agentKey": "session-1::agent-2",
+        "source": "hook",
+        "toolUseId": "tool_use-24",
+        "toolName": "Grep",
+        "durationMs": 144
+      }
+    ]
+  },
+  {
+    "t": "2026-11-13T16:00:51.284Z",
+    "hook": "Stop",
+    "events": [
+      {
+        "id": "evt-0069",
+        "type": "turn.ended",
+        "ts": 1794585651284,
+        "sessionId": "session-1",
+        "agentKey": "session-1",
+        "source": "hook",
+        "lastMessage": "(scrubbed text)",
+        "backgroundAgentIds": [
+          "agent-2"
+        ]
+      }
+    ]
+  },
+  {
+    "t": "2026-11-13T16:00:52.051Z",
+    "hook": "PreToolUse",
+    "events": [
+      {
+        "id": "evt-0070",
+        "type": "tool.started",
+        "ts": 1794585652051,
+        "sessionId": "session-1",
+        "agentKey": "session-1::agent-2",
+        "source": "hook",
+        "toolUseId": "tool_use-25",
+        "toolName": "Grep",
+        "summary": "(scrubbed text) in C:/Users/user/project\\packages\\shared\\src",
+        "filePath": null,
+        "inputDigest": "4e041f6f1cdd69366efbc9cfbe425d4c"
+      }
+    ]
+  },
+  {
+    "t": "2026-11-13T16:00:52.700Z",
+    "hook": "PostToolUse",
+    "events": [
+      {
+        "id": "evt-0071",
+        "type": "tool.finished",
+        "ts": 1794585652700,
+        "sessionId": "session-1",
+        "agentKey": "session-1::agent-2",
+        "source": "hook",
+        "toolUseId": "tool_use-25",
+        "toolName": "Grep",
+        "durationMs": 120
+      }
+    ]
+  },
+  {
+    "t": "2026-11-13T16:01:03.839Z",
+    "hook": "SubagentStop",
+    "events": [
+      {
+        "id": "evt-0072",
+        "type": "turn.ended",
+        "ts": 1794585663839,
+        "sessionId": "session-1",
+        "agentKey": "session-1::agent-2",
+        "source": "hook",
+        "lastMessage": "(scrubbed text)",
+        "backgroundAgentIds": [
+          "agent-2"
+        ]
+      },
+      {
+        "id": "evt-0073",
+        "type": "agent.stopped",
+        "ts": 1794585663839,
+        "sessionId": "session-1",
+        "agentKey": "session-1::agent-2",
+        "source": "hook",
+        "agentId": "agent-2",
+        "result": "(scrubbed text)"
+      }
+    ]
+  },
+  {
+    "t": "2026-11-13T16:01:04.313Z",
+    "hook": "UserPromptSubmit",
+    "events": [
+      {
+        "id": "evt-0074",
+        "type": "prompt.submitted",
+        "ts": 1794585664313,
+        "sessionId": "session-1",
+        "agentKey": "session-1",
+        "source": "hook",
+        "text": "<task-notification><task-id>agent-2</task-id><tool-use-id>tool_use-3</tool-use-id><status>completed</status>(scrubbed text)",
+        "promptId": "prompt-3",
+        "kind": "task_notification",
+        "cwd": "C:/Users/user/project"
+      },
+      {
+        "id": "evt-0075",
+        "type": "agent.linked",
+        "ts": 1794585664313,
+        "sessionId": "session-1",
+        "agentKey": "session-1::agent-2",
+        "source": "hook",
+        "toolUseId": "tool_use-3",
+        "childAgentId": "agent-2",
+        "parentKey": "session-1",
+        "link": "exact"
+      }
+    ]
+  },
+  {
+    "t": "2026-11-13T16:01:09.686Z",
+    "hook": "Stop",
+    "events": [
+      {
+        "id": "evt-0076",
+        "type": "turn.ended",
+        "ts": 1794585669686,
+        "sessionId": "session-1",
+        "agentKey": "session-1",
+        "source": "hook",
+        "lastMessage": "(scrubbed text)",
+        "backgroundAgentIds": []
+      }
+    ]
+  },
+  {
+    "t": "2026-11-13T16:01:10.368Z",
+    "hook": "SessionEnd",
+    "events": [
+      {
+        "id": "evt-0077",
+        "type": "session.ended",
+        "ts": 1794585670368,
+        "sessionId": "session-1",
+        "agentKey": "session-1",
+        "source": "hook",
+        "reason": "other"
+      }
+    ]
+  }
+]

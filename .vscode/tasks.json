@@ -1,0 +1,22 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "Huddle: preview hook install (dry run)",
+      "type": "npm",
+      "script": "hooks:preview",
+      "problemMatcher": [],
+      "presentation": {
+        "panel": "shared",
+        "reveal": "always"
+      }
+    },
+    {
+      "label": "Huddle: typecheck",
+      "type": "npm",
+      "script": "typecheck",
+      "group": "build",
+      "problemMatcher": ["$tsc"]
+    }
+  ]
+}

@@ -1,0 +1,321 @@
+[
+  {
+    "t": "2026-11-13T16:11:12.781Z",
+    "hook": "SessionStart",
+    "events": [
+      {
+        "id": "evt-0001",
+        "type": "session.started",
+        "ts": 1794586272781,
+        "sessionId": "session-1",
+        "agentKey": "session-1",
+        "source": "hook",
+        "origin": "attached",
+        "cwd": "C:/Users/user/project",
+        "title": null,
+        "model": null,
+        "startKind": "startup"
+      }
+    ]
+  },
+  {
+    "t": "2026-11-13T16:11:13.243Z",
+    "hook": "InstructionsLoaded",
+    "events": [
+      {
+        "id": "evt-0002",
+        "type": "instructions.loaded",
+        "ts": 1794586273243,
+        "sessionId": "session-1",
+        "agentKey": "session-1",
+        "source": "hook",
+        "filePath": "C:/Users/user/project\\.claude\\CLAUDE.md"
+      }
+    ]
+  },
+  {
+    "t": "2026-11-13T16:11:13.244Z",
+    "hook": "InstructionsLoaded",
+    "events": [
+      {
+        "id": "evt-0003",
+        "type": "instructions.loaded",
+        "ts": 1794586273244,
+        "sessionId": "session-1",
+        "agentKey": "session-1",
+        "source": "hook",
+        "filePath": "C:/Users/user/project\\CLAUDE.md"
+      }
+    ]
+  },
+  {
+    "t": "2026-11-13T16:11:15.688Z",
+    "hook": "UserPromptSubmit",
+    "events": [
+      {
+        "id": "evt-0004",
+        "type": "prompt.submitted",
+        "ts": 1794586275688,
+        "sessionId": "session-1",
+        "agentKey": "session-1",
+        "source": "hook",
+        "text": "(scrubbed text)",
+        "promptId": "prompt-1",
+        "kind": "user",
+        "cwd": "C:/Users/user/project"
+      }
+    ]
+  },
+  {
+    "t": "2026-11-13T16:11:19.456Z",
+    "hook": "PreToolUse",
+    "events": [
+      {
+        "id": "evt-0005",
+        "type": "tool.started",
+        "ts": 1794586279456,
+        "sessionId": "session-1",
+        "agentKey": "session-1",
+        "source": "hook",
+        "toolUseId": "tool_use-1",
+        "toolName": "Read",
+        "summary": "C:/Users/user/project\\docs\\DOES-NOT-EXIST.md",
+        "filePath": "C:/Users/user/project\\docs\\DOES-NOT-EXIST.md",
+        "inputDigest": "b0707e42b7b8a7db489a20245b6f7a23"
+      }
+    ]
+  },
+  {
+    "t": "2026-11-13T16:11:20.095Z",
+    "hook": "PostToolUseFailure",
+    "events": [
+      {
+        "id": "evt-0006",
+        "type": "tool.failed",
+        "ts": 1794586280095,
+        "sessionId": "session-1",
+        "agentKey": "session-1",
+        "source": "hook",
+        "toolUseId": "tool_use-1",
+        "toolName": "Read",
+        "error": "(scrubbed text)",
+        "interrupted": false
+      }
+    ]
+  },
+  {
+    "t": "2026-11-13T16:11:20.676Z",
+    "hook": "PreToolUse",
+    "events": [
+      {
+        "id": "evt-0007",
+        "type": "tool.started",
+        "ts": 1794586280676,
+        "sessionId": "session-1",
+        "agentKey": "session-1",
+        "source": "hook",
+        "toolUseId": "tool_use-2",
+        "toolName": "PowerShell",
+        "summary": "node -e process.exit(3); \"exit code: $LASTEXITCODE\"",
+        "filePath": null,
+        "inputDigest": "2cb47f3d9d84135b5087c5967a437e13"
+      }
+    ]
+  },
+  {
+    "t": "2026-11-13T16:11:22.104Z",
+    "hook": "PermissionRequest",
+    "events": [
+      {
+        "id": "evt-0009",
+        "type": "approval.requested",
+        "ts": 1794586282104,
+        "sessionId": "session-1",
+        "agentKey": "session-1",
+        "source": "hook",
+        "request": {
+          "requestId": "evt-0008",
+          "agentKey": "session-1",
+          "toolName": "PowerShell",
+          "toolInput": {
+            "command": "node -e process.exit(3); \"exit code: $LASTEXITCODE\"",
+            "description": "(scrubbed text)"
+          },
+          "summary": "node -e process.exit(3); \"exit code: $LASTEXITCODE\"",
+          "receivedAt": 1794586282104,
+          "expiresAt": null,
+          "channel": "hook"
+        }
+      }
+    ]
+  },
+  {
+    "t": "2026-11-13T16:11:23.707Z",
+    "hook": "PreToolUse",
+    "events": [
+      {
+        "id": "evt-0010",
+        "type": "tool.started",
+        "ts": 1794586283707,
+        "sessionId": "session-1",
+        "agentKey": "session-1",
+        "source": "hook",
+        "toolUseId": "tool_use-3",
+        "toolName": "PowerShell",
+        "summary": "node -e process.exit(3)",
+        "filePath": null,
+        "inputDigest": "0b202482e71aa9cc41c5927df19558ba"
+      }
+    ]
+  },
+  {
+    "t": "2026-11-13T16:11:25.092Z",
+    "hook": "PermissionRequest",
+    "events": [
+      {
+        "id": "evt-0012",
+        "type": "approval.requested",
+        "ts": 1794586285092,
+        "sessionId": "session-1",
+        "agentKey": "session-1",
+        "source": "hook",
+        "request": {
+          "requestId": "evt-0011",
+          "agentKey": "session-1",
+          "toolName": "PowerShell",
+          "toolInput": {
+            "command": "node -e process.exit(3)",
+            "description": "(scrubbed text)"
+          },
+          "summary": "node -e process.exit(3)",
+          "receivedAt": 1794586285092,
+          "expiresAt": null,
+          "channel": "hook"
+        }
+      }
+    ]
+  },
+  {
+    "t": "2026-11-13T16:11:26.941Z",
+    "hook": "PreToolUse",
+    "events": [
+      {
+        "id": "evt-0013",
+        "type": "tool.started",
+        "ts": 1794586286941,
+        "sessionId": "session-1",
+        "agentKey": "session-1",
+        "source": "hook",
+        "toolUseId": "tool_use-4",
+        "toolName": "Bash",
+        "summary": "node -e 'process.exit(3)'; echo \"exit code: $?\"",
+        "filePath": null,
+        "inputDigest": "2c2c8ca082787df8b58696fcd5253cda"
+      }
+    ]
+  },
+  {
+    "t": "2026-11-13T16:11:27.449Z",
+    "hook": "PermissionRequest",
+    "events": [
+      {
+        "id": "evt-0015",
+        "type": "approval.requested",
+        "ts": 1794586287449,
+        "sessionId": "session-1",
+        "agentKey": "session-1",
+        "source": "hook",
+        "request": {
+          "requestId": "evt-0014",
+          "agentKey": "session-1",
+          "toolName": "Bash",
+          "toolInput": {
+            "command": "node -e 'process.exit(3)'; echo \"exit code: $?\"",
+            "description": "(scrubbed text)"
+          },
+          "summary": "node -e 'process.exit(3)'; echo \"exit code: $?\"",
+          "receivedAt": 1794586287449,
+          "expiresAt": null,
+          "channel": "hook"
+        }
+      }
+    ]
+  },
+  {
+    "t": "2026-11-13T16:11:29.077Z",
+    "hook": "PreToolUse",
+    "events": [
+      {
+        "id": "evt-0016",
+        "type": "tool.started",
+        "ts": 1794586289077,
+        "sessionId": "session-1",
+        "agentKey": "session-1",
+        "source": "hook",
+        "toolUseId": "tool_use-5",
+        "toolName": "Bash",
+        "summary": "node -e 'process.exit(3)'",
+        "filePath": null,
+        "inputDigest": "63e90441dfd8b00d2750b36e50b9cd9f"
+      }
+    ]
+  },
+  {
+    "t": "2026-11-13T16:11:29.464Z",
+    "hook": "PermissionRequest",
+    "events": [
+      {
+        "id": "evt-0018",
+        "type": "approval.requested",
+        "ts": 1794586289464,
+        "sessionId": "session-1",
+        "agentKey": "session-1",
+        "source": "hook",
+        "request": {
+          "requestId": "evt-0017",
+          "agentKey": "session-1",
+          "toolName": "Bash",
+          "toolInput": {
+            "command": "node -e 'process.exit(3)'",
+            "description": "(scrubbed text)"
+          },
+          "summary": "node -e 'process.exit(3)'",
+          "receivedAt": 1794586289464,
+          "expiresAt": null,
+          "channel": "hook"
+        }
+      }
+    ]
+  },
+  {
+    "t": "2026-11-13T16:11:31.496Z",
+    "hook": "Stop",
+    "events": [
+      {
+        "id": "evt-0019",
+        "type": "turn.ended",
+        "ts": 1794586291496,
+        "sessionId": "session-1",
+        "agentKey": "session-1",
+        "source": "hook",
+        "lastMessage": "(scrubbed text)",
+        "backgroundAgentIds": []
+      }
+    ]
+  },
+  {
+    "t": "2026-11-13T16:11:32.234Z",
+    "hook": "SessionEnd",
+    "events": [
+      {
+        "id": "evt-0020",
+        "type": "session.ended",
+        "ts": 1794586292234,
+        "sessionId": "session-1",
+        "agentKey": "session-1",
+        "source": "hook",
+        "reason": "other"
+      }
+    ]
+  }
+]

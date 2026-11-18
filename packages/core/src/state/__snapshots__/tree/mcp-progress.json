@@ -1,0 +1,54 @@
+[
+  {
+    "sessionId": "session-1",
+    "rootKey": "session-1",
+    "cwd": null,
+    "ended": true,
+    "lastActivityAt": 1794830432758,
+    "agentCount": 2,
+    "statusCounts": {
+      "starting": 0,
+      "working": 0,
+      "waiting_approval": 0,
+      "waiting_answer": 0,
+      "paused": 0,
+      "idle": 0,
+      "done": 2,
+      "failed": 0,
+      "stopped": 0
+    },
+    "root": {
+      "key": "session-1",
+      "agentId": null,
+      "kind": "main",
+      "name": "main",
+      "role": "main",
+      "roleDescription": null,
+      "model": null,
+      "status": "done",
+      "currentActivity": null,
+      "link": null,
+      "dimmed": true,
+      "startedAt": 1794830406508,
+      "endedAt": 1794830432758,
+      "children": [
+        {
+          "key": "session-1::agent-1",
+          "agentId": "agent-1",
+          "kind": "subagent",
+          "name": "general-purpose #1",
+          "role": "general-purpose",
+          "roleDescription": null,
+          "model": null,
+          "status": "done",
+          "currentActivity": null,
+          "link": "exact",
+          "dimmed": true,
+          "startedAt": 1794830415785,
+          "endedAt": 1794830428611,
+          "children": []
+        }
+      ]
+    }
+  }
+]

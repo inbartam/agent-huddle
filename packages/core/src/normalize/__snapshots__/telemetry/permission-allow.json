@@ -1,0 +1,76 @@
+[
+  {
+    "id": "id-1",
+    "type": "model.observed",
+    "ts": 1794587457805,
+    "sessionId": "session-1",
+    "agentKey": "session-1",
+    "source": "telemetry",
+    "model": "claude-opus-5-5",
+    "via": "telemetry"
+  },
+  {
+    "id": "id-2",
+    "type": "usage.recorded",
+    "ts": 1794587457805,
+    "sessionId": "session-1",
+    "agentKey": "session-1",
+    "source": "telemetry",
+    "model": "claude-opus-5-5",
+    "inputTokens": 2,
+    "outputTokens": 80,
+    "cacheReadTokens": 67684,
+    "cacheCreationTokens": 0,
+    "estimatedCostUsd": 0.0151448,
+    "requestId": "req_011Ch1FEAvbopYghr7PeJW3L",
+    "querySourceKind": "main"
+  },
+  {
+    "ts": 1794587457805,
+    "sessionId": "session-1",
+    "agentKey": "session-1",
+    "source": "telemetry",
+    "id": "id-3",
+    "type": "context.measured",
+    "usedTokens": 67686,
+    "windowTokens": 1000000,
+    "measuredBy": "telemetry"
+  },
+  {
+    "id": "id-4",
+    "type": "model.observed",
+    "ts": 1794587484193,
+    "sessionId": "session-1",
+    "agentKey": "session-1",
+    "source": "telemetry",
+    "model": "claude-opus-5-5",
+    "via": "telemetry"
+  },
+  {
+    "id": "id-5",
+    "type": "usage.recorded",
+    "ts": 1794587484193,
+    "sessionId": "session-1",
+    "agentKey": "session-1",
+    "source": "telemetry",
+    "model": "claude-opus-5-5",
+    "inputTokens": 2,
+    "outputTokens": 43,
+    "cacheReadTokens": 67684,
+    "cacheCreationTokens": 1252,
+    "estimatedCostUsd": 0.0244208,
+    "requestId": "req_011Ch1FGF8AqA9Bib4fDX9Gb",
+    "querySourceKind": "main"
+  },
+  {
+    "ts": 1794587484193,
+    "sessionId": "session-1",
+    "agentKey": "session-1",
+    "source": "telemetry",
+    "id": "id-6",
+    "type": "context.measured",
+    "usedTokens": 68938,
+    "windowTokens": 1000000,
+    "measuredBy": "telemetry"
+  }
+]

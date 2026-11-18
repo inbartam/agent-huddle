@@ -1,0 +1,880 @@
+[
+  {
+    "t": "2026-11-13T19:14:10.477Z",
+    "hook": "InstructionsLoaded",
+    "events": [
+      {
+        "id": "evt-0001",
+        "type": "instructions.loaded",
+        "ts": 1794597250477,
+        "sessionId": "session-1",
+        "agentKey": "session-1",
+        "source": "hook",
+        "filePath": "C:/Users/user/project\\.claude\\CLAUDE.md"
+      }
+    ]
+  },
+  {
+    "t": "2026-11-13T19:14:10.818Z",
+    "hook": "SessionStart",
+    "events": [
+      {
+        "id": "evt-0002",
+        "type": "session.started",
+        "ts": 1794597250818,
+        "sessionId": "session-1",
+        "agentKey": "session-1",
+        "source": "hook",
+        "origin": "attached",
+        "cwd": "C:/Users/user/project",
+        "title": null,
+        "model": null,
+        "startKind": "startup"
+      }
+    ]
+  },
+  {
+    "t": "2026-11-13T19:14:23.986Z",
+    "hook": "UserPromptSubmit",
+    "events": [
+      {
+        "id": "evt-0003",
+        "type": "prompt.submitted",
+        "ts": 1794597263986,
+        "sessionId": "session-1",
+        "agentKey": "session-1",
+        "source": "hook",
+        "text": "<browser_instruction>(scrubbed text)",
+        "promptId": "prompt-1",
+        "kind": "user",
+        "cwd": "C:/Users/user/project"
+      }
+    ]
+  },
+  {
+    "t": "2026-11-13T19:14:27.461Z",
+    "hook": "PreToolUse",
+    "events": [
+      {
+        "id": "evt-0004",
+        "type": "tool.started",
+        "ts": 1794597267461,
+        "sessionId": "session-1",
+        "agentKey": "session-1",
+        "source": "hook",
+        "toolUseId": "tool_use-1",
+        "toolName": "Bash",
+        "summary": "ls -la && find . -maxdepth 2 -not -path '*/node_modules*' -not -path '*/.git/*' | head -80",
+        "filePath": null,
+        "inputDigest": "f9dfcffdfe50c7136a9df6a94e0f5b42"
+      }
+    ]
+  },
+  {
+    "t": "2026-11-13T19:14:28.705Z",
+    "hook": "PostToolUse",
+    "events": [
+      {
+        "id": "evt-0005",
+        "type": "tool.finished",
+        "ts": 1794597268705,
+        "sessionId": "session-1",
+        "agentKey": "session-1",
+        "source": "hook",
+        "toolUseId": "tool_use-1",
+        "toolName": "Bash",
+        "durationMs": 924
+      }
+    ]
+  },
+  {
+    "t": "2026-11-13T19:14:30.825Z",
+    "hook": "PreToolUse",
+    "events": [
+      {
+        "id": "evt-0006",
+        "type": "tool.started",
+        "ts": 1794597270825,
+        "sessionId": "session-1",
+        "agentKey": "session-1",
+        "source": "hook",
+        "toolUseId": "tool_use-2",
+        "toolName": "Bash",
+        "summary": "cd C:/Users/user/project && find . -not -path '*/node_modules*' -not -path '*/.git/*' | head -100",
+        "filePath": null,
+        "inputDigest": "22085fa9f836055783798da1b87e471b"
+      }
+    ]
+  },
+  {
+    "t": "2026-11-13T19:14:31.249Z",
+    "hook": "PostToolUse",
+    "events": [
+      {
+        "id": "evt-0007",
+        "type": "tool.finished",
+        "ts": 1794597271249,
+        "sessionId": "session-1",
+        "agentKey": "session-1",
+        "source": "hook",
+        "toolUseId": "tool_use-2",
+        "toolName": "Bash",
+        "durationMs": 119
+      }
+    ]
+  },
+  {
+    "t": "2026-11-13T19:14:37.729Z",
+    "hook": "PreToolUse",
+    "events": [
+      {
+        "id": "evt-0008",
+        "type": "tool.started",
+        "ts": 1794597277729,
+        "sessionId": "session-1",
+        "agentKey": "session-1",
+        "source": "hook",
+        "toolUseId": "tool_use-3",
+        "toolName": "Agent",
+        "summary": "Explore: (scrubbed text)",
+        "filePath": null,
+        "inputDigest": "9571351b6138ca9e97464d33f800ee7c"
+      },
+      {
+        "id": "evt-0009",
+        "type": "agent.spawn_requested",
+        "ts": 1794597277729,
+        "sessionId": "session-1",
+        "agentKey": "session-1",
+        "source": "hook",
+        "toolUseId": "tool_use-3",
+        "role": "Explore",
+        "title": "(scrubbed text)",
+        "brief": "(scrubbed text)",
+        "model": null
+      }
+    ]
+  },
+  {
+    "t": "2026-11-13T19:14:42.155Z",
+    "hook": "PreToolUse",
+    "events": [
+      {
+        "id": "evt-0010",
+        "type": "tool.started",
+        "ts": 1794597282155,
+        "sessionId": "session-1",
+        "agentKey": "session-1",
+        "source": "hook",
+        "toolUseId": "tool_use-4",
+        "toolName": "Agent",
+        "summary": "Explore: (scrubbed text)",
+        "filePath": null,
+        "inputDigest": "9571351b6138ca9e97464d33f800ee7c"
+      },
+      {
+        "id": "evt-0011",
+        "type": "agent.spawn_requested",
+        "ts": 1794597282155,
+        "sessionId": "session-1",
+        "agentKey": "session-1",
+        "source": "hook",
+        "toolUseId": "tool_use-4",
+        "role": "Explore",
+        "title": "(scrubbed text)",
+        "brief": "(scrubbed text)",
+        "model": null
+      }
+    ]
+  },
+  {
+    "t": "2026-11-13T19:14:42.540Z",
+    "hook": "SubagentStart",
+    "events": [
+      {
+        "id": "evt-0012",
+        "type": "agent.started",
+        "ts": 1794597282540,
+        "sessionId": "session-1",
+        "agentKey": "session-1::agent-1",
+        "source": "hook",
+        "agentId": "agent-1",
+        "role": "Explore",
+        "parentKey": "session-1"
+      }
+    ]
+  },
+  {
+    "t": "2026-11-13T19:14:42.596Z",
+    "hook": "SubagentStart",
+    "events": [
+      {
+        "id": "evt-0013",
+        "type": "agent.started",
+        "ts": 1794597282596,
+        "sessionId": "session-1",
+        "agentKey": "session-1::agent-2",
+        "source": "hook",
+        "agentId": "agent-2",
+        "role": "Explore",
+        "parentKey": "session-1"
+      }
+    ]
+  },
+  {
+    "t": "2026-11-13T19:14:42.597Z",
+    "hook": "PostToolUse",
+    "events": [
+      {
+        "id": "evt-0014",
+        "type": "tool.finished",
+        "ts": 1794597282597,
+        "sessionId": "session-1",
+        "agentKey": "session-1",
+        "source": "hook",
+        "toolUseId": "tool_use-3",
+        "toolName": "Agent",
+        "durationMs": 27
+      },
+      {
+        "id": "evt-0015",
+        "type": "agent.linked",
+        "ts": 1794597282597,
+        "sessionId": "session-1",
+        "agentKey": "session-1::agent-1",
+        "source": "hook",
+        "toolUseId": "tool_use-3",
+        "childAgentId": "agent-1",
+        "parentKey": "session-1",
+        "link": "exact"
+      },
+      {
+        "id": "evt-0016",
+        "type": "model.observed",
+        "ts": 1794597282597,
+        "sessionId": "session-1",
+        "agentKey": "session-1::agent-1",
+        "source": "hook",
+        "model": "claude-opus-5-5",
+        "via": "agent_call"
+      }
+    ]
+  },
+  {
+    "t": "2026-11-13T19:14:42.597Z",
+    "hook": "PostToolUse",
+    "events": [
+      {
+        "id": "evt-0017",
+        "type": "tool.finished",
+        "ts": 1794597282597,
+        "sessionId": "session-1",
+        "agentKey": "session-1",
+        "source": "hook",
+        "toolUseId": "tool_use-4",
+        "toolName": "Agent",
+        "durationMs": 41
+      },
+      {
+        "id": "evt-0018",
+        "type": "agent.linked",
+        "ts": 1794597282597,
+        "sessionId": "session-1",
+        "agentKey": "session-1::agent-2",
+        "source": "hook",
+        "toolUseId": "tool_use-4",
+        "childAgentId": "agent-2",
+        "parentKey": "session-1",
+        "link": "exact"
+      },
+      {
+        "id": "evt-0019",
+        "type": "model.observed",
+        "ts": 1794597282597,
+        "sessionId": "session-1",
+        "agentKey": "session-1::agent-2",
+        "source": "hook",
+        "model": "claude-opus-5-5",
+        "via": "agent_call"
+      }
+    ]
+  },
+  {
+    "t": "2026-11-13T19:14:45.626Z",
+    "hook": "PreToolUse",
+    "events": [
+      {
+        "id": "evt-0020",
+        "type": "tool.started",
+        "ts": 1794597285626,
+        "sessionId": "session-1",
+        "agentKey": "session-1::agent-1",
+        "source": "hook",
+        "toolUseId": "tool_use-5",
+        "toolName": "Bash",
+        "summary": "cd C:/Users/user/project && ls -la && cd agent-huddle-starter/agent-huddle && ls -la && find . -path ./node_modules -prune -o -path ./.omc -prune -o \\( -name \"*.md\" -o -name \"*.json\" -o -name \"*.jsonl\" \\) -print | grep -v node_modules | head -80",
+        "filePath": null,
+        "inputDigest": "053a1a677001c935b589b20b8c2cedad"
+      }
+    ]
+  },
+  {
+    "t": "2026-11-13T19:14:45.658Z",
+    "hook": "PreToolUse",
+    "events": [
+      {
+        "id": "evt-0021",
+        "type": "tool.started",
+        "ts": 1794597285658,
+        "sessionId": "session-1",
+        "agentKey": "session-1::agent-2",
+        "source": "hook",
+        "toolUseId": "tool_use-6",
+        "toolName": "Bash",
+        "summary": "ls -la && find . -path ./node_modules -prune -o -path ./.claude -prune -o -path ./.omc -prune -o -path ./.superpowers -prune -o -path ./.huddle -prune -o -path ./docs -prune -o -path ./.git -prune -o -type f -print | head -200",
+        "filePath": null,
+        "inputDigest": "d6288131a8333936085d08d582e9ec40"
+      }
+    ]
+  },
+  {
+    "t": "2026-11-13T19:14:46.214Z",
+    "hook": "PostToolUse",
+    "events": [
+      {
+        "id": "evt-0022",
+        "type": "tool.finished",
+        "ts": 1794597286214,
+        "sessionId": "session-1",
+        "agentKey": "session-1::agent-2",
+        "source": "hook",
+        "toolUseId": "tool_use-6",
+        "toolName": "Bash",
+        "durationMs": 162
+      }
+    ]
+  },
+  {
+    "t": "2026-11-13T19:14:46.245Z",
+    "hook": "PostToolUse",
+    "events": [
+      {
+        "id": "evt-0023",
+        "type": "tool.finished",
+        "ts": 1794597286245,
+        "sessionId": "session-1",
+        "agentKey": "session-1::agent-1",
+        "source": "hook",
+        "toolUseId": "tool_use-5",
+        "toolName": "Bash",
+        "durationMs": 237
+      }
+    ]
+  },
+  {
+    "t": "2026-11-13T19:14:46.428Z",
+    "hook": "Stop",
+    "events": [
+      {
+        "id": "evt-0024",
+        "type": "turn.ended",
+        "ts": 1794597286428,
+        "sessionId": "session-1",
+        "agentKey": "session-1",
+        "source": "hook",
+        "lastMessage": "(scrubbed text)",
+        "backgroundAgentIds": [
+          "agent-1",
+          "agent-2"
+        ]
+      }
+    ]
+  },
+  {
+    "t": "2026-11-13T19:14:49.444Z",
+    "hook": "PreToolUse",
+    "events": [
+      {
+        "id": "evt-0025",
+        "type": "tool.started",
+        "ts": 1794597289444,
+        "sessionId": "session-1",
+        "agentKey": "session-1::agent-1",
+        "source": "hook",
+        "toolUseId": "tool_use-7",
+        "toolName": "Bash",
+        "summary": "diff -q README.md \"../../README (1).md\"; cat README.md; echo ======; cat CLAUDE.md; echo =====; cat docs/ROADMAP.md; echo =====; cat .superpowers/sdd/2026-11-13-m0-prove-it/progress.md",
+        "filePath": null,
+        "inputDigest": "9bd33be52a5d161f35ba12c9b320ed36"
+      }
+    ]
+  },
+  {
+    "t": "2026-11-13T19:14:49.644Z",
+    "hook": "PreToolUse",
+    "events": [
+      {
+        "id": "evt-0026",
+        "type": "tool.started",
+        "ts": 1794597289644,
+        "sessionId": "session-1",
+        "agentKey": "session-1::agent-2",
+        "source": "hook",
+        "toolUseId": "tool_use-8",
+        "toolName": "Bash",
+        "summary": "cat package.json tsconfig.base.json packages/shared/package.json packages/shared/tsconfig.json .vscode/tasks.json .editorconfig; wc -l packages/shared/src/*.ts scripts/*.mjs scripts/lib/*.mjs; cat packages/shared/src/index.ts; grep -rn \"TODO\\|FIXME\\|skip\\|todo(\" scripts packages | head -30",
+        "filePath": null,
+        "inputDigest": "06ba8c1f53425ae31b566d10d329b693"
+      }
+    ]
+  },
+  {
+    "t": "2026-11-13T19:14:50.822Z",
+    "hook": "PostToolUse",
+    "events": [
+      {
+        "id": "evt-0027",
+        "type": "tool.finished",
+        "ts": 1794597290822,
+        "sessionId": "session-1",
+        "agentKey": "session-1::agent-2",
+        "source": "hook",
+        "toolUseId": "tool_use-8",
+        "toolName": "Bash",
+        "durationMs": 821
+      }
+    ]
+  },
+  {
+    "t": "2026-11-13T19:14:50.963Z",
+    "hook": "PostToolUse",
+    "events": [
+      {
+        "id": "evt-0028",
+        "type": "tool.finished",
+        "ts": 1794597290963,
+        "sessionId": "session-1",
+        "agentKey": "session-1::agent-1",
+        "source": "hook",
+        "toolUseId": "tool_use-7",
+        "toolName": "Bash",
+        "durationMs": 353
+      }
+    ]
+  },
+  {
+    "t": "2026-11-13T19:14:51.481Z",
+    "hook": "PreToolUse",
+    "events": [
+      {
+        "id": "evt-0029",
+        "type": "tool.started",
+        "ts": 1794597291481,
+        "sessionId": "session-1",
+        "agentKey": "session-1::agent-1",
+        "source": "hook",
+        "toolUseId": "tool_use-9",
+        "toolName": "Bash",
+        "summary": "cd C:/Users/user/project/.claude && cat settings.json; for f in agents/*.md rules/*.md skills/*/SKILL.md; do echo \"== $f\"; head -8 \"$f\"; done",
+        "filePath": null,
+        "inputDigest": "2c515bd5469abc3c927ace819b849267"
+      }
+    ]
+  },
+  {
+    "t": "2026-11-13T19:14:52.550Z",
+    "hook": "PostToolUse",
+    "events": [
+      {
+        "id": "evt-0030",
+        "type": "tool.finished",
+        "ts": 1794597292550,
+        "sessionId": "session-1",
+        "agentKey": "session-1::agent-1",
+        "source": "hook",
+        "toolUseId": "tool_use-9",
+        "toolName": "Bash",
+        "durationMs": 772
+      }
+    ]
+  },
+  {
+    "t": "2026-11-13T19:14:54.853Z",
+    "hook": "PreToolUse",
+    "events": [
+      {
+        "id": "evt-0031",
+        "type": "tool.started",
+        "ts": 1794597294853,
+        "sessionId": "session-1",
+        "agentKey": "session-1::agent-2",
+        "source": "hook",
+        "toolUseId": "tool_use-10",
+        "toolName": "Bash",
+        "summary": "head -60 scripts/spike-server.mjs; echo ----; cat scripts/huddle-forward-hook.mjs; echo ----; head -40 scripts/install-hooks.mjs; echo ----; head -30 scripts/lib/spike-decisions.mjs scripts/lib/common.mjs scripts/scrub-fixture.mjs; grep -n \"^test\\|^describe\\|^ test\\|^ it(\" scripts/*.test.mjs script…",
+        "filePath": null,
+        "inputDigest": "1b4ad8c63a9de0f4a2b1351ae96ef3fc"
+      }
+    ]
+  },
+  {
+    "t": "2026-11-13T19:14:55.483Z",
+    "hook": "PostToolUse",
+    "events": [
+      {
+        "id": "evt-0032",
+        "type": "tool.finished",
+        "ts": 1794597295483,
+        "sessionId": "session-1",
+        "agentKey": "session-1::agent-2",
+        "source": "hook",
+        "toolUseId": "tool_use-10",
+        "toolName": "Bash",
+        "durationMs": 299
+      }
+    ]
+  },
+  {
+    "t": "2026-11-13T19:14:55.570Z",
+    "hook": "PreToolUse",
+    "events": [
+      {
+        "id": "evt-0033",
+        "type": "tool.started",
+        "ts": 1794597295570,
+        "sessionId": "session-1",
+        "agentKey": "session-1::agent-1",
+        "source": "hook",
+        "toolUseId": "tool_use-11",
+        "toolName": "Bash",
+        "summary": "sed -n 20,60p README.md; echo ====CLAUDE; head -60 CLAUDE.md; echo ===ROAD; grep -nE \"^#|\\[x\\]|\\[ \\]|Exit\" docs/ROADMAP.md | head -70",
+        "filePath": null,
+        "inputDigest": "50055092857de80048207561ec570025"
+      }
+    ]
+  },
+  {
+    "t": "2026-11-13T19:14:58.338Z",
+    "hook": "PostToolUse",
+    "events": [
+      {
+        "id": "evt-0034",
+        "type": "tool.finished",
+        "ts": 1794597298338,
+        "sessionId": "session-1",
+        "agentKey": "session-1::agent-1",
+        "source": "hook",
+        "toolUseId": "tool_use-11",
+        "toolName": "Bash",
+        "durationMs": 220
+      }
+    ]
+  },
+  {
+    "t": "2026-11-13T19:14:58.417Z",
+    "hook": "PreToolUse",
+    "events": [
+      {
+        "id": "evt-0035",
+        "type": "tool.started",
+        "ts": 1794597298417,
+        "sessionId": "session-1",
+        "agentKey": "session-1::agent-2",
+        "source": "hook",
+        "toolUseId": "tool_use-12",
+        "toolName": "Bash",
+        "summary": "cd C:/Users/user/project/packages/shared/src && for f in *.ts; do echo \"=== $f\"; head -25 $f; grep -n \"^export\" $f | head -30; done; ls ../../../ ; ls -a ../node_modules ../../../node_modules 2>&1 | head",
+        "filePath": null,
+        "inputDigest": "1e3c49a828513fa05644551d0d83173b"
+      }
+    ]
+  },
+  {
+    "t": "2026-11-13T19:14:58.777Z",
+    "hook": "PreToolUse",
+    "events": [
+      {
+        "id": "evt-0036",
+        "type": "tool.started",
+        "ts": 1794597298777,
+        "sessionId": "session-1",
+        "agentKey": "session-1::agent-1",
+        "source": "hook",
+        "toolUseId": "tool_use-13",
+        "toolName": "Bash",
+        "summary": "cat .superpowers/sdd/2026-11-13-m0-prove-it/progress.md; echo ====; head -40 docs/superpowers/plans/2026-11-13-m0-prove-it.md; echo ===; grep -nE \"^#\" docs/superpowers/specs/2026-11-13-agent-huddle-build-design.md docs/M0-OWNER-CHECKS.md docs/SPIKES.md | head -50; echo ===; wc -l .huddle/spike/*.js…",
+        "filePath": null,
+        "inputDigest": "0ab83b03385c4e77c4ee9d8f9f22285d"
+      }
+    ]
+  },
+  {
+    "t": "2026-11-13T19:14:59.661Z",
+    "hook": "PostToolUse",
+    "events": [
+      {
+        "id": "evt-0037",
+        "type": "tool.finished",
+        "ts": 1794597299661,
+        "sessionId": "session-1",
+        "agentKey": "session-1::agent-2",
+        "source": "hook",
+        "toolUseId": "tool_use-12",
+        "toolName": "Bash",
+        "durationMs": 918
+      }
+    ]
+  },
+  {
+    "t": "2026-11-13T19:15:00.166Z",
+    "hook": "PostToolUse",
+    "events": [
+      {
+        "id": "evt-0038",
+        "type": "tool.finished",
+        "ts": 1794597300166,
+        "sessionId": "session-1",
+        "agentKey": "session-1::agent-1",
+        "source": "hook",
+        "toolUseId": "tool_use-13",
+        "toolName": "Bash",
+        "durationMs": 1031
+      }
+    ]
+  },
+  {
+    "t": "2026-11-13T19:15:03.795Z",
+    "hook": "PreToolUse",
+    "events": [
+      {
+        "id": "evt-0039",
+        "type": "tool.started",
+        "ts": 1794597303795,
+        "sessionId": "session-1",
+        "agentKey": "session-1::agent-1",
+        "source": "hook",
+        "toolUseId": "tool_use-14",
+        "toolName": "Bash",
+        "summary": "cat .huddle/spike/*.jsonl | grep -o '^{\"t\":\"[^\"]*\",\"kind\":\"[^\"]*\",\"event\":[^,]*' | sed 's/.*\"kind\"://' | sort | uniq -c | sort -rn | head -25; git branch --show-current; git log --oneline | head -3; sed -n 5,30p docs/superpowers/specs/2026-11-13-agent-huddle-build-design.md",
+        "filePath": null,
+        "inputDigest": "aa41dc5446a6f7ab54e75be9eea567d6"
+      }
+    ]
+  },
+  {
+    "t": "2026-11-13T19:15:04.561Z",
+    "hook": "PostToolUse",
+    "events": [
+      {
+        "id": "evt-0040",
+        "type": "tool.finished",
+        "ts": 1794597304561,
+        "sessionId": "session-1",
+        "agentKey": "session-1::agent-1",
+        "source": "hook",
+        "toolUseId": "tool_use-14",
+        "toolName": "Bash",
+        "durationMs": 439
+      }
+    ]
+  },
+  {
+    "t": "2026-11-13T19:15:17.962Z",
+    "hook": "PreToolUse",
+    "events": [
+      {
+        "id": "evt-0041",
+        "type": "tool.started",
+        "ts": 1794597317962,
+        "sessionId": "session-1",
+        "agentKey": "session-1::agent-2",
+        "source": "hook",
+        "toolUseId": "tool_use-15",
+        "toolName": "SubagentHandback",
+        "summary": "SubagentHandback",
+        "filePath": null,
+        "inputDigest": "72a4e43a9b4c4acc6c3a1272f1af3cb6"
+      }
+    ]
+  },
+  {
+    "t": "2026-11-13T19:15:18.299Z",
+    "hook": "PostToolUse",
+    "events": [
+      {
+        "id": "evt-0042",
+        "type": "tool.finished",
+        "ts": 1794597318299,
+        "sessionId": "session-1",
+        "agentKey": "session-1::agent-2",
+        "source": "hook",
+        "toolUseId": "tool_use-15",
+        "toolName": "SubagentHandback",
+        "durationMs": 39
+      }
+    ]
+  },
+  {
+    "t": "2026-11-13T19:15:18.349Z",
+    "hook": "UserPromptSubmit",
+    "events": [
+      {
+        "id": "evt-0043",
+        "type": "prompt.submitted",
+        "ts": 1794597318349,
+        "sessionId": "session-1",
+        "agentKey": "session-1",
+        "source": "hook",
+        "text": "<agent-message from=\"agent-2\">(scrubbed text)",
+        "promptId": "prompt-2",
+        "kind": "agent_message",
+        "cwd": "C:/Users/user/project"
+      }
+    ]
+  },
+  {
+    "t": "2026-11-13T19:15:18.698Z",
+    "hook": "SubagentStop",
+    "events": [
+      {
+        "id": "evt-0044",
+        "type": "turn.ended",
+        "ts": 1794597318698,
+        "sessionId": "session-1",
+        "agentKey": "session-1::agent-2",
+        "source": "hook",
+        "lastMessage": null,
+        "backgroundAgentIds": [
+          "agent-1",
+          "agent-2"
+        ]
+      },
+      {
+        "id": "evt-0045",
+        "type": "agent.stopped",
+        "ts": 1794597318698,
+        "sessionId": "session-1",
+        "agentKey": "session-1::agent-2",
+        "source": "hook",
+        "agentId": "agent-2",
+        "result": null
+      }
+    ]
+  },
+  {
+    "t": "2026-11-13T19:15:23.644Z",
+    "hook": "Stop",
+    "events": [
+      {
+        "id": "evt-0046",
+        "type": "turn.ended",
+        "ts": 1794597323644,
+        "sessionId": "session-1",
+        "agentKey": "session-1",
+        "source": "hook",
+        "lastMessage": "(scrubbed text)",
+        "backgroundAgentIds": [
+          "agent-1"
+        ]
+      }
+    ]
+  },
+  {
+    "t": "2026-11-13T19:15:24.561Z",
+    "hook": "PreToolUse",
+    "events": [
+      {
+        "id": "evt-0047",
+        "type": "tool.started",
+        "ts": 1794597324561,
+        "sessionId": "session-1",
+        "agentKey": "session-1::agent-1",
+        "source": "hook",
+        "toolUseId": "tool_use-16",
+        "toolName": "SubagentHandback",
+        "summary": "SubagentHandback",
+        "filePath": null,
+        "inputDigest": "72a4e43a9b4c4acc6c3a1272f1af3cb6"
+      }
+    ]
+  },
+  {
+    "t": "2026-11-13T19:15:24.864Z",
+    "hook": "PostToolUse",
+    "events": [
+      {
+        "id": "evt-0048",
+        "type": "tool.finished",
+        "ts": 1794597324864,
+        "sessionId": "session-1",
+        "agentKey": "session-1::agent-1",
+        "source": "hook",
+        "toolUseId": "tool_use-16",
+        "toolName": "SubagentHandback",
+        "durationMs": 1
+      }
+    ]
+  },
+  {
+    "t": "2026-11-13T19:15:24.899Z",
+    "hook": "UserPromptSubmit",
+    "events": [
+      {
+        "id": "evt-0049",
+        "type": "prompt.submitted",
+        "ts": 1794597324899,
+        "sessionId": "session-1",
+        "agentKey": "session-1",
+        "source": "hook",
+        "text": "<agent-message from=\"agent-1\">(scrubbed text)",
+        "promptId": "prompt-4",
+        "kind": "agent_message",
+        "cwd": "C:/Users/user/project"
+      }
+    ]
+  },
+  {
+    "t": "2026-11-13T19:15:25.252Z",
+    "hook": "SubagentStop",
+    "events": [
+      {
+        "id": "evt-0050",
+        "type": "turn.ended",
+        "ts": 1794597325252,
+        "sessionId": "session-1",
+        "agentKey": "session-1::agent-1",
+        "source": "hook",
+        "lastMessage": null,
+        "backgroundAgentIds": [
+          "agent-1"
+        ]
+      },
+      {
+        "id": "evt-0051",
+        "type": "agent.stopped",
+        "ts": 1794597325252,
+        "sessionId": "session-1",
+        "agentKey": "session-1::agent-1",
+        "source": "hook",
+        "agentId": "agent-1",
+        "result": null
+      }
+    ]
+  },
+  {
+    "t": "2026-11-13T19:15:38.500Z",
+    "hook": "Stop",
+    "events": [
+      {
+        "id": "evt-0052",
+        "type": "turn.ended",
+        "ts": 1794597338500,
+        "sessionId": "session-1",
+        "agentKey": "session-1",
+        "source": "hook",
+        "lastMessage": "(scrubbed text)",
+        "backgroundAgentIds": []
+      }
+    ]
+  }
+]

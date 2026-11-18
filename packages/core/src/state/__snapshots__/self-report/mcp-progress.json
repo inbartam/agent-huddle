@@ -1,0 +1,67 @@
+[
+  {
+    "event": "evt-0005",
+    "agentKey": "session-1",
+    "main": {
+      "fraction": 0.05,
+      "minutesLeft": 2,
+      "note": "step 1 started",
+      "at": 1794830408255
+    },
+    "subagent": null
+  },
+  {
+    "event": "evt-0010",
+    "agentKey": "session-1",
+    "main": {
+      "fraction": 0.3,
+      "minutesLeft": 2,
+      "note": "step 1 done, step 2 next",
+      "at": 1794830412783
+    },
+    "subagent": null
+  },
+  {
+    "event": "evt-0015",
+    "agentKey": "session-1",
+    "main": {
+      "fraction": 0.6,
+      "minutesLeft": 1,
+      "note": "step 2 done, step 3 next",
+      "at": 1794830415198
+    },
+    "subagent": null
+  },
+  {
+    "event": "evt-0027",
+    "agentKey": "session-1::agent-1",
+    "main": {
+      "fraction": 0.6,
+      "minutesLeft": 1,
+      "note": "step 2 done, step 3 next",
+      "at": 1794830415198
+    },
+    "subagent": {
+      "fraction": 1,
+      "minutesLeft": 0,
+      "note": "subagent task done",
+      "at": 1794830427045
+    }
+  },
+  {
+    "event": "evt-0032",
+    "agentKey": "session-1",
+    "main": {
+      "fraction": 1,
+      "minutesLeft": 0,
+      "note": "all steps done",
+      "at": 1794830430694
+    },
+    "subagent": {
+      "fraction": 1,
+      "minutesLeft": 0,
+      "note": "subagent task done",
+      "at": 1794830427045
+    }
+  }
+]

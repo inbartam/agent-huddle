@@ -1,0 +1,507 @@
+/*
+ * Main window redesign, WP3: Home (counts, Ask card, Today), the session view (breadcrumb, status line, actions, tabs,
+ * tree beside the agent panel), "Explain this screen" notes and the first-run guide. Tokens only, 4 px grid.
+ */
+
+/* ---------- Home ---------- */
+.home {
+  overflow: auto;
+}
+.home-head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 12px;
+  padding: 20px 24px 12px;
+}
+.home-h1 {
+  font: var(--weight-strong) 22px / 1.2 var(--font-display);
+}
+.home-head-gap {
+  flex: 1;
+}
+.home-body {
+  display: grid;
+  gap: 18px;
+  padding: 0 24px 24px;
+  max-width: 1280px;
+}
+.explain-note {
+  display: flex;
+  gap: 10px;
+  align-items: flex-start;
+  padding: 12px 14px;
+  /* Indigo means selection, so an explanation is not drawn in it: a hairline at its edge, no fill. */
+  border-left: 2px solid var(--line);
+  color: var(--text);
+  font-size: var(--text-dense);
+  line-height: 1.5;
+  max-width: 90ch;
+}
+.explain-button[aria-pressed='true'] {
+  box-shadow: inset 0 0 0 1px var(--select);
+}
+.home-cols {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px 40px;
+  align-items: flex-start;
+}
+/*
+ * Home's sections sit on the page (2026-11-18): the main window draws no cards (DESIGN, Layout). A section is its
+ * heading and a hairline under each row; the columns are kept apart by the gap alone.
+ */
+.home-card {
+  min-width: 0;
+}
+.ask-card {
+  flex: 2 1 380px;
+  display: grid;
+  align-content: start;
+  gap: var(--space-2);
+}
+.ask-card-head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--space-2);
+}
+.ask-card-title,
+.home-card-title {
+  font-size: var(--text-title);
+  font-weight: var(--weight-strong);
+}
+.pill {
+  font-size: var(--text-meta);
+  border-radius: var(--radius-pill);
+  padding: 2px 8px;
+  background: var(--card-inset);
+  color: var(--muted);
+}
+.ask-card-note {
+  margin-left: auto;
+  color: var(--muted);
+  font-size: var(--text-dense);
+}
+.ask-card-body {
+  max-width: none;
+}
+.ask-conversation {
+  display: grid;
+  gap: 12px;
+}
+.ask-turn {
+  display: grid;
+  gap: var(--space-2);
+}
+.ask-q {
+  justify-self: end;
+  max-width: 80%;
+  display: grid;
+  gap: 2px;
+  padding: 8px 12px;
+  border-radius: 14px 14px 4px 14px;
+  background: var(--primary-fill);
+  color: var(--primary-ink);
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+}
+.ask-q-label {
+  font-size: var(--text-meta);
+  opacity: 0.8;
+}
+/* Today comes first and takes the wider column: it is what Home is for (who ran, who is still going). */
+.home-today {
+  flex: 3 1 420px;
+  padding-bottom: var(--space-2);
+}
+.home-card-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 0 6px;
+}
+.home-card-head .link-button {
+  font-size: var(--text-dense);
+}
+.home-empty {
+  padding: var(--space-2) 0;
+}
+/* A list's default 40 px indent left an empty gutter before every glyph. */
+.home-today-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+.home-today-row {
+  display: flex;
+  align-items: baseline;
+  gap: var(--space-2);
+  width: 100%;
+  padding: 8px 0;
+  border: 0;
+  border-top: 1px solid var(--line);
+  background: none;
+  color: var(--text);
+  text-align: left;
+  cursor: pointer;
+}
+.home-today-row:hover {
+  background: color-mix(in srgb, var(--text) 5%, transparent);
+}
+.home-today-text {
+  display: grid;
+  min-width: 0;
+}
+.home-today-title,
+.home-today-meta {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.home-today-meta {
+  color: var(--muted);
+  font-size: var(--text-dense);
+}
+
+/* ---------- session view ---------- */
+.session-view {
+  container-type: inline-size;
+  overflow: auto;
+}
+.session-head {
+  display: grid;
+  gap: var(--space-2);
+  padding: var(--space-4) var(--space-4) 0;
+}
+.breadcrumb {
+  display: flex;
+  align-items: baseline;
+  gap: 6px;
+  min-width: 0;
+  font-size: var(--text-dense);
+  color: var(--muted);
+}
+.breadcrumb .sep {
+  opacity: 0.7;
+}
+.session-title-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  min-width: 0;
+}
+.session-title {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  min-width: 0;
+}
+.session-status {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 6px;
+  color: var(--muted);
+  min-width: 0;
+}
+.session-status .sep {
+  opacity: 0.7;
+}
+.session-activity {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  min-width: 0;
+  max-width: 48ch;
+}
+.session-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+.session-reasons {
+  padding: 0;
+  list-style: none;
+  color: var(--muted);
+  font-size: var(--text-dense);
+}
+.session-panel {
+  padding: 12px var(--space-4) var(--space-4);
+  min-height: 0;
+}
+.session-live {
+  display: grid;
+  gap: var(--space-4);
+}
+.session-agent {
+  display: grid;
+  gap: 12px;
+  min-width: 0;
+}
+.session-agent > .detail .detail-head {
+  padding-left: 0;
+  padding-right: 0;
+}
+.session-agent > .detail .panel {
+  padding-left: 0;
+  padding-right: 0;
+}
+/*
+ * Live tab fills the window: the session head stays, the agent's Now/Timeline panel scrolls inside itself and its
+ * Message box stays at the bottom (before this the whole view was one long page, so a maximized window pushed the
+ * timeline reader and the Message box below the fold). Below 560 px of room the view scrolls as a whole again.
+ */
+.session-view > .session-head {
+  flex: none;
+}
+.session-view > .session-panel.session-live {
+  display: flex;
+  flex-direction: column;
+  flex: 1 1 0;
+  min-height: 560px;
+}
+.session-panel.session-live > .session-live {
+  flex: 1 1 0;
+  min-height: 0;
+}
+.session-agent {
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
+}
+.session-agent > .detail {
+  flex: 1 1 0;
+  min-height: 0;
+}
+.why-block {
+  display: grid;
+  gap: var(--space-1);
+  padding: 10px 12px;
+  border: 1px solid var(--needs-you);
+  border-radius: var(--radius-inset);
+  background: var(--card);
+}
+
+/* ---------- guide ---------- */
+.guide-backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 20;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+  background: var(--scrim);
+}
+.guide {
+  width: 100%;
+  max-width: 720px;
+  max-height: 100%;
+  overflow: auto;
+  display: flex;
+  flex-direction: column;
+  background: var(--card);
+  color: var(--text);
+  border: 1px solid var(--card-edge);
+  border-radius: 14px;
+}
+.guide-top,
+.guide-foot {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 16px 22px;
+}
+.guide-top {
+  border-bottom: 1px solid var(--line);
+}
+.guide-foot {
+  border-top: 1px solid var(--line);
+}
+.guide-brand {
+  font-weight: var(--weight-strong);
+}
+.guide-gap {
+  flex: 1;
+}
+.guide-dots {
+  display: flex;
+  gap: 6px;
+}
+.guide-dot {
+  width: 28px;
+  height: 4px;
+  border-radius: 2px;
+  background: var(--line);
+}
+.guide-dot.is-on {
+  background: var(--select);
+}
+.guide-content {
+  display: grid;
+  gap: 14px;
+  align-content: start;
+  padding: 22px 24px;
+  min-height: 220px;
+  line-height: 1.6;
+}
+.guide-title {
+  font: var(--weight-strong) var(--text-name) / 1.3 var(--font-display);
+}
+.guide-legend {
+  display: grid;
+  gap: 4px;
+  padding: 12px 14px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius-inset);
+  background: var(--card-inset);
+  font-size: var(--text-dense);
+}
+.guide-legend-row {
+  display: grid;
+  grid-template-columns: 130px minmax(0, 1fr);
+  gap: 10px;
+}
+.guide-legend-row dt {
+  font-weight: var(--weight-strong);
+}
+
+/*
+ * Compact session head (owner review 2026-11-17): name, Rename and the actions on one row, one status line under it,
+ * the tabs right after. The agent panel below drops its own big name: the lead is "Lead agent" at pane-title size.
+ */
+.session-head {
+  gap: 6px;
+  padding: 12px var(--space-4) 0;
+}
+.session-title-row {
+  justify-content: space-between;
+  flex-wrap: wrap;
+  row-gap: 6px;
+}
+.session-title-row > .name-block {
+  flex: 1 1 240px;
+  flex-wrap: nowrap;
+  min-height: 0;
+  min-width: 0;
+}
+/* A long session name takes two lines before it is cut (it was cut to one at 960 px: "Make the tokenizer…"). */
+.session-title-row > .name-block > .agent-name {
+  font-size: 17px;
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  line-clamp: 2;
+  overflow-wrap: anywhere;
+}
+.session-status {
+  font-size: var(--text-dense);
+}
+.session-reasons {
+  margin-top: -2px;
+}
+.session-tabs {
+  padding: 0;
+}
+.session-tabs .tab {
+  height: 30px;
+}
+.session-panel {
+  padding-top: var(--space-2);
+}
+.session-agent > .detail .detail-head {
+  padding-top: 0;
+  padding-bottom: var(--space-2);
+  gap: 2px;
+}
+.session-agent .detail-head .agent-name {
+  font-size: 15px;
+}
+.session-agent .detail-head .name-block {
+  min-height: 0;
+}
+.session-agent .now-line {
+  margin-top: 2px;
+}
+.session-agent > .detail > .tabs {
+  padding: 0;
+}
+.session-agent > .detail .detail-foot {
+  padding-left: 0;
+  padding-right: 0;
+}
+/* The agent panel's head: name and its one fact line side by side; status, topic and pause words below. */
+.session-agent > .detail .detail-head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  column-gap: 12px;
+}
+.session-agent > .detail .detail-head > * {
+  flex-basis: 100%;
+}
+.session-agent > .detail .detail-head > .detail-head-top,
+.session-agent > .detail .detail-head > .role-line {
+  flex-basis: auto;
+}
+.session-agent > .detail .detail-head > .role-line {
+  flex: 1 1 200px;
+  min-width: 0;
+  font-size: var(--text-dense);
+}
+/* Live fills the window down to 360 px of room (was 560, which pushed the Message box below a 600 px window). */
+.session-view > .session-panel.session-live {
+  min-height: 360px;
+}
+.session-live {
+  gap: 12px;
+}
+/* A subagent's status, what it does and its Pause share one row. */
+.session-agent > .detail .detail-head > .now-line {
+  flex: 1 1 auto;
+  margin-top: 0;
+}
+.session-agent > .detail .detail-head > .pause-line {
+  flex: 0 0 auto;
+}
+.session-agent .pause-line .control {
+  height: 26px;
+  padding: 0 12px;
+  font-size: var(--text-dense);
+}
+.home-head {
+  padding: 14px 16px 10px;
+}
+.home-body {
+  padding: 0 16px 16px;
+  gap: 14px;
+}
+
+/*
+ * 2026-11-18 design pass. Live is the picked agent's panel alone: the session's tree is the sidebar's, so it is not
+ * drawn twice. The request in "Why it is asking" is the shared inbox card, which is already the one frame: the block
+ * around it adds none (no card inside a card), and the why is one muted line under it.
+ */
+.session-live {
+  grid-template-columns: minmax(0, 1fr);
+  grid-template-rows: minmax(0, 1fr);
+}
+.why-block {
+  gap: var(--space-2);
+  padding: 0;
+  border: 0;
+  background: none;
+}
+.why-line {
+  margin: 0;
+  color: var(--muted);
+  font-size: var(--text-dense);
+}
+/* The message box, closed: one quiet row at the foot of the panel. */
+.composer-closed {
+  display: flex;
+  align-items: baseline;
+  gap: var(--space-2);
+}

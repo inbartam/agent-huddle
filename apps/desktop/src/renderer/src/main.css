@@ -1,0 +1,2227 @@
+/*
+ * Layout and components for both windows, from docs/DESIGN.md. Colours, type and spacing come from
+ * tokens.css only. Rows are 28 px, 4 px grid. Widget v2 (2026-11-14): the widget is one card per session.
+ */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+html,
+body {
+  margin: 0;
+}
+body {
+  /* Over Mica/Acrylic the base is slightly translucent so the material tints through. */
+  background: color-mix(in srgb, var(--bg) 88%, transparent);
+  color: var(--text);
+  font: var(--weight-regular) var(--text-body) / 1.45 var(--font-ui);
+  -webkit-font-smoothing: antialiased;
+  overflow: hidden;
+}
+body[data-view='main'],
+body[data-view='main'] #root {
+  height: 100vh;
+}
+body[data-view='widget'] {
+  background: var(--widget);
+}
+button {
+  font: inherit;
+  color: inherit;
+}
+h1,
+h2,
+p,
+dl,
+dd {
+  margin: 0;
+}
+.code {
+  font-family: var(--font-code);
+  font-size: var(--text-dense);
+}
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+:focus-visible {
+  outline: 2px solid var(--select);
+  outline-offset: -2px;
+  border-radius: var(--radius-select);
+}
+
+/* ---------- status tones and glyphs ---------- */
+.tone-working {
+  --tone: var(--working);
+  --tone-text: var(--working-text);
+}
+.tone-needs-you {
+  --tone: var(--needs-you);
+  --tone-text: var(--needs-you-text);
+}
+.tone-failed {
+  --tone: var(--failed);
+  --tone-text: var(--failed-text);
+}
+.tone-paused {
+  --tone: var(--paused);
+  --tone-text: var(--paused-text);
+}
+.tone-idle {
+  --tone: var(--muted);
+  --tone-text: var(--muted);
+}
+.glyph {
+  display: inline-block;
+  width: 1em;
+  text-align: center;
+  color: var(--tone, var(--muted));
+  line-height: 1;
+  font-variant-emoji: text;
+}
+/* Segoe draws the round glyphs (● ○ ◌) smaller than ▲ ✕ ■; scale them so every status weighs the same. */
+.glyph[data-status='working'],
+.glyph[data-status='idle'],
+.glyph[data-status='starting'] {
+  transform: scale(1.3);
+}
+.glyph.is-working {
+  animation: breathe 2s ease-in-out infinite;
+}
+.glyph.is-changed {
+  animation: glyph-in 150ms ease-out;
+}
+.glyph.is-working.is-changed {
+  animation:
+    glyph-in 150ms ease-out,
+    breathe 2s ease-in-out 150ms infinite;
+}
+@keyframes breathe {
+  50% {
+    opacity: 0.45;
+  }
+}
+@keyframes glyph-in {
+  from {
+    opacity: 0;
+  }
+}
+.status {
+  display: inline-flex;
+  align-items: baseline;
+  gap: 6px;
+  color: var(--tone-text);
+  font-weight: var(--weight-strong);
+}
+.status.is-stale {
+  font-weight: 400;
+}
+.now-activity.is-stale,
+.fact-note {
+  color: var(--muted);
+}
+/* Fact values are flex rows, which drop the space between the name and its note. */
+.fact-note {
+  margin-left: 0.6ch;
+}
+.status .glyph {
+  font-size: 11px;
+}
+
+/* ---------- counts ---------- */
+.counts {
+  display: inline-flex;
+  gap: var(--space-4);
+  font-size: var(--text-dense);
+  color: var(--muted);
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}
+.count .glyph {
+  font-size: 10px;
+}
+.count.is-loud {
+  color: var(--needs-you-text);
+  font-weight: var(--weight-strong);
+}
+
+/* ---------- main window ---------- */
+.main-window {
+  display: grid;
+  /* title bar, connection banner (empty unless Huddle is not connected), panes */
+  grid-template-rows: var(--titlebar) auto minmax(0, 1fr);
+  height: 100%;
+}
+.titlebar {
+  grid-column: 1 / -1;
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  padding: 0 var(--space-4);
+  /* Room for the native caption buttons drawn by titleBarOverlay. */
+  padding-right: 150px;
+  app-region: drag;
+  -webkit-app-region: drag;
+  user-select: none;
+}
+.app-mark {
+  width: 10px;
+  height: 10px;
+  border-radius: 3px;
+  border: 1.5px solid var(--select);
+  box-shadow: inset 0 0 0 2px color-mix(in srgb, var(--select) 35%, transparent);
+}
+.app-title {
+  font-size: var(--text-dense);
+  font-weight: var(--weight-strong);
+  margin-right: auto;
+}
+
+.splitter {
+  grid-row: 3;
+  position: relative;
+  width: 0;
+  cursor: col-resize;
+  z-index: 1;
+}
+.splitter::before {
+  content: '';
+  position: absolute;
+  inset: 0 -4px;
+}
+.splitter::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: -0.5px;
+  width: 1px;
+  background: var(--line);
+}
+.splitter:hover::after,
+.splitter:focus-visible::after {
+  left: -1px;
+  width: 2px;
+  background: var(--select);
+}
+.splitter:focus-visible {
+  outline: none;
+}
+
+.detail-pane {
+  grid-row: 3;
+  min-width: 0;
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+  background: color-mix(in srgb, var(--surface) 70%, transparent);
+  border-top-left-radius: var(--radius-window);
+}
+
+/* ---------- team tree (both windows) ---------- */
+.tree {
+  display: flex;
+  flex-direction: column;
+}
+.tree-row {
+  --indent: 16px;
+  position: relative;
+  display: flex;
+  align-items: center;
+  height: var(--row-h, var(--row));
+  padding-left: calc(var(--depth) * var(--indent) + var(--indent) + 6px);
+  padding-right: var(--space-2);
+  gap: var(--space-2);
+  border-radius: var(--radius-select);
+  cursor: default;
+  white-space: nowrap;
+}
+.tree-row:hover {
+  background: color-mix(in srgb, var(--text) 5%, transparent);
+}
+.tree-row.is-selected {
+  background: var(--select-fill);
+  box-shadow: inset 2px 0 0 var(--select);
+}
+.tree-row.is-new {
+  animation: row-in 120ms ease-out;
+}
+@keyframes row-in {
+  from {
+    height: 0;
+    opacity: 0;
+  }
+}
+.rails {
+  position: absolute;
+  left: 0;
+  top: 0;
+  overflow: visible;
+  pointer-events: none;
+}
+.tree-glyph {
+  position: absolute;
+  left: calc(var(--depth) * var(--indent));
+  width: var(--indent);
+  text-align: center;
+  font-size: 11px;
+}
+.tree-text {
+  display: flex;
+  align-items: baseline;
+  gap: var(--space-2);
+  min-width: 0;
+  flex: 1;
+  overflow: hidden;
+}
+.tree-name {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  flex: 0 1 auto;
+  min-width: 2ch;
+}
+.tree-row.is-root .tree-name {
+  font-weight: var(--weight-strong);
+}
+/* A session row: its title (F2) keeps its room; the project and topic after it give way. */
+.tree-row.is-root .tree-name {
+  flex-shrink: 0;
+  max-width: 60%;
+}
+.tree-meta {
+  color: var(--muted);
+  font-size: var(--text-dense);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  flex: 0 10 auto;
+}
+.tree-more {
+  flex: none;
+  color: var(--muted);
+  font-size: var(--text-meta);
+  font-variant-numeric: tabular-nums;
+}
+.tree-state {
+  flex: none;
+  font-size: var(--text-meta);
+  color: var(--muted);
+}
+.tree-state.tone-needs-you,
+.tree-state.tone-failed {
+  color: var(--tone-text);
+  font-weight: var(--weight-strong);
+}
+.tree-row.is-dimmed .tree-name,
+.tree-row.is-dimmed .tree-meta {
+  color: var(--muted);
+}
+/* Stale: a session not heard from since Huddle restarted. Muted like an ended session, with the ◌ glyph and
+   words that say why; its long label gives way to the name when the row is narrow (full text in the title). */
+.tree-row.is-stale .tree-state {
+  flex: 0 1 auto;
+  min-width: 4ch;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  font-weight: 400;
+}
+.tree-row.is-stale .tree-name {
+  flex-shrink: 0;
+  max-width: 60%;
+}
+.tree-row.is-stale .tree-glyph {
+  opacity: 0.85;
+}
+.tree-row.is-finished {
+  padding-left: calc(var(--indent) + 22px);
+  color: var(--muted);
+}
+.tree-row.is-finished .tree-glyph {
+  left: var(--indent);
+  opacity: 0.8;
+}
+.tree-group {
+  display: flex;
+  gap: 6px;
+  align-items: baseline;
+  height: var(--row);
+  padding: 10px 0 0 calc(16px + 6px);
+  font-size: var(--text-meta);
+  color: var(--muted);
+}
+.tree-group-count {
+  font-variant-numeric: tabular-nums;
+}
+
+/* Rails: 1.5 px, colour from the status they lead to; idle rails use the hairline colour. */
+.rail {
+  fill: none;
+  stroke: var(--line);
+  stroke-width: var(--rail);
+  stroke-linecap: round;
+}
+.rail.tone-working,
+.rail.tone-needs-you,
+.rail.tone-failed,
+.rail.tone-paused {
+  stroke: var(--tone);
+}
+.rail.tone-working {
+  stroke: color-mix(in srgb, var(--working) 70%, var(--line));
+}
+.rail-dashed {
+  stroke-dasharray: 2.5 3;
+  stroke-linecap: butt;
+}
+.rail-dashed,
+.rail-solid {
+  transition: opacity 200ms ease-out;
+}
+.rail-dashed[data-on='false'],
+.rail-solid[data-on='false'] {
+  opacity: 0;
+}
+
+/* ---------- agent detail ---------- */
+.detail {
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
+  flex: 1;
+}
+.detail-head {
+  padding: var(--space-4) var(--space-4) 12px;
+  display: grid;
+  gap: var(--space-1);
+}
+.name-block {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+  min-height: 32px;
+}
+.agent-name {
+  font-family: var(--font-display);
+  font-size: var(--text-name);
+  font-weight: var(--weight-strong);
+  line-height: 1.3;
+  overflow-wrap: anywhere;
+  min-width: 0;
+}
+.quiet-button,
+.link-button,
+.filter,
+.tab,
+.widget-title {
+  background: none;
+  border: 0;
+  padding: 0;
+  cursor: pointer;
+}
+.quiet-button {
+  padding: 2px var(--space-2);
+  border-radius: var(--radius-control);
+  color: var(--muted);
+  font-size: var(--text-dense);
+}
+.quiet-button:hover {
+  background: color-mix(in srgb, var(--text) 7%, transparent);
+  color: var(--text);
+}
+.rename {
+  flex: 1;
+  max-width: 560px;
+}
+.rename-input {
+  width: 100%;
+  font: var(--weight-strong) var(--text-name) / 1.3 var(--font-display);
+  color: var(--text);
+  background: var(--surface);
+  border: 1px solid var(--select);
+  border-radius: var(--radius-control);
+  padding: 0 var(--space-2);
+  outline: none;
+  box-shadow: 0 0 0 2px var(--select-fill);
+}
+.inline-error,
+.error-line {
+  flex-basis: 100%;
+  color: var(--failed);
+  font-size: var(--text-dense);
+}
+.error-line {
+  padding: var(--space-1) var(--space-2) var(--space-2);
+}
+.role-line,
+.reports-to {
+  color: var(--muted);
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 6px;
+}
+.role-line > span:first-child {
+  color: var(--text);
+}
+/* F2: a session's project, worktree tag, start, and what the user last asked it. */
+.identity-line {
+  color: var(--muted);
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 6px;
+}
+.identity-line > .identity-path {
+  color: var(--text);
+  overflow-wrap: anywhere;
+  min-width: 0;
+}
+.identity-line .sep {
+  opacity: 0.7;
+}
+.topic-line {
+  color: var(--muted);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  min-width: 0;
+}
+.role-line .sep {
+  opacity: 0.7;
+}
+.link-button {
+  color: var(--text);
+  text-decoration: underline;
+  text-decoration-color: var(--line);
+  text-underline-offset: 3px;
+}
+.link-button:hover {
+  text-decoration-color: currentColor;
+}
+.now-line {
+  display: flex;
+  align-items: baseline;
+  gap: 12px;
+  margin-top: var(--space-2);
+  min-width: 0;
+}
+.now-activity {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  min-width: 0;
+}
+
+.tabs {
+  display: flex;
+  gap: 20px;
+  padding: 0 var(--space-4);
+  border-bottom: 1px solid var(--line);
+}
+.tab {
+  height: 32px;
+  color: var(--muted);
+  font-weight: var(--weight-strong);
+  box-shadow: inset 0 -2px 0 transparent;
+}
+.tab[aria-selected='true'] {
+  color: var(--text);
+  box-shadow: inset 0 -2px 0 var(--select);
+}
+.tab:hover {
+  color: var(--text);
+}
+.panel {
+  padding: 12px var(--space-4) var(--space-4);
+  min-height: 0;
+  overflow: auto;
+}
+.panel-timeline {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  overflow: hidden;
+  padding-bottom: 0;
+}
+.facts {
+  display: grid;
+  grid-template-columns: max-content minmax(0, 1fr);
+  column-gap: var(--space-4);
+}
+.facts dt,
+.facts dd {
+  min-height: var(--row);
+  display: flex;
+  align-items: center;
+  border-bottom: 1px solid color-mix(in srgb, var(--line) 60%, transparent);
+}
+.facts dt {
+  color: var(--muted);
+}
+.facts dd {
+  font-variant-numeric: tabular-nums;
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+/* ---------- timeline ---------- */
+.timeline {
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
+  flex: 1;
+}
+.filters {
+  display: flex;
+  align-items: center;
+  gap: 2px;
+  flex-wrap: wrap;
+  padding-bottom: var(--space-2);
+}
+.filter {
+  height: 24px;
+  padding: 0 var(--space-2);
+  border-radius: var(--radius-control);
+  color: var(--muted);
+  font-size: var(--text-dense);
+}
+.filter:hover {
+  color: var(--text);
+  background: color-mix(in srgb, var(--text) 6%, transparent);
+}
+.filter[aria-pressed='true'] {
+  color: var(--text);
+  background: var(--select-fill);
+}
+.filters-count {
+  margin-left: auto;
+  color: var(--muted);
+  font-size: var(--text-meta);
+  font-variant-numeric: tabular-nums;
+}
+.timeline-scroll {
+  flex: 1;
+  min-height: 0;
+  overflow: auto;
+  margin: 0 calc(-1 * var(--space-4));
+  padding: 0 var(--space-4) var(--space-4);
+  border-top: 1px solid var(--line);
+}
+.timeline-scroll:focus-visible {
+  outline-offset: -2px;
+}
+.tl-row {
+  display: grid;
+  grid-template-columns: 44px 168px minmax(0, 1fr) 72px;
+  align-items: center;
+  column-gap: 12px;
+  height: var(--row);
+  border-bottom: 1px solid color-mix(in srgb, var(--line) 55%, transparent);
+  font-size: var(--text-dense);
+}
+.tl-time,
+.tl-duration {
+  color: var(--muted);
+  font-variant-numeric: tabular-nums;
+}
+.tl-duration {
+  text-align: right;
+}
+.tl-label {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  font-weight: var(--weight-strong);
+}
+.tl-row:not(.kind-tool) .tl-label {
+  color: var(--muted);
+  font-weight: var(--weight-regular);
+}
+.tl-summary {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.tl-summary.code {
+  font-size: var(--text-meta);
+}
+.tl-fail {
+  color: var(--failed);
+}
+.tl-row.has-more {
+  cursor: pointer;
+}
+.tl-row.has-more:hover {
+  background: color-mix(in srgb, var(--text) 5%, transparent);
+}
+.tl-row.has-more:focus-visible {
+  outline: 2px solid var(--select);
+  outline-offset: -2px;
+}
+.tl-row.is-open {
+  background: var(--select-fill);
+}
+.tl-more {
+  color: var(--select);
+  font-size: var(--text-meta);
+}
+
+/* The reader: one timeline row's full text, below the list. */
+.tl-reader {
+  display: flex;
+  flex-direction: column;
+  flex: 0 1 auto;
+  max-height: 55%;
+  min-height: 120px;
+  margin: 0 calc(-1 * var(--space-4));
+  border-top: 1px solid var(--line);
+  background: var(--surface);
+}
+.tl-reader-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: var(--space-2) var(--space-4);
+  border-bottom: 1px solid color-mix(in srgb, var(--line) 55%, transparent);
+}
+.tl-reader-title {
+  font-weight: var(--weight-strong);
+}
+.tl-reader-time {
+  margin-left: var(--space-2);
+  color: var(--muted);
+  font-weight: var(--weight-regular);
+  font-variant-numeric: tabular-nums;
+}
+.tl-reader-body {
+  overflow: auto;
+  padding: var(--space-2) var(--space-4) var(--space-4);
+  user-select: text;
+}
+.tl-reader-body:focus-visible {
+  outline-offset: -2px;
+}
+
+/* Agent text drawn from Markdown (MessageText): readable line length, quiet type scale. */
+.md {
+  max-width: 88ch;
+  font-size: var(--text-body);
+  line-height: 1.55;
+  overflow-wrap: anywhere;
+}
+.md > * {
+  margin: 0 0 var(--space-2);
+}
+/* The last block ends the reply: no gap under it before the next control. */
+.md > :last-child {
+  margin-bottom: 0;
+}
+.md-p,
+.md-quote {
+  white-space: pre-wrap;
+}
+.md-h {
+  margin-top: var(--space-4);
+  font-weight: var(--weight-strong);
+  line-height: 1.3;
+}
+.md-h:first-child {
+  margin-top: 0;
+}
+.md-h1 {
+  font-size: var(--text-title);
+}
+.md-h2,
+.md-h3 {
+  font-size: var(--text-body);
+}
+.md-list {
+  padding-left: 22px;
+}
+.md-list li {
+  margin: 2px 0;
+  white-space: pre-wrap;
+}
+.md-code,
+.md-pre {
+  font-family: var(--font-code);
+  font-size: var(--text-dense);
+}
+.md-code {
+  padding: 0 4px;
+  border-radius: var(--radius-select);
+  background: color-mix(in srgb, var(--text) 7%, transparent);
+}
+.md-pre {
+  margin: 0 0 var(--space-2);
+  padding: var(--space-2) 12px;
+  border-radius: var(--radius-inset);
+  background: color-mix(in srgb, var(--text) 6%, transparent);
+  overflow-x: auto;
+  white-space: pre;
+}
+.md-quote {
+  padding-left: 12px;
+  border-left: 3px solid var(--line);
+  color: var(--muted);
+}
+.md-rule {
+  border: 0;
+  border-top: 1px solid var(--line);
+}
+.md-table-wrap {
+  overflow-x: auto;
+}
+.md-table {
+  border-collapse: collapse;
+  font-size: var(--text-dense);
+}
+.md-table th,
+.md-table td {
+  padding: 4px 10px;
+  border: 1px solid var(--line);
+  text-align: left;
+  vertical-align: top;
+}
+.md-table th {
+  font-weight: var(--weight-strong);
+  background: color-mix(in srgb, var(--text) 4%, transparent);
+}
+
+/* ---------- empty states ---------- */
+.empty,
+.empty-line {
+  color: var(--muted);
+  max-width: 44ch;
+}
+.empty {
+  padding: var(--space-2);
+}
+.detail-pane > .empty {
+  padding: var(--space-4);
+}
+.empty-line {
+  padding: var(--space-2) 0;
+}
+
+/* ---------- widget (Widget v2, owner's choice 2026-11-14): header, one card per session ---------- */
+.widget {
+  display: flex;
+  flex-direction: column;
+  max-height: 480px;
+  background: var(--widget);
+}
+.widget-head {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  height: 40px;
+  flex: none;
+  padding: 0 10px 0 14px;
+  app-region: drag;
+  -webkit-app-region: drag;
+  user-select: none;
+}
+.widget-title,
+.widget-head .icon-button {
+  app-region: no-drag;
+  -webkit-app-region: no-drag;
+}
+.widget-title {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  border: 0;
+  background: none;
+  font-size: var(--text-title);
+  font-weight: var(--weight-strong);
+  padding: 2px 6px;
+  margin-left: -6px;
+  border-radius: var(--radius-control);
+  cursor: pointer;
+}
+.widget-title:hover {
+  background: color-mix(in srgb, var(--text) 7%, transparent);
+}
+.widget-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--muted);
+}
+.widget-dot.is-live {
+  background: var(--working);
+}
+.widget-sub {
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  font-size: var(--text-dense);
+  color: var(--muted);
+  font-variant-numeric: tabular-nums;
+}
+/* Everything under the header; gone when the widget is collapsed to one line. */
+.widget-content {
+  display: flex;
+  flex-direction: column;
+  flex: 1 1 auto;
+  min-height: 0;
+}
+/* Collapsed: the counts are one button that expands the widget. */
+.widget-counts {
+  display: flex;
+  align-items: baseline;
+  gap: 10px;
+  min-width: 0;
+  padding: 2px 6px;
+  margin-left: -4px;
+  border: 0;
+  border-radius: var(--radius-control);
+  background: none;
+  font-size: var(--text-dense);
+  color: var(--muted);
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+  overflow: hidden;
+  app-region: no-drag;
+  -webkit-app-region: no-drag;
+  cursor: pointer;
+}
+.widget-counts:hover {
+  background: color-mix(in srgb, var(--text) 7%, transparent);
+}
+.widget-working {
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.widget-conn-word {
+  flex: none;
+  color: var(--tone-text);
+  font-weight: var(--weight-strong);
+}
+.widget-conn-word .glyph {
+  font-size: 10px;
+}
+.widget-head-end {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  margin-left: auto;
+  flex: none;
+}
+.widget-needs {
+  font-size: var(--text-dense);
+  font-weight: var(--weight-strong);
+  color: var(--needs-you-text);
+  white-space: nowrap;
+  font-variant-numeric: tabular-nums;
+}
+.widget-needs .glyph {
+  font-size: 10px;
+}
+/* Small square icon buttons: open in the main window, hide. */
+.icon-button {
+  display: inline-grid;
+  place-items: center;
+  width: 24px;
+  height: 24px;
+  padding: 0;
+  border: 0;
+  border-radius: 7px;
+  background: color-mix(in srgb, var(--text) 7%, transparent);
+  color: var(--muted);
+  cursor: pointer;
+  flex: none;
+}
+.icon-button:hover {
+  background: color-mix(in srgb, var(--text) 13%, transparent);
+  color: var(--text);
+}
+.icon-line {
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.6;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+.widget-body {
+  overflow-y: auto;
+  min-height: 0;
+  /* 3 px on top so the first card's outline is not clipped by the scroll box. */
+  padding: 3px var(--space-2) var(--space-2);
+}
+.widget .empty {
+  padding: var(--space-1) 6px var(--space-2);
+}
+.widget-hidden {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: var(--space-2);
+  padding: var(--space-2) 6px 0;
+  font-size: var(--text-meta);
+  color: var(--muted);
+}
+.widget-hidden .link-button {
+  font-size: var(--text-meta);
+}
+
+/* A session card. */
+.scards {
+  display: grid;
+  gap: 6px;
+}
+.scard {
+  position: relative;
+  background: var(--card);
+  border: 1px solid var(--card-edge);
+  border-radius: var(--radius-card);
+  min-width: 0;
+}
+.scard.needs-you {
+  border-color: transparent;
+  box-shadow: 0 0 0 1.5px var(--needs-you);
+}
+.scard.is-dimmed .scard-name {
+  color: var(--muted);
+}
+.scard-top {
+  position: relative;
+}
+.scard-main {
+  display: grid;
+  grid-template-columns: 36px minmax(0, 1fr);
+  column-gap: 10px;
+  width: 100%;
+  padding: 10px 12px 11px 10px;
+  border: 0;
+  background: none;
+  text-align: left;
+  border-radius: var(--radius-card);
+  cursor: pointer;
+}
+.scard-main:hover {
+  background: color-mix(in srgb, var(--text) 3%, transparent);
+}
+.scard-main:focus-visible {
+  border-radius: var(--radius-card);
+}
+.scard-face {
+  display: block;
+  padding-top: 1px;
+}
+.scard-text {
+  display: grid;
+  min-width: 0;
+  row-gap: 1px;
+}
+.scard-name-line {
+  display: flex;
+  align-items: baseline;
+  gap: 6px;
+  min-width: 0;
+}
+/*
+ * The name is what the glance reads, so it gets the width and up to two lines before it is cut. The open and hide
+ * buttons no longer reserve room on every card: they appear over the corner on hover or keyboard focus (below).
+ */
+.scard-name {
+  font-size: var(--text-title);
+  font-weight: var(--weight-strong);
+  line-height: 1.3;
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  line-clamp: 2;
+  overflow-wrap: anywhere;
+  min-width: 0;
+}
+.scard-count {
+  flex: none;
+  font-size: var(--text-meta);
+  color: var(--muted);
+  font-variant-numeric: tabular-nums;
+}
+/* F2 identity: start time when two sessions share a title, model and worktree chips. They give way before the name. */
+.scard-disambig {
+  flex: none;
+  font-size: var(--text-meta);
+  color: var(--muted);
+  font-variant-numeric: tabular-nums;
+}
+/*
+ * The chips give way first (flex-shrink 1000), then the name ellipsizes. A chip that no longer fits wraps onto a
+ * second line that is clipped, so it disappears whole instead of showing a cut word; the zero-width ::before is the
+ * first item of the line, which lets even the first chip wrap away.
+ */
+.scard-chips {
+  flex: 0 1000 auto;
+  min-width: 0;
+  align-self: center;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  column-gap: 6px;
+  height: 18px;
+  overflow: hidden;
+}
+.scard-chips::before {
+  content: '';
+  width: 0;
+  height: 18px;
+  margin-right: -6px;
+}
+.scard-chip {
+  flex: none;
+  line-height: 16px;
+  white-space: nowrap;
+  font-size: var(--text-meta);
+  color: var(--muted);
+}
+.identity-line .scard-chip {
+  line-height: 1.35;
+}
+.scard-worktree {
+  padding: 0 4px;
+  border: 1px solid var(--card-edge);
+  border-radius: 4px;
+  line-height: 1.35;
+}
+.scard-line.scard-topic {
+  display: block;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  color: var(--muted);
+}
+.scard-line {
+  display: flex;
+  align-items: baseline;
+  gap: 6px;
+  min-width: 0;
+  font-size: var(--text-dense);
+  line-height: 1.45;
+  white-space: nowrap;
+}
+.scard-line .glyph {
+  flex: none;
+  font-size: 10px;
+}
+.scard-status {
+  flex: none;
+  color: var(--tone-text);
+  font-weight: var(--weight-strong);
+}
+.scard-activity,
+.scard-who {
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  color: var(--muted);
+}
+.scard-activity::before,
+.scard-who::before {
+  content: '· ';
+}
+.scard-need-words {
+  flex: none;
+  color: var(--needs-you-text);
+  font-weight: var(--weight-strong);
+}
+.scard-meta {
+  color: var(--muted);
+  font-variant-numeric: tabular-nums;
+}
+.scard-progress {
+  display: flex;
+  align-items: baseline;
+  gap: 5px;
+  min-width: 0;
+  flex: 1 1 auto;
+}
+.scard-folder {
+  display: block;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.scard-lead {
+  flex: none;
+  color: var(--tone-text);
+  font-weight: var(--weight-strong);
+}
+.scard-progress-text {
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.scard-ctx {
+  flex: none;
+  color: var(--needs-you-text);
+  font-weight: var(--weight-strong);
+}
+.scard-usage {
+  flex: none;
+}
+.scard-actions {
+  position: absolute;
+  top: 9px;
+  right: 10px;
+  display: flex;
+  gap: 4px;
+  padding-left: 12px;
+  /* Card-coloured backing so the name under the corner stays legible behind the buttons. */
+  background: linear-gradient(to right, transparent, var(--card) 12px);
+  opacity: 0;
+  pointer-events: none;
+}
+.scard:hover .scard-actions,
+.scard:focus-within .scard-actions {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+/* The request waiting on the user, inline in its card. */
+.scard-request {
+  margin: -3px 10px 10px;
+  padding: 8px 10px 10px;
+  background: var(--card-inset);
+  border-radius: var(--radius-inset);
+}
+.scard-more {
+  margin-top: 6px;
+  font-size: var(--text-meta);
+}
+
+/* Opened in place: the tasks, then the subagent tree, hanging from the face. */
+.scard-open {
+  padding: 0 8px 8px 10px;
+}
+.scard-tasks {
+  list-style: none;
+  margin: 0 0 4px;
+  padding: 0 0 0 46px;
+  display: grid;
+  gap: 1px;
+  font-size: var(--text-dense);
+}
+.scard-tasks li {
+  display: flex;
+  gap: 7px;
+  align-items: baseline;
+  min-width: 0;
+}
+.scard-tasks li.is-done {
+  color: var(--muted);
+}
+.task-mark {
+  flex: none;
+  width: 1em;
+  text-align: center;
+  color: var(--muted);
+}
+.scard-tasks li.is-done .task-mark {
+  color: var(--working-text);
+}
+/* The task in progress: half-filled mark and the words "in progress", in the working colour; not colour alone. */
+.scard-tasks li.is-current {
+  font-weight: var(--weight-strong);
+}
+.scard-tasks li.is-current .task-mark {
+  color: var(--working);
+}
+.task-state {
+  flex: none;
+  font-size: var(--text-meta);
+  font-weight: var(--weight-regular);
+  color: var(--working-text);
+}
+.task-subject {
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.scard-open .tree {
+  margin-left: 10px;
+}
+
+/* A request whose agent has no card: pinned at the bottom, so it stays reachable. */
+.pinned {
+  flex: none;
+  margin: 0 var(--space-2) var(--space-2);
+  padding: 10px 12px;
+  background: var(--card);
+  border-radius: var(--radius-card);
+  box-shadow: 0 0 0 1.5px var(--needs-you);
+}
+
+/* Faces (components/Face.tsx). */
+.face {
+  display: block;
+  overflow: visible;
+}
+.face-body,
+.face-leg {
+  fill: var(--face-colour);
+}
+.face-leg {
+  filter: brightness(0.82);
+}
+.face-ink {
+  fill: var(--face-ink);
+}
+.face-glint {
+  fill: var(--face-glint);
+}
+.face-line {
+  fill: none;
+  stroke: var(--face-ink);
+  stroke-width: 2.2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+/*
+ * Type hats (2026-11-18): each in its own colours, the same in both themes since they sit on the face, not the page.
+ * `.hat-shade` darkens the hat's main colour like the legs darken the body.
+ */
+.hat {
+  --hat: #8a8d96;
+}
+.hat-main {
+  fill: var(--hat);
+}
+.hat-shade {
+  fill: var(--hat);
+  filter: brightness(0.78);
+}
+.hat-lead {
+  --hat: #f2b632;
+}
+.hat-gem {
+  fill: #e0524a;
+}
+.hat-planner {
+  --hat: #474c63;
+}
+.hat-tassel-line {
+  fill: none;
+  stroke: #f2b632;
+  stroke-width: 1.1;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+.hat-tassel {
+  fill: #f2b632;
+}
+.hat-builder {
+  --hat: #f6c52c;
+}
+.hat-designer {
+  --hat: #d8433b;
+}
+.hat-reviewer {
+  --hat: #474a55;
+}
+.hat-band {
+  fill: #c9473f;
+}
+.hat-tester {
+  --hat: #3f7fdc;
+}
+.hat-stripe {
+  fill: #e0524a;
+}
+.hat-blade-a {
+  fill: #e0524a;
+}
+.hat-blade-b {
+  fill: #f2b632;
+}
+.hat-researcher {
+  --hat: #d2bd8c;
+}
+.hat-writer {
+  --hat: #2f8a62;
+}
+.hat-rib {
+  fill: none;
+  stroke: var(--hat);
+  stroke-width: 0.9;
+  filter: brightness(0.6);
+}
+.hat-pom {
+  fill: #f1eadb;
+}
+.face-off .hat {
+  filter: grayscale(1);
+  opacity: 0.6;
+}
+.tree-type {
+  flex: none;
+  font-size: var(--text-dense);
+  color: var(--text);
+}
+.tree-row.is-dimmed .tree-type {
+  color: var(--muted);
+}
+.face-hue-0 {
+  --face-colour: var(--face-0);
+}
+.face-hue-1 {
+  --face-colour: var(--face-1);
+}
+.face-hue-2 {
+  --face-colour: var(--face-2);
+}
+.face-hue-3 {
+  --face-colour: var(--face-3);
+}
+.face-hue-4 {
+  --face-colour: var(--face-4);
+}
+.face-hue-5 {
+  --face-colour: var(--face-5);
+}
+.face-hue-6 {
+  --face-colour: var(--face-6);
+}
+.face-hue-7 {
+  --face-colour: var(--face-7);
+}
+.face-off {
+  --face-colour: var(--face-off);
+}
+.face-off .face-ink,
+.face-off .face-line {
+  opacity: 0.55;
+}
+/*
+ * Face motion (owner, 2026-11-18): each mood moves a little, so a glance at the widget reads the team without reading.
+ * Small amplitudes (1-4 px) at slow periods; the phase follows the face colour so a row of faces never moves in
+ * unison. All of it is off under reduced motion (the global rule below).
+ */
+.face {
+  --face-phase: 0s;
+}
+.face-head,
+.face-eyes,
+.face-leg {
+  transform-box: fill-box;
+}
+.face-eyes {
+  transform-origin: center;
+}
+.face-head {
+  transform-origin: 50% 100%;
+}
+.face-hue-1 {
+  --face-phase: -0.7s;
+}
+.face-hue-2 {
+  --face-phase: -1.9s;
+}
+.face-hue-3 {
+  --face-phase: -3.1s;
+}
+.face-hue-4 {
+  --face-phase: -1.3s;
+}
+.face-hue-5 {
+  --face-phase: -2.5s;
+}
+.face-hue-6 {
+  --face-phase: -3.7s;
+}
+.face-hue-7 {
+  --face-phase: -4.3s;
+}
+/* Open eyes blink now and then. */
+.face[data-mood='focused'] .face-eyes,
+.face[data-mood='alert'] .face-eyes,
+.face[data-mood='flat'] .face-eyes {
+  animation: face-blink 5s ease-in-out var(--face-phase) infinite;
+}
+@keyframes face-blink {
+  0%,
+  92%,
+  100% {
+    transform: scaleY(1);
+  }
+  95% {
+    transform: scaleY(0.1);
+  }
+}
+/* Working: the head breathes with the ● glyph and the feet step in place, like someone typing away. */
+.face.is-breathing .face-head {
+  animation: face-breathe 2s ease-in-out var(--face-phase) infinite;
+}
+.face.is-breathing .face-leg-l {
+  animation: face-step 1s ease-in-out var(--face-phase) infinite;
+}
+.face.is-breathing .face-leg-r {
+  animation: face-step 1s ease-in-out calc(var(--face-phase) - 0.5s) infinite;
+}
+@keyframes face-breathe {
+  50% {
+    transform: translateY(-1.5px);
+  }
+}
+@keyframes face-step {
+  0%,
+  50%,
+  100% {
+    transform: translateY(0);
+  }
+  25% {
+    transform: translateY(-2px);
+  }
+}
+/* Needs you: two quick hops, then a rest. The one face that asks to be looked at. */
+.face[data-mood='alert'] {
+  animation: face-hop 2.4s ease-out infinite;
+}
+@keyframes face-hop {
+  0%,
+  40%,
+  100% {
+    transform: translateY(0);
+  }
+  8% {
+    transform: translateY(-4px);
+  }
+  16% {
+    transform: translateY(0);
+  }
+  24% {
+    transform: translateY(-2.5px);
+  }
+  32% {
+    transform: translateY(0);
+  }
+}
+/* Done: a happy little cheer, a hop and a wiggle every few seconds (owner, 2026-11-18: one jump was missed). */
+.face[data-mood='happy'] {
+  transform-origin: 50% 100%;
+  animation: face-cheer 4.5s ease-out var(--face-phase) infinite;
+}
+@keyframes face-cheer {
+  0%,
+  70%,
+  100% {
+    transform: translateY(0) rotate(0);
+  }
+  76% {
+    transform: translateY(-3.5px) rotate(-5deg);
+  }
+  82% {
+    transform: translateY(0) rotate(0);
+  }
+  88% {
+    transform: translateY(-2px) rotate(5deg);
+  }
+  94% {
+    transform: translateY(0) rotate(0);
+  }
+}
+/* Failed: one shake of the head when it fails, then still. */
+.face[data-mood='failed'] .face-head {
+  animation: face-shake 450ms ease-in-out 1;
+}
+@keyframes face-shake {
+  20%,
+  60% {
+    transform: translateX(-1.5px);
+  }
+  40%,
+  80% {
+    transform: translateX(1.5px);
+  }
+}
+/* Idle: a slow doze. */
+.face[data-mood='sleepy'] .face-head {
+  animation: face-doze 4s ease-in-out var(--face-phase) infinite;
+}
+@keyframes face-doze {
+  50% {
+    transform: translateY(1px) scaleY(0.97);
+  }
+}
+
+/* ---------- scrollbars: thin and quiet, like the hairlines around them ---------- */
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+::-webkit-scrollbar-thumb {
+  background: color-mix(in srgb, var(--muted) 35%, transparent);
+  border: 3px solid transparent;
+  border-radius: 6px;
+  background-clip: padding-box;
+}
+::-webkit-scrollbar-thumb:hover {
+  background-color: color-mix(in srgb, var(--muted) 60%, transparent);
+}
+::-webkit-scrollbar-track,
+::-webkit-scrollbar-corner {
+  background: transparent;
+}
+
+/* ---------- motion off when asked ---------- */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation: none !important;
+    transition: none !important;
+  }
+}
+
+/* ---------- connection: banner, widget row, first-run consent (ADR-017) ---------- */
+.banner-slot {
+  grid-column: 1 / -1;
+  grid-row: 2;
+}
+.conn-banner {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  min-height: 32px;
+  padding: var(--space-1) var(--space-4);
+  font-size: var(--text-dense);
+  background: color-mix(in srgb, var(--tone) 9%, transparent);
+  border-top: 1px solid color-mix(in srgb, var(--tone) 28%, transparent);
+  border-bottom: 1px solid color-mix(in srgb, var(--tone) 28%, transparent);
+}
+.conn-banner .glyph,
+.widget-conn .glyph,
+.consent-notice .glyph,
+.consent-warnings .glyph {
+  font-size: 10px;
+  flex: none;
+}
+.conn-text {
+  flex: 1;
+  min-width: 0;
+}
+.conn-action {
+  flex: none;
+  color: var(--text);
+  font-weight: var(--weight-strong);
+}
+
+.widget-conn {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  width: 100%;
+  min-height: var(--row-widget);
+  padding: var(--space-1) var(--space-4);
+  border: 0;
+  border-bottom: 1px solid color-mix(in srgb, var(--line) 70%, transparent);
+  background: color-mix(in srgb, var(--tone) 10%, transparent);
+  text-align: left;
+  font-size: var(--text-dense);
+  cursor: pointer;
+}
+.widget-conn:hover {
+  background: color-mix(in srgb, var(--tone) 16%, transparent);
+}
+.widget-conn-text {
+  min-width: 0;
+}
+
+/* The consent screen is one left-aligned column; the diff is the only bordered thing on it. */
+.main-window.is-setup {
+  grid-template-rows: var(--titlebar) minmax(0, 1fr);
+  grid-template-columns: minmax(0, 1fr);
+}
+.consent {
+  grid-row: 2;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+  min-height: 0;
+  padding: 24px 40px 20px;
+  background: color-mix(in srgb, var(--surface) 70%, transparent);
+  border-top-left-radius: var(--radius-window);
+  border-top-right-radius: var(--radius-window);
+}
+.consent > * {
+  max-width: 880px;
+  width: 100%;
+}
+.consent-intro {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+}
+.consent-title {
+  font: var(--weight-strong) var(--text-name) / 1.25 var(--font-display);
+  outline: none;
+}
+.consent-what {
+  font-size: var(--text-title);
+  max-width: 64ch;
+}
+.consent-detail {
+  color: var(--muted);
+  max-width: 72ch;
+}
+.consent-file {
+  display: flex;
+  align-items: baseline;
+  gap: 12px;
+  margin: 0;
+  min-width: 0;
+}
+.consent-file dt {
+  color: var(--muted);
+  font-size: var(--text-dense);
+  flex: none;
+}
+/* The whole path, wrapped: the person agreeing should see exactly which file changes. */
+.consent-file dd {
+  min-width: 0;
+  overflow-wrap: anywhere;
+}
+.consent-notice {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  color: var(--needs-you-text);
+  font-weight: var(--weight-strong);
+}
+
+.diff {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  flex: 1 1 auto;
+  min-height: 120px;
+  margin: 0;
+}
+.diff-summary {
+  color: var(--muted);
+  font-size: var(--text-dense);
+  font-variant-numeric: tabular-nums;
+}
+.diff-scroll {
+  flex: 1 1 auto;
+  min-height: 0;
+  overflow: auto;
+  background: var(--bg);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-control);
+}
+.diff-scroll:focus-visible {
+  outline-offset: -2px;
+  border-radius: var(--radius-control);
+}
+.diff-lines {
+  margin: 0;
+  padding: var(--space-1) 0;
+  font: var(--text-dense) / 20px var(--font-code);
+  tab-size: 2;
+}
+.diff-row {
+  display: block;
+  padding-right: var(--space-4);
+  white-space: pre;
+}
+.diff-sign {
+  display: inline-block;
+  width: 28px;
+  text-align: center;
+  user-select: none;
+  color: var(--muted);
+}
+/* A 2 px rail marks each changed line, like the team tree's rails; the sign carries it without colour. */
+.diff-row.op-add {
+  background: color-mix(in srgb, var(--working) 11%, transparent);
+  box-shadow: inset 2px 0 0 var(--working);
+}
+.diff-row.op-add .diff-sign {
+  color: var(--working-text);
+  font-weight: var(--weight-strong);
+}
+.diff-row.op-del {
+  background: color-mix(in srgb, var(--failed) 11%, transparent);
+  box-shadow: inset 2px 0 0 var(--failed);
+}
+.diff-row.op-del .diff-sign {
+  color: var(--failed-text);
+  font-weight: var(--weight-strong);
+}
+.diff-row.op-same .diff-text {
+  color: var(--muted);
+}
+.diff-row.op-gap {
+  color: var(--muted);
+  height: 16px;
+  line-height: 16px;
+}
+
+.consent-warnings {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1);
+}
+.consent-warnings li {
+  display: flex;
+  align-items: baseline;
+  gap: var(--space-2);
+  max-width: 80ch;
+}
+
+.consent-actions {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  flex-wrap: wrap;
+  padding-top: var(--space-1);
+}
+/* Primary action: graphite inverted, so no status colour is borrowed for a button. */
+.primary-button {
+  min-width: 112px;
+  height: 32px;
+  padding: 0 var(--space-4);
+  border: 0;
+  border-radius: var(--radius-control);
+  background: var(--text);
+  color: var(--surface);
+  font-weight: var(--weight-strong);
+  cursor: pointer;
+}
+.primary-button:hover:not(:disabled) {
+  background: color-mix(in srgb, var(--text) 86%, var(--select));
+}
+.primary-button:focus-visible {
+  outline: 2px solid var(--select);
+  outline-offset: 2px;
+}
+.primary-button:disabled,
+.consent-actions .quiet-button:disabled {
+  opacity: 0.6;
+  cursor: default;
+}
+.consent-actions .quiet-button {
+  height: 32px;
+  padding: 0 var(--space-4);
+  font-size: var(--text-body);
+}
+.consent-error {
+  flex-basis: 100%;
+  color: var(--failed-text);
+  font-size: var(--text-dense);
+  max-width: 80ch;
+}
+
+/* ---------- meters (M2: F4 progress, F5 usage, F6 context, F7 handoff) ---------- */
+.meter-section {
+  margin-top: 20px;
+  padding-top: 12px;
+  border-top: 1px solid var(--line);
+  max-width: 640px;
+}
+.section-title {
+  font-size: var(--text-title);
+  font-weight: var(--weight-strong);
+  margin: 0 0 var(--space-2);
+  display: flex;
+  align-items: baseline;
+  gap: var(--space-2);
+}
+.section-note {
+  font-size: var(--text-meta);
+  font-weight: var(--weight-regular);
+  color: var(--muted);
+}
+.muted {
+  color: var(--muted);
+}
+.meter-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  min-height: var(--row);
+}
+.meter-line {
+  margin: 0;
+  min-height: 24px;
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  white-space: pre-wrap;
+  font-variant-numeric: tabular-nums;
+}
+.meter-line.muted {
+  display: block;
+  padding: 4px 0;
+}
+.meter-activity {
+  color: var(--text);
+}
+.meter-value {
+  font-weight: var(--weight-strong);
+  font-variant-numeric: tabular-nums;
+  min-width: 7ch;
+}
+.meter-value.tone-needs-you,
+.context-high {
+  color: var(--needs-you-text);
+}
+.scope-grew {
+  gap: 6px;
+}
+.scope-mark {
+  display: inline-grid;
+  place-items: center;
+  width: 14px;
+  height: 14px;
+  border: 1px solid var(--muted);
+  border-radius: var(--radius-select);
+  font-size: var(--text-meta);
+  line-height: 1;
+  color: var(--muted);
+}
+.bar {
+  position: relative;
+  flex: 1;
+  max-width: 320px;
+  height: 6px;
+  border-radius: 3px;
+  background: color-mix(in srgb, var(--line) 80%, transparent);
+  overflow: hidden;
+}
+.bar-fill {
+  position: absolute;
+  inset: 0 auto 0 0;
+  background: var(--tone);
+  border-radius: 3px;
+}
+.bar.tone-idle .bar-fill {
+  background: var(--muted);
+}
+/* Unknown is never drawn as 0: a hatched empty track, and the words beside it say "unknown". */
+.bar.bar-unknown {
+  background: repeating-linear-gradient(
+    -45deg,
+    color-mix(in srgb, var(--line) 80%, transparent) 0 4px,
+    transparent 4px 8px
+  );
+}
+.usage-table {
+  border-collapse: collapse;
+  font-variant-numeric: tabular-nums;
+  margin: 2px 0 var(--space-2);
+}
+.usage-table th,
+.usage-table td {
+  height: 26px;
+  padding: 0 var(--space-4) 0 0;
+  text-align: right;
+  border-bottom: 1px solid color-mix(in srgb, var(--line) 60%, transparent);
+  white-space: nowrap;
+}
+.usage-table th[scope='row'] {
+  text-align: left;
+  color: var(--muted);
+  font-weight: var(--weight-regular);
+  padding-right: 24px;
+}
+.usage-table thead th {
+  font-size: var(--text-dense);
+  color: var(--muted);
+  font-weight: var(--weight-strong);
+}
+.meter-notes {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  font-size: var(--text-dense);
+  color: var(--muted);
+  max-width: 80ch;
+}
+.meter-notes li {
+  padding: 2px 0;
+}
+.instructions ul {
+  margin: 0;
+  padding: 4px 0;
+  list-style: none;
+  min-width: 0;
+}
+.instructions li {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  font-size: var(--text-dense);
+}
+.facts dd.instructions {
+  white-space: normal;
+}
+.link-mark {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  color: var(--muted);
+}
+.link-mark .rail.tone-idle {
+  stroke: var(--muted);
+}
+.handoff-part {
+  margin-top: var(--space-2);
+}
+.handoff-part summary {
+  display: flex;
+  align-items: baseline;
+  gap: var(--space-2);
+  min-height: var(--row);
+  align-items: center;
+  cursor: default;
+  border-radius: var(--radius-select);
+}
+.handoff-part summary:hover {
+  background: color-mix(in srgb, var(--text) 5%, transparent);
+}
+.handoff-label {
+  flex: none;
+  font-size: var(--text-body);
+  font-weight: var(--weight-strong);
+  margin: 0;
+}
+.handoff-preview {
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  color: var(--muted);
+}
+.handoff-part[open] .handoff-preview {
+  display: none;
+}
+.handoff-text {
+  margin: 4px 0 0;
+  padding-left: 18px;
+  max-width: 80ch;
+  overflow-wrap: anywhere;
+  line-height: 1.5;
+}
+
+/* Widget row meters: a 2 px bar along the bottom of the row, short usage, context when high. */
+.tree-bar {
+  position: absolute;
+  left: calc(var(--depth) * var(--indent) + var(--indent) + 6px);
+  right: var(--space-2);
+  bottom: 3px;
+  height: 2px;
+  border-radius: 1px;
+  background: color-mix(in srgb, var(--line) 70%, transparent);
+  overflow: hidden;
+}
+.tree-bar-fill {
+  position: absolute;
+  inset: 0 auto 0 0;
+  background: color-mix(in srgb, var(--working) 75%, var(--line));
+}
+.tree-usage,
+.tree-ctx {
+  flex: none;
+  font-size: var(--text-meta);
+  font-variant-numeric: tabular-nums;
+  color: var(--muted);
+}
+.tree-ctx {
+  color: var(--needs-you-text);
+  font-weight: var(--weight-strong);
+}
+.rate-limits {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  height: 26px;
+  padding: 0 12px 0 var(--space-4);
+  font-size: var(--text-meta);
+  color: var(--muted);
+  font-variant-numeric: tabular-nums;
+  border-bottom: 1px solid color-mix(in srgb, var(--line) 70%, transparent);
+}
+.rate-limit {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+.rate-limit-name {
+  color: var(--text);
+}
+.rate-limit-bar {
+  position: relative;
+  left: auto;
+  right: auto;
+  bottom: auto;
+  width: 48px;
+  height: 3px;
+}
+/* Plan limits are not a status: a neutral fill, so teal keeps meaning "working". */
+.rate-limit-bar .tree-bar-fill {
+  background: var(--muted);
+}
+
+/* ---------------------------------------------------------------------------------------------------------------
+   Agent teams (M6 item 3, S20). A teammate row carries the word "teammate" in an outlined tag and its lead "team
+   lead", so a team reads without colour. A teammate's idle words ("idle, waiting for the lead") give way to the name
+   when the row is narrow (the widget); the full words are in the row's title and accessible name.
+   --------------------------------------------------------------------------------------------------------------- */
+.tree-kind,
+.team-chip {
+  flex: none;
+  padding: 0 4px;
+  border: 1px solid var(--card-edge);
+  border-radius: 4px;
+  font-size: var(--text-meta);
+  line-height: 1.35;
+  color: var(--muted);
+  white-space: nowrap;
+}
+.team-chip {
+  margin-right: var(--space-2);
+}
+.tree-row.is-teammate .tree-state {
+  flex: 0 1 auto;
+  min-width: 4ch;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.tree-row.is-teammate .tree-name {
+  flex-shrink: 0;
+  max-width: 50%;
+}
+.team-facts {
+  margin-top: var(--space-2);
+}
+
+/* The widget card's progress bar sits under the text column (face 36 + gaps = 56 px), outside the card's button. */
+.bar.scard-pbar {
+  display: block;
+  max-width: none;
+  height: 4px;
+  margin: -6px 12px 11px 56px;
+}
+
+/*
+ * Page heads (2026-11-18): a page whose rail item or tab already names it keeps its h1 for the outline but not on
+ * screen. The block that held it takes no room, a head with nothing visible left has no padding, and the first section
+ * under it starts without a rule or a gap (the hairline separates sections, not the page from its own head).
+ */
+.name-block:has(> h1.visually-hidden:only-child) {
+  display: contents;
+}
+.detail-head:not(:has(> :not(.name-block))):has(> .name-block > h1.visually-hidden:only-child) {
+  padding: 0;
+}
+.panel > .settings-section:first-child {
+  margin-top: 0;
+  border-top: 0;
+}
+/* Touch screens have no hover: the card's open and hide buttons stay visible there (code review, 2026-11-18). */
+@media (hover: none) {
+  .scard-actions {
+    opacity: 1;
+    pointer-events: auto;
+  }
+}
+
+/* ---------- Team talk (2026-11-18): hand-offs as a conversation; each speaker wears its type's hat ---------- */
+.talk {
+  list-style: none;
+  margin: 0;
+  padding: var(--space-2) 0 var(--space-4);
+  display: grid;
+  gap: var(--space-4);
+  max-width: 88ch;
+}
+.talk-entry {
+  display: grid;
+  grid-template-columns: 28px minmax(0, 1fr);
+  column-gap: 12px;
+}
+.talk-face {
+  padding-top: 8px;
+}
+.talk-face .face {
+  width: 28px;
+  height: auto;
+}
+.talk-line {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 6px;
+  margin: 0;
+}
+.talk-who {
+  display: inline-flex;
+  align-items: baseline;
+  gap: 5px;
+}
+.talk-name {
+  font-weight: var(--weight-strong);
+}
+.talk-type,
+.talk-verb,
+.talk-time {
+  color: var(--muted);
+  font-size: var(--text-dense);
+}
+.talk-time {
+  margin-left: auto;
+  font-variant-numeric: tabular-nums;
+}
+.talk-title {
+  margin: 2px 0 0;
+  color: var(--muted);
+}
+.talk-text {
+  margin-top: 6px;
+  padding-left: 10px;
+  border-left: 2px solid var(--line);
+}
+/* An answer coming back is marked by a working-coloured rule, so the eye can follow briefs and answers. */
+.talk-result .talk-text {
+  border-left-color: var(--working);
+}
+.talk-text.is-folded {
+  max-height: 9.5em;
+  overflow: hidden;
+  mask-image: linear-gradient(to bottom, #000 70%, transparent);
+}
+.talk-actions {
+  display: flex;
+  gap: var(--space-2);
+  margin-top: 4px;
+}
+.talk-actions:empty,
+.talk-text:empty {
+  display: none;
+}
+.talk-forward {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--space-2);
+  margin-top: var(--space-2);
+}
+.talk-forward .form-note {
+  flex-basis: 100%;
+  margin: 0;
+}

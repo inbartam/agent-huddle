@@ -1,0 +1,25 @@
+{
+  "name": "@huddle/shared",
+  "version": "0.0.0",
+  "private": true,
+  "description": "Agent Huddle contracts: domain model, normalized events, commands, progress estimator",
+  "author": "Agent Huddle contributors",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/inbartam/agent-huddle.git",
+    "directory": "packages/shared"
+  },
+  "homepage": "https://github.com/inbartam/agent-huddle#readme",
+  "bugs": {
+    "url": "https://github.com/inbartam/agent-huddle/issues"
+  },
+  "type": "module",
+  "exports": {
+    ".": "./src/index.ts",
+    "./hooks": "./src/hooks.ts"
+  },
+  "scripts": {
+    "typecheck": "tsc -p . --noEmit"
+  }
+}

@@ -1,0 +1,534 @@
+[
+  {
+    "t": "2026-11-14T08:53:33.269Z",
+    "hook": "UserPromptSubmit",
+    "events": [
+      {
+        "id": "evt-0001",
+        "type": "prompt.submitted",
+        "ts": 1794646413269,
+        "sessionId": "session-1",
+        "agentKey": "session-1",
+        "source": "hook",
+        "text": "(scrubbed text)",
+        "promptId": "prompt-1",
+        "kind": "user",
+        "cwd": "C:/Users/user/project"
+      }
+    ]
+  },
+  {
+    "t": "2026-11-14T08:53:38.707Z",
+    "hook": "PreToolUse",
+    "events": [
+      {
+        "id": "evt-0002",
+        "type": "tool.started",
+        "ts": 1794646418707,
+        "sessionId": "session-1",
+        "agentKey": "session-1",
+        "source": "hook",
+        "toolUseId": "tool_use-1",
+        "toolName": "ToolSearch",
+        "summary": "(scrubbed text)",
+        "filePath": null,
+        "inputDigest": "5f0f00268f5c84c048ca91461f578b60"
+      }
+    ]
+  },
+  {
+    "t": "2026-11-14T08:53:39.201Z",
+    "hook": "PostToolUse",
+    "events": [
+      {
+        "id": "evt-0003",
+        "type": "tool.finished",
+        "ts": 1794646419201,
+        "sessionId": "session-1",
+        "agentKey": "session-1",
+        "source": "hook",
+        "toolUseId": "tool_use-1",
+        "toolName": "ToolSearch",
+        "durationMs": 7
+      }
+    ]
+  },
+  {
+    "t": "2026-11-14T08:53:42.525Z",
+    "hook": "PreToolUse",
+    "events": [
+      {
+        "id": "evt-0004",
+        "type": "tool.started",
+        "ts": 1794646422525,
+        "sessionId": "session-1",
+        "agentKey": "session-1",
+        "source": "hook",
+        "toolUseId": "tool_use-2",
+        "toolName": "TaskCreate",
+        "summary": "TaskCreate",
+        "filePath": null,
+        "inputDigest": "128e842b043cb78ea0d8743d900b20b5"
+      }
+    ]
+  },
+  {
+    "t": "2026-11-14T08:53:43.032Z",
+    "hook": "TaskCreated",
+    "events": [
+      {
+        "id": "evt-0005",
+        "type": "task.created",
+        "ts": 1794646423032,
+        "sessionId": "session-1",
+        "agentKey": "session-1",
+        "source": "hook",
+        "taskId": "1",
+        "subject": "Count to three",
+        "description": "(scrubbed text)"
+      }
+    ]
+  },
+  {
+    "t": "2026-11-14T08:53:43.046Z",
+    "hook": "PostToolUse",
+    "events": [
+      {
+        "id": "evt-0006",
+        "type": "tool.finished",
+        "ts": 1794646423046,
+        "sessionId": "session-1",
+        "agentKey": "session-1",
+        "source": "hook",
+        "toolUseId": "tool_use-2",
+        "toolName": "TaskCreate",
+        "durationMs": 28
+      }
+    ]
+  },
+  {
+    "t": "2026-11-14T08:53:43.832Z",
+    "hook": "PreToolUse",
+    "events": [
+      {
+        "id": "evt-0007",
+        "type": "tool.started",
+        "ts": 1794646423832,
+        "sessionId": "session-1",
+        "agentKey": "session-1",
+        "source": "hook",
+        "toolUseId": "tool_use-3",
+        "toolName": "TaskCreate",
+        "summary": "TaskCreate",
+        "filePath": null,
+        "inputDigest": "128e842b043cb78ea0d8743d900b20b5"
+      }
+    ]
+  },
+  {
+    "t": "2026-11-14T08:53:44.403Z",
+    "hook": "TaskCreated",
+    "events": [
+      {
+        "id": "evt-0008",
+        "type": "task.created",
+        "ts": 1794646424403,
+        "sessionId": "session-1",
+        "agentKey": "session-1",
+        "source": "hook",
+        "taskId": "2",
+        "subject": "Name a colour",
+        "description": "(scrubbed text)"
+      }
+    ]
+  },
+  {
+    "t": "2026-11-14T08:53:44.414Z",
+    "hook": "PostToolUse",
+    "events": [
+      {
+        "id": "evt-0009",
+        "type": "tool.finished",
+        "ts": 1794646424414,
+        "sessionId": "session-1",
+        "agentKey": "session-1",
+        "source": "hook",
+        "toolUseId": "tool_use-3",
+        "toolName": "TaskCreate",
+        "durationMs": 15
+      }
+    ]
+  },
+  {
+    "t": "2026-11-14T08:53:45.172Z",
+    "hook": "PreToolUse",
+    "events": [
+      {
+        "id": "evt-0010",
+        "type": "tool.started",
+        "ts": 1794646425172,
+        "sessionId": "session-1",
+        "agentKey": "session-1",
+        "source": "hook",
+        "toolUseId": "tool_use-4",
+        "toolName": "TaskCreate",
+        "summary": "TaskCreate",
+        "filePath": null,
+        "inputDigest": "128e842b043cb78ea0d8743d900b20b5"
+      }
+    ]
+  },
+  {
+    "t": "2026-11-14T08:53:45.657Z",
+    "hook": "TaskCreated",
+    "events": [
+      {
+        "id": "evt-0011",
+        "type": "task.created",
+        "ts": 1794646425657,
+        "sessionId": "session-1",
+        "agentKey": "session-1",
+        "source": "hook",
+        "taskId": "3",
+        "subject": "Say done",
+        "description": "(scrubbed text)"
+      }
+    ]
+  },
+  {
+    "t": "2026-11-14T08:53:45.667Z",
+    "hook": "PostToolUse",
+    "events": [
+      {
+        "id": "evt-0012",
+        "type": "tool.finished",
+        "ts": 1794646425667,
+        "sessionId": "session-1",
+        "agentKey": "session-1",
+        "source": "hook",
+        "toolUseId": "tool_use-4",
+        "toolName": "TaskCreate",
+        "durationMs": 14
+      }
+    ]
+  },
+  {
+    "t": "2026-11-14T08:53:50.266Z",
+    "hook": "PreToolUse",
+    "events": [
+      {
+        "id": "evt-0013",
+        "type": "tool.started",
+        "ts": 1794646430266,
+        "sessionId": "session-1",
+        "agentKey": "session-1",
+        "source": "hook",
+        "toolUseId": "tool_use-5",
+        "toolName": "TaskUpdate",
+        "summary": "TaskUpdate",
+        "filePath": null,
+        "inputDigest": "9bfbc1a5db5754037055ae26e179b6ef"
+      }
+    ]
+  },
+  {
+    "t": "2026-11-14T08:53:50.649Z",
+    "hook": "PostToolUse",
+    "events": [
+      {
+        "id": "evt-0014",
+        "type": "tool.finished",
+        "ts": 1794646430649,
+        "sessionId": "session-1",
+        "agentKey": "session-1",
+        "source": "hook",
+        "toolUseId": "tool_use-5",
+        "toolName": "TaskUpdate",
+        "durationMs": 5
+      },
+      {
+        "id": "evt-0015",
+        "type": "task.started",
+        "ts": 1794646430649,
+        "sessionId": "session-1",
+        "agentKey": "session-1",
+        "source": "hook",
+        "taskId": "1"
+      }
+    ]
+  },
+  {
+    "t": "2026-11-14T08:53:53.384Z",
+    "hook": "PreToolUse",
+    "events": [
+      {
+        "id": "evt-0016",
+        "type": "tool.started",
+        "ts": 1794646433384,
+        "sessionId": "session-1",
+        "agentKey": "session-1",
+        "source": "hook",
+        "toolUseId": "tool_use-6",
+        "toolName": "TaskUpdate",
+        "summary": "TaskUpdate",
+        "filePath": null,
+        "inputDigest": "72d83a0a01b5a96da16ed9024b8b8a18"
+      }
+    ]
+  },
+  {
+    "t": "2026-11-14T08:53:53.663Z",
+    "hook": "PreToolUse",
+    "events": [
+      {
+        "id": "evt-0017",
+        "type": "tool.started",
+        "ts": 1794646433663,
+        "sessionId": "session-1",
+        "agentKey": "session-1",
+        "source": "hook",
+        "toolUseId": "tool_use-7",
+        "toolName": "TaskUpdate",
+        "summary": "TaskUpdate",
+        "filePath": null,
+        "inputDigest": "47721e5930d3563d85707b72e8d35c59"
+      }
+    ]
+  },
+  {
+    "t": "2026-11-14T08:53:53.764Z",
+    "hook": "TaskCompleted",
+    "events": [
+      {
+        "id": "evt-0018",
+        "type": "task.completed",
+        "ts": 1794646433764,
+        "sessionId": "session-1",
+        "agentKey": "session-1",
+        "source": "hook",
+        "taskId": "1"
+      }
+    ]
+  },
+  {
+    "t": "2026-11-14T08:53:53.777Z",
+    "hook": "PostToolUse",
+    "events": [
+      {
+        "id": "evt-0019",
+        "type": "tool.finished",
+        "ts": 1794646433777,
+        "sessionId": "session-1",
+        "agentKey": "session-1",
+        "source": "hook",
+        "toolUseId": "tool_use-6",
+        "toolName": "TaskUpdate",
+        "durationMs": 12
+      }
+    ]
+  },
+  {
+    "t": "2026-11-14T08:53:54.217Z",
+    "hook": "PostToolUse",
+    "events": [
+      {
+        "id": "evt-0020",
+        "type": "tool.finished",
+        "ts": 1794646434217,
+        "sessionId": "session-1",
+        "agentKey": "session-1",
+        "source": "hook",
+        "toolUseId": "tool_use-7",
+        "toolName": "TaskUpdate",
+        "durationMs": 6
+      },
+      {
+        "id": "evt-0021",
+        "type": "task.started",
+        "ts": 1794646434217,
+        "sessionId": "session-1",
+        "agentKey": "session-1",
+        "source": "hook",
+        "taskId": "2"
+      }
+    ]
+  },
+  {
+    "t": "2026-11-14T08:53:57.158Z",
+    "hook": "PreToolUse",
+    "events": [
+      {
+        "id": "evt-0022",
+        "type": "tool.started",
+        "ts": 1794646437158,
+        "sessionId": "session-1",
+        "agentKey": "session-1",
+        "source": "hook",
+        "toolUseId": "tool_use-8",
+        "toolName": "TaskUpdate",
+        "summary": "TaskUpdate",
+        "filePath": null,
+        "inputDigest": "0eb455b12aa08bb137bafc5da5b4b401"
+      }
+    ]
+  },
+  {
+    "t": "2026-11-14T08:53:57.451Z",
+    "hook": "PreToolUse",
+    "events": [
+      {
+        "id": "evt-0023",
+        "type": "tool.started",
+        "ts": 1794646437451,
+        "sessionId": "session-1",
+        "agentKey": "session-1",
+        "source": "hook",
+        "toolUseId": "tool_use-9",
+        "toolName": "TaskUpdate",
+        "summary": "TaskUpdate",
+        "filePath": null,
+        "inputDigest": "d5af40499a5df64ab27c40c2ef956b53"
+      }
+    ]
+  },
+  {
+    "t": "2026-11-14T08:53:57.522Z",
+    "hook": "TaskCompleted",
+    "events": [
+      {
+        "id": "evt-0024",
+        "type": "task.completed",
+        "ts": 1794646437522,
+        "sessionId": "session-1",
+        "agentKey": "session-1",
+        "source": "hook",
+        "taskId": "2"
+      }
+    ]
+  },
+  {
+    "t": "2026-11-14T08:53:57.533Z",
+    "hook": "PostToolUse",
+    "events": [
+      {
+        "id": "evt-0025",
+        "type": "tool.finished",
+        "ts": 1794646437533,
+        "sessionId": "session-1",
+        "agentKey": "session-1",
+        "source": "hook",
+        "toolUseId": "tool_use-8",
+        "toolName": "TaskUpdate",
+        "durationMs": 14
+      }
+    ]
+  },
+  {
+    "t": "2026-11-14T08:53:57.934Z",
+    "hook": "PostToolUse",
+    "events": [
+      {
+        "id": "evt-0026",
+        "type": "tool.finished",
+        "ts": 1794646437934,
+        "sessionId": "session-1",
+        "agentKey": "session-1",
+        "source": "hook",
+        "toolUseId": "tool_use-9",
+        "toolName": "TaskUpdate",
+        "durationMs": 5
+      },
+      {
+        "id": "evt-0027",
+        "type": "task.started",
+        "ts": 1794646437934,
+        "sessionId": "session-1",
+        "agentKey": "session-1",
+        "source": "hook",
+        "taskId": "3"
+      }
+    ]
+  },
+  {
+    "t": "2026-11-14T08:54:00.428Z",
+    "hook": "PreToolUse",
+    "events": [
+      {
+        "id": "evt-0028",
+        "type": "tool.started",
+        "ts": 1794646440428,
+        "sessionId": "session-1",
+        "agentKey": "session-1",
+        "source": "hook",
+        "toolUseId": "tool_use-10",
+        "toolName": "TaskUpdate",
+        "summary": "TaskUpdate",
+        "filePath": null,
+        "inputDigest": "68cec116e35c6ed63bae4381d5a0c4dc"
+      }
+    ]
+  },
+  {
+    "t": "2026-11-14T08:54:00.777Z",
+    "hook": "TaskCompleted",
+    "events": [
+      {
+        "id": "evt-0029",
+        "type": "task.completed",
+        "ts": 1794646440777,
+        "sessionId": "session-1",
+        "agentKey": "session-1",
+        "source": "hook",
+        "taskId": "3"
+      }
+    ]
+  },
+  {
+    "t": "2026-11-14T08:54:00.788Z",
+    "hook": "PostToolUse",
+    "events": [
+      {
+        "id": "evt-0030",
+        "type": "tool.finished",
+        "ts": 1794646440788,
+        "sessionId": "session-1",
+        "agentKey": "session-1",
+        "source": "hook",
+        "toolUseId": "tool_use-10",
+        "toolName": "TaskUpdate",
+        "durationMs": 9
+      }
+    ]
+  },
+  {
+    "t": "2026-11-14T08:54:03.713Z",
+    "hook": "Stop",
+    "events": [
+      {
+        "id": "evt-0031",
+        "type": "turn.ended",
+        "ts": 1794646443713,
+        "sessionId": "session-1",
+        "agentKey": "session-1",
+        "source": "hook",
+        "lastMessage": "(scrubbed text)",
+        "backgroundAgentIds": []
+      }
+    ]
+  },
+  {
+    "t": "2026-11-14T08:54:04.363Z",
+    "hook": "SessionEnd",
+    "events": [
+      {
+        "id": "evt-0032",
+        "type": "session.ended",
+        "ts": 1794646444363,
+        "sessionId": "session-1",
+        "agentKey": "session-1",
+        "source": "hook",
+        "reason": "other"
+      }
+    ]
+  }
+]

@@ -1,0 +1,536 @@
+[
+  {
+    "t": "2026-11-16T12:00:06.508Z",
+    "hook": "PreToolUse",
+    "events": [
+      {
+        "id": "evt-0001",
+        "type": "tool.started",
+        "ts": 1794830406508,
+        "sessionId": "session-1",
+        "agentKey": "session-1",
+        "source": "hook",
+        "toolUseId": "toolu_01Pve4Ncp2M3utXZegP2BAEC",
+        "toolName": "ToolSearch",
+        "summary": "ToolSearch",
+        "filePath": null,
+        "inputDigest": "05e89a9eb1eb662f6a0ae7cfa8b399e5"
+      }
+    ]
+  },
+  {
+    "t": "2026-11-16T12:00:06.522Z",
+    "hook": "PostToolUse",
+    "events": [
+      {
+        "id": "evt-0002",
+        "type": "tool.finished",
+        "ts": 1794830406522,
+        "sessionId": "session-1",
+        "agentKey": "session-1",
+        "source": "hook",
+        "toolUseId": "toolu_01Pve4Ncp2M3utXZegP2BAEC",
+        "toolName": "ToolSearch",
+        "durationMs": null
+      }
+    ]
+  },
+  {
+    "t": "2026-11-16T12:00:08.242Z",
+    "hook": "PreToolUse",
+    "events": [
+      {
+        "id": "evt-0003",
+        "type": "tool.started",
+        "ts": 1794830408242,
+        "sessionId": "session-1",
+        "agentKey": "session-1",
+        "source": "hook",
+        "toolUseId": "toolu_018bt8NSqbUrttWLPhhyc3UR",
+        "toolName": "mcp__huddle__report_progress",
+        "summary": "reported progress 5%, 2 min left: step 1 started",
+        "filePath": null,
+        "inputDigest": "1f689b6a46ef974bb64cc9c54b70b14c"
+      }
+    ]
+  },
+  {
+    "t": "2026-11-16T12:00:08.255Z",
+    "hook": "PostToolUse",
+    "events": [
+      {
+        "id": "evt-0004",
+        "type": "tool.finished",
+        "ts": 1794830408255,
+        "sessionId": "session-1",
+        "agentKey": "session-1",
+        "source": "hook",
+        "toolUseId": "toolu_018bt8NSqbUrttWLPhhyc3UR",
+        "toolName": "mcp__huddle__report_progress",
+        "durationMs": null
+      },
+      {
+        "id": "evt-0005",
+        "type": "progress.reported",
+        "ts": 1794830408255,
+        "sessionId": "session-1",
+        "agentKey": "session-1",
+        "source": "hook",
+        "fraction": 0.05,
+        "etaMinutes": 2,
+        "note": "step 1 started"
+      }
+    ]
+  },
+  {
+    "t": "2026-11-16T12:00:08.385Z",
+    "hook": "PreToolUse",
+    "events": [
+      {
+        "id": "evt-0006",
+        "type": "tool.started",
+        "ts": 1794830408385,
+        "sessionId": "session-1",
+        "agentKey": "session-1",
+        "source": "hook",
+        "toolUseId": "toolu_01MpCdtdLXCEg9Zy4AL3LXCc",
+        "toolName": "Glob",
+        "summary": "Glob",
+        "filePath": null,
+        "inputDigest": "812943da9d23b758456bb82225dbfacc"
+      }
+    ]
+  },
+  {
+    "t": "2026-11-16T12:00:08.467Z",
+    "hook": "PostToolUse",
+    "events": [
+      {
+        "id": "evt-0007",
+        "type": "tool.finished",
+        "ts": 1794830408467,
+        "sessionId": "session-1",
+        "agentKey": "session-1",
+        "source": "hook",
+        "toolUseId": "toolu_01MpCdtdLXCEg9Zy4AL3LXCc",
+        "toolName": "Glob",
+        "durationMs": null
+      }
+    ]
+  },
+  {
+    "t": "2026-11-16T12:00:12.770Z",
+    "hook": "PreToolUse",
+    "events": [
+      {
+        "id": "evt-0008",
+        "type": "tool.started",
+        "ts": 1794830412770,
+        "sessionId": "session-1",
+        "agentKey": "session-1",
+        "source": "hook",
+        "toolUseId": "toolu_01BdvCChMBibq4d7tKTuzcu2",
+        "toolName": "mcp__huddle__report_progress",
+        "summary": "reported progress 30%, 2 min left: step 1 done, step 2 next",
+        "filePath": null,
+        "inputDigest": "cba7e714f3a2ab88fcc1b3e56b40498c"
+      }
+    ]
+  },
+  {
+    "t": "2026-11-16T12:00:12.783Z",
+    "hook": "PostToolUse",
+    "events": [
+      {
+        "id": "evt-0009",
+        "type": "tool.finished",
+        "ts": 1794830412783,
+        "sessionId": "session-1",
+        "agentKey": "session-1",
+        "source": "hook",
+        "toolUseId": "toolu_01BdvCChMBibq4d7tKTuzcu2",
+        "toolName": "mcp__huddle__report_progress",
+        "durationMs": null
+      },
+      {
+        "id": "evt-0010",
+        "type": "progress.reported",
+        "ts": 1794830412783,
+        "sessionId": "session-1",
+        "agentKey": "session-1",
+        "source": "hook",
+        "fraction": 0.3,
+        "etaMinutes": 2,
+        "note": "step 1 done, step 2 next"
+      }
+    ]
+  },
+  {
+    "t": "2026-11-16T12:00:12.881Z",
+    "hook": "PreToolUse",
+    "events": [
+      {
+        "id": "evt-0011",
+        "type": "tool.started",
+        "ts": 1794830412881,
+        "sessionId": "session-1",
+        "agentKey": "session-1",
+        "source": "hook",
+        "toolUseId": "toolu_01CazZCmP8LuvZPidfdo45YG",
+        "toolName": "Read",
+        "summary": "Read",
+        "filePath": null,
+        "inputDigest": "d51e0715ccf247c5cefda50eb21726b7"
+      }
+    ]
+  },
+  {
+    "t": "2026-11-16T12:00:12.933Z",
+    "hook": "PostToolUse",
+    "events": [
+      {
+        "id": "evt-0012",
+        "type": "tool.finished",
+        "ts": 1794830412933,
+        "sessionId": "session-1",
+        "agentKey": "session-1",
+        "source": "hook",
+        "toolUseId": "toolu_01CazZCmP8LuvZPidfdo45YG",
+        "toolName": "Read",
+        "durationMs": null
+      }
+    ]
+  },
+  {
+    "t": "2026-11-16T12:00:15.189Z",
+    "hook": "PreToolUse",
+    "events": [
+      {
+        "id": "evt-0013",
+        "type": "tool.started",
+        "ts": 1794830415189,
+        "sessionId": "session-1",
+        "agentKey": "session-1",
+        "source": "hook",
+        "toolUseId": "toolu_01S9UWEC5dgCJDZibWo8WLvT",
+        "toolName": "mcp__huddle__report_progress",
+        "summary": "reported progress 60%, 1 min left: step 2 done, step 3 next",
+        "filePath": null,
+        "inputDigest": "af66286e9a4e4b526c75c65872aaf342"
+      }
+    ]
+  },
+  {
+    "t": "2026-11-16T12:00:15.198Z",
+    "hook": "PostToolUse",
+    "events": [
+      {
+        "id": "evt-0014",
+        "type": "tool.finished",
+        "ts": 1794830415198,
+        "sessionId": "session-1",
+        "agentKey": "session-1",
+        "source": "hook",
+        "toolUseId": "toolu_01S9UWEC5dgCJDZibWo8WLvT",
+        "toolName": "mcp__huddle__report_progress",
+        "durationMs": null
+      },
+      {
+        "id": "evt-0015",
+        "type": "progress.reported",
+        "ts": 1794830415198,
+        "sessionId": "session-1",
+        "agentKey": "session-1",
+        "source": "hook",
+        "fraction": 0.6,
+        "etaMinutes": 1,
+        "note": "step 2 done, step 3 next"
+      }
+    ]
+  },
+  {
+    "t": "2026-11-16T12:00:15.769Z",
+    "hook": "PreToolUse",
+    "events": [
+      {
+        "id": "evt-0016",
+        "type": "tool.started",
+        "ts": 1794830415769,
+        "sessionId": "session-1",
+        "agentKey": "session-1",
+        "source": "hook",
+        "toolUseId": "toolu_01FBA7d9U5y2ruGinfmGL9bc",
+        "toolName": "Agent",
+        "summary": "general-purpose",
+        "filePath": null,
+        "inputDigest": "6518442394795dab328a2e07138931c0"
+      },
+      {
+        "id": "evt-0017",
+        "type": "agent.spawn_requested",
+        "ts": 1794830415769,
+        "sessionId": "session-1",
+        "agentKey": "session-1",
+        "source": "hook",
+        "toolUseId": "toolu_01FBA7d9U5y2ruGinfmGL9bc",
+        "role": "general-purpose",
+        "title": null,
+        "brief": null,
+        "model": null
+      }
+    ]
+  },
+  {
+    "t": "2026-11-16T12:00:15.785Z",
+    "hook": "SubagentStart",
+    "events": [
+      {
+        "id": "evt-0018",
+        "type": "agent.started",
+        "ts": 1794830415785,
+        "sessionId": "session-1",
+        "agentKey": "session-1::agent-1",
+        "source": "hook",
+        "agentId": "agent-1",
+        "role": "general-purpose",
+        "parentKey": "session-1"
+      }
+    ]
+  },
+  {
+    "t": "2026-11-16T12:00:15.807Z",
+    "hook": "PostToolUse",
+    "events": [
+      {
+        "id": "evt-0019",
+        "type": "tool.finished",
+        "ts": 1794830415807,
+        "sessionId": "session-1",
+        "agentKey": "session-1",
+        "source": "hook",
+        "toolUseId": "toolu_01FBA7d9U5y2ruGinfmGL9bc",
+        "toolName": "Agent",
+        "durationMs": null
+      },
+      {
+        "id": "evt-0020",
+        "type": "agent.linked",
+        "ts": 1794830415807,
+        "sessionId": "session-1",
+        "agentKey": "session-1::agent-1",
+        "source": "hook",
+        "toolUseId": "toolu_01FBA7d9U5y2ruGinfmGL9bc",
+        "childAgentId": "agent-1",
+        "parentKey": "session-1",
+        "link": "exact"
+      }
+    ]
+  },
+  {
+    "t": "2026-11-16T12:00:17.511Z",
+    "hook": "PreToolUse",
+    "events": [
+      {
+        "id": "evt-0021",
+        "type": "tool.started",
+        "ts": 1794830417511,
+        "sessionId": "session-1",
+        "agentKey": "session-1::agent-1",
+        "source": "hook",
+        "toolUseId": "toolu_01Y8BBwMN69uYKXooMTNmieH",
+        "toolName": "Read",
+        "summary": "Read",
+        "filePath": null,
+        "inputDigest": "d51e0715ccf247c5cefda50eb21726b7"
+      }
+    ]
+  },
+  {
+    "t": "2026-11-16T12:00:17.568Z",
+    "hook": "PostToolUse",
+    "events": [
+      {
+        "id": "evt-0022",
+        "type": "tool.finished",
+        "ts": 1794830417568,
+        "sessionId": "session-1",
+        "agentKey": "session-1::agent-1",
+        "source": "hook",
+        "toolUseId": "toolu_01Y8BBwMN69uYKXooMTNmieH",
+        "toolName": "Read",
+        "durationMs": null
+      }
+    ]
+  },
+  {
+    "t": "2026-11-16T12:00:25.470Z",
+    "hook": "PreToolUse",
+    "events": [
+      {
+        "id": "evt-0023",
+        "type": "tool.started",
+        "ts": 1794830425470,
+        "sessionId": "session-1",
+        "agentKey": "session-1::agent-1",
+        "source": "hook",
+        "toolUseId": "toolu_01AFnYEM727PbgNneWqBy4cK",
+        "toolName": "ToolSearch",
+        "summary": "ToolSearch",
+        "filePath": null,
+        "inputDigest": "05e89a9eb1eb662f6a0ae7cfa8b399e5"
+      }
+    ]
+  },
+  {
+    "t": "2026-11-16T12:00:25.481Z",
+    "hook": "PostToolUse",
+    "events": [
+      {
+        "id": "evt-0024",
+        "type": "tool.finished",
+        "ts": 1794830425481,
+        "sessionId": "session-1",
+        "agentKey": "session-1::agent-1",
+        "source": "hook",
+        "toolUseId": "toolu_01AFnYEM727PbgNneWqBy4cK",
+        "toolName": "ToolSearch",
+        "durationMs": null
+      }
+    ]
+  },
+  {
+    "t": "2026-11-16T12:00:27.024Z",
+    "hook": "PreToolUse",
+    "events": [
+      {
+        "id": "evt-0025",
+        "type": "tool.started",
+        "ts": 1794830427024,
+        "sessionId": "session-1",
+        "agentKey": "session-1::agent-1",
+        "source": "hook",
+        "toolUseId": "toolu_01ET2FhABdEVhJxrwRgNysZE",
+        "toolName": "mcp__huddle__report_progress",
+        "summary": "reported progress 100%, 0 min left: subagent task done",
+        "filePath": null,
+        "inputDigest": "ba643f1921f37f309d65365c0200201a"
+      }
+    ]
+  },
+  {
+    "t": "2026-11-16T12:00:27.045Z",
+    "hook": "PostToolUse",
+    "events": [
+      {
+        "id": "evt-0026",
+        "type": "tool.finished",
+        "ts": 1794830427045,
+        "sessionId": "session-1",
+        "agentKey": "session-1::agent-1",
+        "source": "hook",
+        "toolUseId": "toolu_01ET2FhABdEVhJxrwRgNysZE",
+        "toolName": "mcp__huddle__report_progress",
+        "durationMs": null
+      },
+      {
+        "id": "evt-0027",
+        "type": "progress.reported",
+        "ts": 1794830427045,
+        "sessionId": "session-1",
+        "agentKey": "session-1::agent-1",
+        "source": "hook",
+        "fraction": 1,
+        "etaMinutes": 0,
+        "note": "subagent task done"
+      }
+    ]
+  },
+  {
+    "t": "2026-11-16T12:00:28.611Z",
+    "hook": "SubagentStop",
+    "events": [
+      {
+        "id": "evt-0028",
+        "type": "turn.ended",
+        "ts": 1794830428611,
+        "sessionId": "session-1",
+        "agentKey": "session-1::agent-1",
+        "source": "hook",
+        "lastMessage": "(scrubbed text)",
+        "backgroundAgentIds": null
+      },
+      {
+        "id": "evt-0029",
+        "type": "agent.stopped",
+        "ts": 1794830428611,
+        "sessionId": "session-1",
+        "agentKey": "session-1::agent-1",
+        "source": "hook",
+        "agentId": "agent-1",
+        "result": "(scrubbed text)"
+      }
+    ]
+  },
+  {
+    "t": "2026-11-16T12:00:30.681Z",
+    "hook": "PreToolUse",
+    "events": [
+      {
+        "id": "evt-0030",
+        "type": "tool.started",
+        "ts": 1794830430681,
+        "sessionId": "session-1",
+        "agentKey": "session-1",
+        "source": "hook",
+        "toolUseId": "toolu_0161Kuqm6QoMy22b2T2kmAe8",
+        "toolName": "mcp__huddle__report_progress",
+        "summary": "reported progress 100%, 0 min left: all steps done",
+        "filePath": null,
+        "inputDigest": "f24d60e3d01c00f78c74ecbdd8c71217"
+      }
+    ]
+  },
+  {
+    "t": "2026-11-16T12:00:30.694Z",
+    "hook": "PostToolUse",
+    "events": [
+      {
+        "id": "evt-0031",
+        "type": "tool.finished",
+        "ts": 1794830430694,
+        "sessionId": "session-1",
+        "agentKey": "session-1",
+        "source": "hook",
+        "toolUseId": "toolu_0161Kuqm6QoMy22b2T2kmAe8",
+        "toolName": "mcp__huddle__report_progress",
+        "durationMs": null
+      },
+      {
+        "id": "evt-0032",
+        "type": "progress.reported",
+        "ts": 1794830430694,
+        "sessionId": "session-1",
+        "agentKey": "session-1",
+        "source": "hook",
+        "fraction": 1,
+        "etaMinutes": 0,
+        "note": "all steps done"
+      }
+    ]
+  },
+  {
+    "t": "2026-11-16T12:00:32.758Z",
+    "hook": "SessionEnd",
+    "events": [
+      {
+        "id": "evt-0033",
+        "type": "session.ended",
+        "ts": 1794830432758,
+        "sessionId": "session-1",
+        "agentKey": "session-1",
+        "source": "hook",
+        "reason": "unknown"
+      }
+    ]
+  }
+]

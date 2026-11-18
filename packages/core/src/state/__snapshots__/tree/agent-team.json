@@ -1,0 +1,86 @@
+[
+  {
+    "sessionId": "00000000-0000-4000-8000-000000000001",
+    "rootKey": "00000000-0000-4000-8000-000000000001",
+    "cwd": "C:/Users/user/project",
+    "ended": false,
+    "lastActivityAt": 1794832235544,
+    "agentCount": 4,
+    "statusCounts": {
+      "starting": 0,
+      "working": 0,
+      "waiting_approval": 0,
+      "waiting_answer": 0,
+      "paused": 0,
+      "idle": 3,
+      "done": 1,
+      "failed": 0,
+      "stopped": 0
+    },
+    "root": {
+      "key": "00000000-0000-4000-8000-000000000001",
+      "agentId": null,
+      "kind": "main",
+      "name": "main",
+      "role": "main",
+      "roleDescription": null,
+      "model": null,
+      "status": "idle",
+      "currentActivity": null,
+      "link": null,
+      "dimmed": false,
+      "startedAt": 1794832221699,
+      "endedAt": null,
+      "children": [
+        {
+          "key": "00000000-0000-4000-8000-000000000001::aalpha-0000000000000001",
+          "agentId": "aalpha-0000000000000001",
+          "kind": "teammate",
+          "name": "alpha",
+          "role": "alpha",
+          "roleDescription": null,
+          "model": "haiku",
+          "status": "idle",
+          "currentActivity": null,
+          "link": "heuristic",
+          "dimmed": false,
+          "startedAt": 1794832226285,
+          "endedAt": null,
+          "children": []
+        },
+        {
+          "key": "00000000-0000-4000-8000-000000000001::abeta-0000000000000002",
+          "agentId": "abeta-0000000000000002",
+          "kind": "teammate",
+          "name": "beta",
+          "role": "beta",
+          "roleDescription": null,
+          "model": "haiku",
+          "status": "idle",
+          "currentActivity": null,
+          "link": "heuristic",
+          "dimmed": false,
+          "startedAt": 1794832227301,
+          "endedAt": null,
+          "children": []
+        },
+        {
+          "key": "00000000-0000-4000-8000-000000000001::a0000000000000003",
+          "agentId": "a0000000000000003",
+          "kind": "subagent",
+          "name": "(scrubbed text)",
+          "role": "general-purpose",
+          "roleDescription": null,
+          "model": null,
+          "status": "done",
+          "currentActivity": null,
+          "link": "heuristic",
+          "dimmed": true,
+          "startedAt": 1794832228424,
+          "endedAt": 1794832229640,
+          "children": []
+        }
+      ]
+    }
+  }
+]

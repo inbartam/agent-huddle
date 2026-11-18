@@ -1,0 +1,714 @@
+/*
+ * M3 (interact): inbox cards, control buttons, the pause line, the composer, the command palette and settings.
+ * Same contract as main.css: tokens only, 4 px grid. Widget v2 (2026-11-14): inbox items are cards, buttons are pills.
+ */
+
+/* Title bar actions sit in the drag region, so they opt out of it. */
+.titlebar-actions {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  margin-left: var(--space-4);
+  app-region: no-drag;
+  -webkit-app-region: no-drag;
+}
+.search-button {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  height: 24px;
+  min-width: 180px;
+  padding: 0 var(--space-2);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-control);
+  background: color-mix(in srgb, var(--surface) 70%, transparent);
+  color: var(--muted);
+  font-size: var(--text-dense);
+  cursor: pointer;
+}
+.search-button:hover {
+  color: var(--text);
+}
+kbd {
+  margin-left: auto;
+  font: var(--text-meta) var(--font-ui);
+  color: var(--muted);
+}
+
+.inbox-sub {
+  font-size: var(--text-dense);
+  font-weight: var(--weight-strong);
+  color: var(--muted);
+  margin: var(--space-4) var(--space-2) var(--space-1);
+}
+
+/* Buttons from ControlButton: pills (Widget v2). Off ones stay hoverable so their tooltip says why.
+   Primary is a neutral high-contrast fill (never a status colour); plain is a graphite pill; quiet has no fill. */
+.control {
+  height: 28px;
+  padding: 0 14px;
+  border-radius: var(--radius-pill);
+  border: 1px solid transparent;
+  background: var(--secondary-fill);
+  color: var(--secondary-ink);
+  font-size: var(--text-body);
+  cursor: pointer;
+  white-space: nowrap;
+}
+.control:hover:not(.is-off) {
+  background: color-mix(in srgb, var(--secondary-fill) 82%, var(--text));
+}
+.control-primary {
+  background: var(--primary-fill);
+  color: var(--primary-ink);
+  font-weight: var(--weight-strong);
+}
+.control-primary:hover:not(.is-off) {
+  background: color-mix(in srgb, var(--primary-fill) 88%, var(--muted));
+}
+.control-quiet {
+  background: none;
+  color: var(--muted);
+}
+.control-quiet:hover:not(.is-off) {
+  background: color-mix(in srgb, var(--text) 7%, transparent);
+  color: var(--text);
+}
+/* Compact: the size of a .quiet-button (the report's buttons). */
+.control.control-dense {
+  height: auto;
+  padding: 2px var(--space-2);
+  border-radius: var(--radius-control);
+  font-size: var(--text-dense);
+}
+.control.is-off {
+  opacity: 0.5;
+  cursor: default;
+}
+.control[aria-busy='true'] {
+  cursor: progress;
+}
+.control:focus-visible,
+.segment:focus-visible {
+  outline: 2px solid var(--select);
+  outline-offset: 2px;
+  border-radius: var(--radius-pill);
+}
+
+/* Inbox items (Widget v2): a card each, a step lighter than the pane, with the card radius. */
+.card {
+  padding: 10px 12px 12px;
+  margin-bottom: 6px;
+  background: var(--card);
+  border: 1px solid var(--card-edge);
+  border-radius: var(--radius-card);
+}
+.card:last-child {
+  margin-bottom: 0;
+}
+.card.is-selected {
+  border-color: var(--select);
+  box-shadow: inset 2px 0 0 var(--select);
+}
+.card.is-handled {
+  color: var(--muted);
+  background: none;
+}
+/* The time limit drops under the name rather than squeezing it to a few letters. */
+.card-head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  column-gap: var(--space-2);
+  min-width: 0;
+  white-space: nowrap;
+}
+.card-head .card-kind,
+.card-head .card-limit {
+  flex: none;
+}
+.card-head .glyph {
+  font-size: 11px;
+}
+.card-agent {
+  font-weight: var(--weight-strong);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  min-width: 0;
+  color: var(--text);
+}
+.card.is-handled .card-agent {
+  color: var(--muted);
+}
+.card-kind {
+  font-weight: var(--weight-strong);
+  color: var(--muted);
+}
+.card-kind.tone-needs-you {
+  color: var(--needs-you-text);
+}
+.card-limit {
+  margin-left: auto;
+  color: var(--muted);
+  font-size: var(--text-meta);
+  font-variant-numeric: tabular-nums;
+}
+.card-body {
+  display: grid;
+  gap: 6px;
+  padding: var(--space-1) 0 0 calc(11px + var(--space-2));
+  min-width: 0;
+}
+.card-request {
+  display: flex;
+  align-items: baseline;
+  gap: var(--space-2);
+  min-width: 0;
+}
+.card-tool {
+  font-weight: var(--weight-strong);
+  flex: none;
+}
+.card-summary {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  min-width: 0;
+}
+.card-detail,
+.card-related,
+.card-note,
+.card-time,
+.card-reason {
+  font-size: var(--text-dense);
+  overflow-wrap: anywhere;
+}
+.card-reason,
+.card-time {
+  color: var(--muted);
+}
+.card-error {
+  font-size: var(--text-dense);
+  color: var(--failed-text);
+}
+.card-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  padding-top: 2px;
+}
+.text-input {
+  width: 100%;
+  font: inherit;
+  color: var(--text);
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-control);
+  padding: 4px var(--space-2);
+  resize: vertical;
+}
+.text-input:focus {
+  outline: none;
+  border-color: var(--select);
+  box-shadow: 0 0 0 2px var(--select-fill);
+}
+.deny-form {
+  display: grid;
+  gap: var(--space-1);
+}
+.deny-label {
+  font-size: var(--text-dense);
+  color: var(--muted);
+}
+
+/* Questions: a sentence-case header chip, the question, options as pill rows with a radio dot. */
+.question {
+  display: grid;
+  gap: 6px;
+}
+.question-header {
+  justify-self: start;
+  max-width: 100%;
+  padding: 1px 8px;
+  border-radius: var(--radius-pill);
+  background: color-mix(in srgb, var(--text) 9%, transparent);
+  font-size: var(--text-meta);
+  color: var(--text);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.question-text {
+  overflow-wrap: anywhere;
+}
+.card.is-compact .question-text {
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+.options {
+  display: grid;
+  gap: 4px;
+}
+.control.option {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  width: 100%;
+  height: auto;
+  min-height: 30px;
+  padding: 4px 12px 4px 10px;
+  border-radius: 10px;
+  border: 1px solid transparent;
+  line-height: 1.3;
+  text-align: left;
+  white-space: normal;
+}
+.card.is-compact .control.option {
+  border-radius: var(--radius-pill);
+}
+.option-dot {
+  flex: none;
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  border: 1.5px solid var(--muted);
+  display: grid;
+  place-items: center;
+}
+.control.option[aria-pressed='true'] {
+  border-color: var(--text);
+  font-weight: var(--weight-strong);
+}
+.control.option[aria-pressed='true'] .option-dot {
+  border-color: var(--text);
+}
+.control.option[aria-pressed='true'] .option-dot::after {
+  content: '';
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--text);
+}
+/* Multi-select: square boxes with a check instead of radio dots. */
+.control.option.is-multi .option-dot {
+  border-radius: 3px;
+}
+.control.option.is-multi[aria-pressed='true'] .option-dot {
+  background: var(--text);
+}
+.control.option.is-multi[aria-pressed='true'] .option-dot::after {
+  width: 7px;
+  height: 4px;
+  border-radius: 0;
+  background: transparent;
+  border-left: 2px solid var(--surface);
+  border-bottom: 2px solid var(--surface);
+  transform: translateY(-1px) rotate(-45deg);
+}
+.question-hint {
+  color: var(--muted);
+  font-size: var(--text-meta);
+}
+.question-other {
+  width: 100%;
+  min-height: 30px;
+  padding: 4px 10px;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  background: var(--surface);
+  color: var(--text);
+  font: inherit;
+  font-size: var(--text-dense);
+}
+.question-other:focus-visible {
+  outline: 2px solid var(--select);
+  outline-offset: 1px;
+}
+.question-other:disabled {
+  opacity: 0.6;
+}
+.option-words {
+  display: grid;
+  min-width: 0;
+}
+.option-desc {
+  font-size: var(--text-meta);
+  font-weight: var(--weight-regular);
+  color: var(--muted);
+}
+.answered {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+.answered-label {
+  color: var(--muted);
+  font-size: var(--text-dense);
+}
+.answered-text {
+  color: var(--text);
+  font-weight: var(--weight-strong);
+  overflow-wrap: anywhere;
+}
+
+/* Widget: a request inline in its session card (or pinned): no card of its own, it sits in the inset block. */
+.card.is-inline,
+.pinned .card {
+  padding: 0;
+  margin: 0;
+  border: 0;
+  background: none;
+}
+.card.is-inline .card-head {
+  font-size: var(--text-dense);
+}
+.card.is-inline .card-agent {
+  font-weight: var(--weight-regular);
+  color: var(--muted);
+}
+.card.is-inline .card-body,
+.pinned .card-body {
+  padding: 2px 0 0;
+  gap: 8px;
+}
+.card.is-inline .card-tool,
+.card.is-inline .card-summary {
+  font-family: var(--font-code);
+  font-size: var(--text-dense);
+}
+.card.is-inline .card-tool {
+  color: var(--muted);
+  font-weight: var(--weight-regular);
+}
+.card.is-inline .card-actions {
+  gap: 6px;
+}
+.card.is-inline .control {
+  height: 26px;
+  padding: 0 13px;
+  font-size: var(--text-dense);
+}
+.card.is-inline .control.option {
+  height: auto;
+  min-height: 28px;
+  padding: 3px 12px 3px 9px;
+  background: var(--card);
+}
+.card.is-inline .control.option:hover:not(.is-off) {
+  background: color-mix(in srgb, var(--card) 85%, var(--text));
+}
+.card.is-inline .control-plain:not(.option) {
+  background: var(--secondary-fill);
+}
+/* Agent detail: the pause line, and the composer at the foot. */
+.pause-line {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+  margin-top: var(--space-1);
+  min-height: 28px;
+}
+.pause-words {
+  font-variant-numeric: tabular-nums;
+}
+.tone-paused.pause-words {
+  color: var(--paused-text);
+  font-weight: var(--weight-strong);
+}
+.detail-foot {
+  flex: none;
+  border-top: 1px solid var(--line);
+  padding: var(--space-2) var(--space-4) 12px;
+  max-height: 45%;
+  overflow: auto;
+}
+.detail-foot .composer {
+  margin-top: 0;
+  padding-top: 0;
+  border-top: 0;
+}
+.composer {
+  display: grid;
+  gap: 6px;
+}
+.composer .section-title {
+  margin: 0;
+}
+/* Two rows that grow with the text, up to about eight lines (owner review 2026-11-17: the box was huge). */
+.composer-text {
+  min-height: calc(2lh + 10px);
+  field-sizing: content;
+  max-height: 10lh;
+  resize: vertical;
+}
+.control-reason {
+  color: var(--muted);
+}
+.composer-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-2);
+  flex-wrap: wrap;
+}
+.segmented {
+  display: inline-flex;
+  border: 1px solid var(--line);
+  border-radius: var(--radius-control);
+  overflow: hidden;
+}
+.segment {
+  height: 26px;
+  padding: 0 10px;
+  border: 0;
+  border-right: 1px solid var(--line);
+  background: none;
+  color: var(--muted);
+  font-size: var(--text-dense);
+  cursor: pointer;
+}
+.segment:last-child {
+  border-right: 0;
+}
+.segment[aria-checked='true'],
+.segment[aria-pressed='true'] {
+  background: var(--select-fill);
+  color: var(--text);
+  font-weight: var(--weight-strong);
+}
+.segment.is-off {
+  opacity: 0.5;
+  cursor: default;
+}
+.composer-lands {
+  font-size: var(--text-dense);
+  color: var(--muted);
+}
+.outbox {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+.outbox-row {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  column-gap: var(--space-2);
+  align-items: center;
+  padding: var(--space-1) 0;
+  border-top: 1px solid var(--line);
+}
+.outbox-text {
+  overflow-wrap: anywhere;
+}
+.outbox-meta {
+  grid-row: 2;
+  font-size: var(--text-meta);
+  color: var(--muted);
+  font-variant-numeric: tabular-nums;
+}
+/* ADR-027: a message the Huddle wrote itself (the lead check) says so in words, not only in weight. */
+.outbox-row.is-automatic .outbox-author {
+  color: var(--text);
+  font-weight: var(--weight-strong);
+}
+.outbox-row .control {
+  grid-row: 1 / span 2;
+  grid-column: 2;
+}
+
+/* Command palette */
+.palette-scrim {
+  position: fixed;
+  inset: 0;
+  z-index: 10;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  padding-top: 72px;
+  background: color-mix(in srgb, var(--bg) 45%, transparent);
+}
+.palette {
+  width: min(560px, calc(100vw - 32px));
+  max-height: min(440px, calc(100vh - 120px));
+  display: flex;
+  flex-direction: column;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-window);
+  overflow: hidden;
+}
+.palette-input {
+  border: 0;
+  border-bottom: 1px solid var(--line);
+  border-radius: 0;
+  padding: 10px var(--space-4);
+  font-size: var(--text-title);
+}
+.palette-input:focus {
+  box-shadow: none;
+}
+.palette-list {
+  list-style: none;
+  margin: 0;
+  padding: var(--space-1);
+  overflow: auto;
+}
+.palette-row {
+  display: flex;
+  align-items: baseline;
+  gap: 12px;
+  min-height: 32px;
+  padding: 6px 12px;
+  border-radius: var(--radius-select);
+  cursor: pointer;
+}
+.palette-row.is-active {
+  background: var(--select-fill);
+  box-shadow: inset 2px 0 0 var(--select);
+}
+.palette-row.is-off {
+  cursor: default;
+}
+.palette-row.is-off .palette-label {
+  color: var(--muted);
+}
+.palette-label {
+  white-space: nowrap;
+}
+.palette-hint {
+  margin-left: auto;
+  font-size: var(--text-dense);
+  color: var(--muted);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  min-width: 0;
+}
+.palette-empty,
+.palette-blocked,
+.palette-keys {
+  padding: var(--space-2) var(--space-4);
+  font-size: var(--text-dense);
+  color: var(--muted);
+}
+.palette-keys {
+  border-top: 1px solid var(--line);
+}
+
+/* Settings */
+.settings-section {
+  display: grid;
+  gap: var(--space-2);
+}
+.settings-section .section-title {
+  margin-bottom: 0;
+}
+.switches {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 6px;
+}
+.switch-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.switch {
+  appearance: none;
+  width: 32px;
+  height: 18px;
+  margin: 0;
+  border-radius: 9px;
+  border: 1px solid var(--muted);
+  background: none;
+  position: relative;
+  cursor: pointer;
+  flex: none;
+}
+.switch::after {
+  content: '';
+  position: absolute;
+  top: 3px;
+  left: 3px;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: var(--muted);
+  transition: transform 120ms;
+}
+.switch:checked {
+  background: var(--select);
+  border-color: var(--select);
+}
+.switch:checked::after {
+  background: var(--surface);
+  transform: translateX(14px);
+}
+.switch:focus-visible {
+  outline: 2px solid var(--select);
+  outline-offset: 2px;
+  border-radius: 9px;
+}
+.setting-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+}
+.setting-value {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+.number-input {
+  width: 76px;
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+.shortcut-input {
+  width: 180px;
+}
+.setting-unit {
+  width: 36px;
+  color: var(--muted);
+  font-size: var(--text-dense);
+}
+.setting-help {
+  font-size: var(--text-dense);
+  color: var(--muted);
+  max-width: 80ch;
+}
+.shortcut-problem {
+  color: var(--failed-text);
+}
+/* The composer: no heading row (the box says what it is), the box and its controls tight together. */
+.detail-foot .composer > .section-title {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+.detail-foot .composer {
+  gap: 4px;
+}
+.detail-foot {
+  padding-top: var(--space-2);
+  padding-bottom: var(--space-2);
+}
+.composer-row > .composer-lands {
+  flex: 1 1 160px;
+  min-width: 0;
+}
+.view-switch {
+  justify-self: start;
+  align-self: start;
+  width: max-content;
+}

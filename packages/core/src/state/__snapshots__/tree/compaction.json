@@ -1,0 +1,37 @@
+[
+  {
+    "sessionId": "session-1",
+    "rootKey": "session-1",
+    "cwd": "C:/Users/user/project",
+    "ended": true,
+    "lastActivityAt": 1794586351052,
+    "agentCount": 1,
+    "statusCounts": {
+      "starting": 0,
+      "working": 0,
+      "waiting_approval": 0,
+      "waiting_answer": 0,
+      "paused": 0,
+      "idle": 0,
+      "done": 1,
+      "failed": 0,
+      "stopped": 0
+    },
+    "root": {
+      "key": "session-1",
+      "agentId": null,
+      "kind": "main",
+      "name": "main",
+      "role": "main",
+      "roleDescription": null,
+      "model": "claude-opus-5-5",
+      "status": "done",
+      "currentActivity": null,
+      "link": null,
+      "dimmed": true,
+      "startedAt": 1794586321473,
+      "endedAt": 1794586351052,
+      "children": []
+    }
+  }
+]

@@ -1,0 +1,580 @@
+[
+  {
+    "t": "2026-11-16T12:30:21.699Z",
+    "hook": "UserPromptSubmit",
+    "events": [
+      {
+        "id": "evt-0001",
+        "type": "prompt.submitted",
+        "ts": 1794832221699,
+        "sessionId": "00000000-0000-4000-8000-000000000001",
+        "agentKey": "00000000-0000-4000-8000-000000000001",
+        "source": "hook",
+        "text": "(scrubbed text)",
+        "promptId": "prompt-1",
+        "kind": "user",
+        "cwd": "C:/Users/user/project"
+      }
+    ]
+  },
+  {
+    "t": "2026-11-16T12:30:26.201Z",
+    "hook": "PreToolUse",
+    "events": [
+      {
+        "id": "evt-0002",
+        "type": "tool.started",
+        "ts": 1794832226201,
+        "sessionId": "00000000-0000-4000-8000-000000000001",
+        "agentKey": "00000000-0000-4000-8000-000000000001",
+        "source": "hook",
+        "toolUseId": "tool_use-1",
+        "toolName": "Agent",
+        "summary": "general-purpose: (scrubbed text)",
+        "filePath": null,
+        "inputDigest": "6d4e71d956610c932fb210cd81308a10"
+      },
+      {
+        "id": "evt-0003",
+        "type": "agent.spawn_requested",
+        "ts": 1794832226201,
+        "sessionId": "00000000-0000-4000-8000-000000000001",
+        "agentKey": "00000000-0000-4000-8000-000000000001",
+        "source": "hook",
+        "toolUseId": "tool_use-1",
+        "role": "general-purpose",
+        "title": "(scrubbed text)",
+        "brief": "(scrubbed text)",
+        "model": "haiku",
+        "name": "alpha"
+      }
+    ]
+  },
+  {
+    "t": "2026-11-16T12:30:26.263Z",
+    "hook": "PostToolUse",
+    "events": [
+      {
+        "id": "evt-0004",
+        "type": "tool.finished",
+        "ts": 1794832226263,
+        "sessionId": "00000000-0000-4000-8000-000000000001",
+        "agentKey": "00000000-0000-4000-8000-000000000001",
+        "source": "hook",
+        "toolUseId": "tool_use-1",
+        "toolName": "Agent",
+        "durationMs": 37
+      }
+    ]
+  },
+  {
+    "t": "2026-11-16T12:30:26.285Z",
+    "hook": "SubagentStart",
+    "events": [
+      {
+        "id": "evt-0005",
+        "type": "agent.started",
+        "ts": 1794832226285,
+        "sessionId": "00000000-0000-4000-8000-000000000001",
+        "agentKey": "00000000-0000-4000-8000-000000000001::aalpha-0000000000000001",
+        "source": "hook",
+        "agentId": "aalpha-0000000000000001",
+        "role": "alpha",
+        "parentKey": "00000000-0000-4000-8000-000000000001",
+        "teammateName": "alpha"
+      }
+    ]
+  },
+  {
+    "t": "2026-11-16T12:30:27.255Z",
+    "hook": "PreToolUse",
+    "events": [
+      {
+        "id": "evt-0006",
+        "type": "tool.started",
+        "ts": 1794832227255,
+        "sessionId": "00000000-0000-4000-8000-000000000001",
+        "agentKey": "00000000-0000-4000-8000-000000000001",
+        "source": "hook",
+        "toolUseId": "tool_use-2",
+        "toolName": "Agent",
+        "summary": "general-purpose: (scrubbed text)",
+        "filePath": null,
+        "inputDigest": "5da156e79ba772e5e05f6ab620b314ba"
+      },
+      {
+        "id": "evt-0007",
+        "type": "agent.spawn_requested",
+        "ts": 1794832227255,
+        "sessionId": "00000000-0000-4000-8000-000000000001",
+        "agentKey": "00000000-0000-4000-8000-000000000001",
+        "source": "hook",
+        "toolUseId": "tool_use-2",
+        "role": "general-purpose",
+        "title": "(scrubbed text)",
+        "brief": "(scrubbed text)",
+        "model": "haiku",
+        "name": "beta"
+      }
+    ]
+  },
+  {
+    "t": "2026-11-16T12:30:27.301Z",
+    "hook": "PostToolUse",
+    "events": [
+      {
+        "id": "evt-0008",
+        "type": "tool.finished",
+        "ts": 1794832227301,
+        "sessionId": "00000000-0000-4000-8000-000000000001",
+        "agentKey": "00000000-0000-4000-8000-000000000001",
+        "source": "hook",
+        "toolUseId": "tool_use-2",
+        "toolName": "Agent",
+        "durationMs": 30
+      }
+    ]
+  },
+  {
+    "t": "2026-11-16T12:30:27.301Z",
+    "hook": "SubagentStart",
+    "events": [
+      {
+        "id": "evt-0009",
+        "type": "agent.started",
+        "ts": 1794832227301,
+        "sessionId": "00000000-0000-4000-8000-000000000001",
+        "agentKey": "00000000-0000-4000-8000-000000000001::abeta-0000000000000002",
+        "source": "hook",
+        "agentId": "abeta-0000000000000002",
+        "role": "beta",
+        "parentKey": "00000000-0000-4000-8000-000000000001",
+        "teammateName": "beta"
+      }
+    ]
+  },
+  {
+    "t": "2026-11-16T12:30:27.989Z",
+    "hook": "PreToolUse",
+    "events": [
+      {
+        "id": "evt-0010",
+        "type": "tool.started",
+        "ts": 1794832227989,
+        "sessionId": "00000000-0000-4000-8000-000000000001",
+        "agentKey": "00000000-0000-4000-8000-000000000001::aalpha-0000000000000001",
+        "source": "hook",
+        "toolUseId": "tool_use-3",
+        "toolName": "Read",
+        "summary": "C:/Users/user/project/a.txt",
+        "filePath": "C:/Users/user/project/a.txt",
+        "inputDigest": "9f5aae25c477620a0fffb8aaf4820f3c"
+      }
+    ]
+  },
+  {
+    "t": "2026-11-16T12:30:28.040Z",
+    "hook": "PostToolUse",
+    "events": [
+      {
+        "id": "evt-0011",
+        "type": "tool.finished",
+        "ts": 1794832228040,
+        "sessionId": "00000000-0000-4000-8000-000000000001",
+        "agentKey": "00000000-0000-4000-8000-000000000001::aalpha-0000000000000001",
+        "source": "hook",
+        "toolUseId": "tool_use-3",
+        "toolName": "Read",
+        "durationMs": 26
+      }
+    ]
+  },
+  {
+    "t": "2026-11-16T12:30:28.404Z",
+    "hook": "PreToolUse",
+    "events": [
+      {
+        "id": "evt-0012",
+        "type": "tool.started",
+        "ts": 1794832228404,
+        "sessionId": "00000000-0000-4000-8000-000000000001",
+        "agentKey": "00000000-0000-4000-8000-000000000001",
+        "source": "hook",
+        "toolUseId": "tool_use-4",
+        "toolName": "Agent",
+        "summary": "general-purpose: (scrubbed text)",
+        "filePath": null,
+        "inputDigest": "da706c3666011ad166aa095bc6ccec9c"
+      },
+      {
+        "id": "evt-0013",
+        "type": "agent.spawn_requested",
+        "ts": 1794832228404,
+        "sessionId": "00000000-0000-4000-8000-000000000001",
+        "agentKey": "00000000-0000-4000-8000-000000000001",
+        "source": "hook",
+        "toolUseId": "tool_use-4",
+        "role": "general-purpose",
+        "title": "(scrubbed text)",
+        "brief": "(scrubbed text)",
+        "model": null
+      }
+    ]
+  },
+  {
+    "t": "2026-11-16T12:30:28.424Z",
+    "hook": "SubagentStart",
+    "events": [
+      {
+        "id": "evt-0014",
+        "type": "agent.started",
+        "ts": 1794832228424,
+        "sessionId": "00000000-0000-4000-8000-000000000001",
+        "agentKey": "00000000-0000-4000-8000-000000000001::a0000000000000003",
+        "source": "hook",
+        "agentId": "a0000000000000003",
+        "role": "general-purpose",
+        "parentKey": "00000000-0000-4000-8000-000000000001"
+      }
+    ]
+  },
+  {
+    "t": "2026-11-16T12:30:28.424Z",
+    "hook": "PostToolUse",
+    "events": [
+      {
+        "id": "evt-0015",
+        "type": "tool.finished",
+        "ts": 1794832228424,
+        "sessionId": "00000000-0000-4000-8000-000000000001",
+        "agentKey": "00000000-0000-4000-8000-000000000001",
+        "source": "hook",
+        "toolUseId": "tool_use-4",
+        "toolName": "Agent",
+        "durationMs": 9
+      }
+    ]
+  },
+  {
+    "t": "2026-11-16T12:30:28.696Z",
+    "hook": "PreToolUse",
+    "events": [
+      {
+        "id": "evt-0016",
+        "type": "tool.started",
+        "ts": 1794832228696,
+        "sessionId": "00000000-0000-4000-8000-000000000001",
+        "agentKey": "00000000-0000-4000-8000-000000000001::abeta-0000000000000002",
+        "source": "hook",
+        "toolUseId": "tool_use-5",
+        "toolName": "Read",
+        "summary": "C:/Users/user/project/b.txt",
+        "filePath": "C:/Users/user/project/b.txt",
+        "inputDigest": "396b717203e806f952269fb5844d361e"
+      }
+    ]
+  },
+  {
+    "t": "2026-11-16T12:30:28.723Z",
+    "hook": "PostToolUse",
+    "events": [
+      {
+        "id": "evt-0017",
+        "type": "tool.finished",
+        "ts": 1794832228723,
+        "sessionId": "00000000-0000-4000-8000-000000000001",
+        "agentKey": "00000000-0000-4000-8000-000000000001::abeta-0000000000000002",
+        "source": "hook",
+        "toolUseId": "tool_use-5",
+        "toolName": "Read",
+        "durationMs": 9
+      }
+    ]
+  },
+  {
+    "t": "2026-11-16T12:30:28.744Z",
+    "hook": "SubagentStop",
+    "events": [
+      {
+        "id": "evt-0018",
+        "type": "turn.ended",
+        "ts": 1794832228744,
+        "sessionId": "00000000-0000-4000-8000-000000000001",
+        "agentKey": "00000000-0000-4000-8000-000000000001::aalpha-0000000000000001",
+        "source": "hook",
+        "lastMessage": "(scrubbed text)",
+        "backgroundAgentIds": [
+          "a0000000000000003"
+        ]
+      },
+      {
+        "id": "evt-0019",
+        "type": "agent.stopped",
+        "ts": 1794832228744,
+        "sessionId": "00000000-0000-4000-8000-000000000001",
+        "agentKey": "00000000-0000-4000-8000-000000000001::aalpha-0000000000000001",
+        "source": "hook",
+        "agentId": "aalpha-0000000000000001",
+        "result": "(scrubbed text)"
+      }
+    ]
+  },
+  {
+    "t": "2026-11-16T12:30:28.772Z",
+    "hook": "TeammateIdle",
+    "events": [
+      {
+        "id": "evt-0020",
+        "type": "teammate.idle",
+        "ts": 1794832228772,
+        "sessionId": "00000000-0000-4000-8000-000000000001",
+        "agentKey": "00000000-0000-4000-8000-000000000001::aalpha-0000000000000001",
+        "source": "hook",
+        "agentId": "aalpha-0000000000000001",
+        "teammateName": "alpha",
+        "teamName": "session-00000000"
+      }
+    ]
+  },
+  {
+    "t": "2026-11-16T12:30:29.510Z",
+    "hook": "SubagentStop",
+    "events": [
+      {
+        "id": "evt-0021",
+        "type": "turn.ended",
+        "ts": 1794832229510,
+        "sessionId": "00000000-0000-4000-8000-000000000001",
+        "agentKey": "00000000-0000-4000-8000-000000000001::abeta-0000000000000002",
+        "source": "hook",
+        "lastMessage": "(scrubbed text)",
+        "backgroundAgentIds": [
+          "a0000000000000003"
+        ]
+      },
+      {
+        "id": "evt-0022",
+        "type": "agent.stopped",
+        "ts": 1794832229510,
+        "sessionId": "00000000-0000-4000-8000-000000000001",
+        "agentKey": "00000000-0000-4000-8000-000000000001::abeta-0000000000000002",
+        "source": "hook",
+        "agentId": "abeta-0000000000000002",
+        "result": "(scrubbed text)"
+      }
+    ]
+  },
+  {
+    "t": "2026-11-16T12:30:29.520Z",
+    "hook": "TeammateIdle",
+    "events": [
+      {
+        "id": "evt-0023",
+        "type": "teammate.idle",
+        "ts": 1794832229520,
+        "sessionId": "00000000-0000-4000-8000-000000000001",
+        "agentKey": "00000000-0000-4000-8000-000000000001::abeta-0000000000000002",
+        "source": "hook",
+        "agentId": "abeta-0000000000000002",
+        "teammateName": "beta",
+        "teamName": "session-00000000"
+      }
+    ]
+  },
+  {
+    "t": "2026-11-16T12:30:29.640Z",
+    "hook": "SubagentStop",
+    "events": [
+      {
+        "id": "evt-0024",
+        "type": "turn.ended",
+        "ts": 1794832229640,
+        "sessionId": "00000000-0000-4000-8000-000000000001",
+        "agentKey": "00000000-0000-4000-8000-000000000001::a0000000000000003",
+        "source": "hook",
+        "lastMessage": "(scrubbed text)",
+        "backgroundAgentIds": [
+          "a0000000000000003"
+        ]
+      },
+      {
+        "id": "evt-0025",
+        "type": "agent.stopped",
+        "ts": 1794832229640,
+        "sessionId": "00000000-0000-4000-8000-000000000001",
+        "agentKey": "00000000-0000-4000-8000-000000000001::a0000000000000003",
+        "source": "hook",
+        "agentId": "a0000000000000003",
+        "result": "(scrubbed text)"
+      }
+    ]
+  },
+  {
+    "t": "2026-11-16T12:30:29.912Z",
+    "hook": "PreToolUse",
+    "events": [
+      {
+        "id": "evt-0026",
+        "type": "tool.started",
+        "ts": 1794832229912,
+        "sessionId": "00000000-0000-4000-8000-000000000001",
+        "agentKey": "00000000-0000-4000-8000-000000000001",
+        "source": "hook",
+        "toolUseId": "tool_use-6",
+        "toolName": "ToolSearch",
+        "summary": "(scrubbed text)",
+        "filePath": null,
+        "inputDigest": "663390091ae26654981203f904aed586"
+      }
+    ]
+  },
+  {
+    "t": "2026-11-16T12:30:29.930Z",
+    "hook": "PostToolUse",
+    "events": [
+      {
+        "id": "evt-0027",
+        "type": "tool.finished",
+        "ts": 1794832229930,
+        "sessionId": "00000000-0000-4000-8000-000000000001",
+        "agentKey": "00000000-0000-4000-8000-000000000001",
+        "source": "hook",
+        "toolUseId": "tool_use-6",
+        "toolName": "ToolSearch",
+        "durationMs": 3
+      }
+    ]
+  },
+  {
+    "t": "2026-11-16T12:30:29.945Z",
+    "hook": "UserPromptSubmit",
+    "events": [
+      {
+        "id": "evt-0028",
+        "type": "prompt.submitted",
+        "ts": 1794832229945,
+        "sessionId": "00000000-0000-4000-8000-000000000001",
+        "agentKey": "00000000-0000-4000-8000-000000000001",
+        "source": "hook",
+        "text": "<task-notification><task-id>a0000000000000003</task-id>(scrubbed text)",
+        "promptId": "prompt-1",
+        "kind": "task_notification",
+        "cwd": "C:/Users/user/project"
+      }
+    ]
+  },
+  {
+    "t": "2026-11-16T12:30:32.494Z",
+    "hook": "Stop",
+    "events": [
+      {
+        "id": "evt-0029",
+        "type": "turn.ended",
+        "ts": 1794832232494,
+        "sessionId": "00000000-0000-4000-8000-000000000001",
+        "agentKey": "00000000-0000-4000-8000-000000000001",
+        "source": "hook",
+        "lastMessage": "(scrubbed text)",
+        "backgroundAgentIds": []
+      }
+    ]
+  },
+  {
+    "t": "2026-11-16T12:30:33.939Z",
+    "hook": "SubagentStop",
+    "events": []
+  },
+  {
+    "t": "2026-11-16T12:30:34.088Z",
+    "hook": "PreToolUse",
+    "events": [
+      {
+        "id": "evt-0030",
+        "type": "tool.started",
+        "ts": 1794832234088,
+        "sessionId": "00000000-0000-4000-8000-000000000001",
+        "agentKey": "00000000-0000-4000-8000-000000000001",
+        "source": "hook",
+        "toolUseId": "tool_use-7",
+        "toolName": "TaskStop",
+        "summary": "TaskStop",
+        "filePath": null,
+        "inputDigest": "b691efc2559285ba0ff28b310c47a629"
+      }
+    ]
+  },
+  {
+    "t": "2026-11-16T12:30:34.110Z",
+    "hook": "PostToolUse",
+    "events": [
+      {
+        "id": "evt-0031",
+        "type": "tool.finished",
+        "ts": 1794832234110,
+        "sessionId": "00000000-0000-4000-8000-000000000001",
+        "agentKey": "00000000-0000-4000-8000-000000000001",
+        "source": "hook",
+        "toolUseId": "tool_use-7",
+        "toolName": "TaskStop",
+        "durationMs": 11
+      }
+    ]
+  },
+  {
+    "t": "2026-11-16T12:30:34.176Z",
+    "hook": "PreToolUse",
+    "events": [
+      {
+        "id": "evt-0032",
+        "type": "tool.started",
+        "ts": 1794832234176,
+        "sessionId": "00000000-0000-4000-8000-000000000001",
+        "agentKey": "00000000-0000-4000-8000-000000000001",
+        "source": "hook",
+        "toolUseId": "tool_use-8",
+        "toolName": "TaskStop",
+        "summary": "TaskStop",
+        "filePath": null,
+        "inputDigest": "d9d2090d407d59a61e7a342881f3e23c"
+      }
+    ]
+  },
+  {
+    "t": "2026-11-16T12:30:34.212Z",
+    "hook": "PostToolUse",
+    "events": [
+      {
+        "id": "evt-0033",
+        "type": "tool.finished",
+        "ts": 1794832234212,
+        "sessionId": "00000000-0000-4000-8000-000000000001",
+        "agentKey": "00000000-0000-4000-8000-000000000001",
+        "source": "hook",
+        "toolUseId": "tool_use-8",
+        "toolName": "TaskStop",
+        "durationMs": 19
+      }
+    ]
+  },
+  {
+    "t": "2026-11-16T12:30:35.544Z",
+    "hook": "Stop",
+    "events": [
+      {
+        "id": "evt-0034",
+        "type": "turn.ended",
+        "ts": 1794832235544,
+        "sessionId": "00000000-0000-4000-8000-000000000001",
+        "agentKey": "00000000-0000-4000-8000-000000000001",
+        "source": "hook",
+        "lastMessage": "(scrubbed text)",
+        "backgroundAgentIds": []
+      }
+    ]
+  },
+  {
+    "t": "2026-11-16T12:30:36.467Z",
+    "hook": "SubagentStop",
+    "events": []
+  }
+]

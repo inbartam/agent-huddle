@@ -1,0 +1,161 @@
+/*
+ * Design tokens from docs/DESIGN.md. The one place colours, fonts and the type scale are defined;
+ * components use these custom properties only. Fonts are system fonts: no bundled or remote font.
+ * Theme follows the system; a later Settings override sets data-theme="light|dark" on <html>.
+ *
+ * Widget v2 (owner's choice, 2026-11-14): neutral charcoal instead of blue graphite, session cards, pill buttons
+ * and faces. There is no accent colour: the status colours carry all colour, as before; the primary button is a
+ * neutral high-contrast fill. Every text pair below meets WCAG AA (4.5:1) on --widget, --card and --card-inset.
+ */
+:root {
+  color-scheme: light dark;
+
+  --font-ui: 'Segoe UI Variable Text', 'Segoe UI Variable', 'Segoe UI', system-ui, sans-serif;
+  --font-display: 'Segoe UI Variable Display', 'Segoe UI Variable', 'Segoe UI', system-ui, sans-serif;
+  --font-code: 'Cascadia Mono', Consolas, monospace;
+
+  --text-meta: 11px;
+  --text-dense: 12px;
+  --text-body: 13px;
+  --text-title: 15px;
+  --text-name: 20px;
+  --weight-regular: 400;
+  --weight-strong: 600;
+
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-4: 16px;
+  --row: 28px;
+  --row-widget: 30px;
+  --titlebar: 36px;
+  --radius-window: 8px;
+  --radius-control: 6px;
+  --radius-select: 4px;
+  --rail: 1.5px;
+  /* Widget v2 */
+  --radius-widget: 14px;
+  --radius-card: 12px;
+  --radius-inset: 8px;
+  --radius-pill: 999px;
+
+  /* light */
+  --bg: #f3f3f1;
+  --surface: #ffffff;
+  --line: #dedfdc;
+  --text: #1a1b1e;
+  --muted: #5c5f66;
+  --select: #6e73e6;
+  --select-fill: rgb(110 115 230 / 18%);
+  --working: #1f8f7f;
+  --needs-you: #b7741a;
+  --failed: #c4433a;
+  --paused: #5a5fcf;
+  --idle: var(--muted);
+  --done: var(--muted);
+  /* Status colours used as small text: darker in light mode so labels meet WCAG AA (4.5:1) on --surface and --bg.
+     Glyphs, rails and bars keep the status colour itself (3:1 is enough for graphics). */
+  --working-text: #17756a;
+  --needs-you-text: #8f5a12;
+  --failed-text: #b5382f;
+  --paused-text: #4f54c4;
+
+  /* Widget v2 surfaces: the widget base, a card a step off it, an inset block inside a card. */
+  --widget: #f3f3f1;
+  --card: #ffffff;
+  --card-edge: #e3e3df;
+  --card-inset: #f0f0ec;
+  /* Primary pill (Allow, Send): neutral, high contrast, never a status colour. Secondary pills are graphite. */
+  --primary-fill: #1a1b1e;
+  --primary-ink: #ffffff;
+  --secondary-fill: #e0e0da;
+  --secondary-ink: #1a1b1e;
+  /* Behind a dialog (the first-run guide). */
+  --scrim: rgb(26 27 30 / 38%);
+
+  /* Session faces: one colour per session (view/face.ts), dark ink for the features, grey when stopped or stale. */
+  --face-0: #4f8fd6;
+  --face-1: #d9784f;
+  --face-2: #9277dd;
+  --face-3: #d0628f;
+  --face-4: #3aa3a5;
+  --face-5: #b08a33;
+  --face-6: #6474d8;
+  --face-7: #6b9e69;
+  --face-off: #b4b6bb;
+  --face-ink: #17181b;
+  --face-glint: #ffffff;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme='light']) {
+    --bg: #17181b;
+    --surface: #1e1f23;
+    --line: #313238;
+    --text: #ecedef;
+    --muted: #9fa1a8;
+    --working: #3fb5a3;
+    --needs-you: #e9a23b;
+    --failed: #ec6f64;
+    --paused: #9a9df0;
+    --working-text: var(--working);
+    --needs-you-text: var(--needs-you);
+    --failed-text: var(--failed);
+    --paused-text: var(--paused);
+    --widget: #17181b;
+    --card: #222327;
+    --card-edge: #2a2b30;
+    --card-inset: #2b2c31;
+    --primary-fill: #eceef0;
+    --primary-ink: #17181b;
+    --secondary-fill: #36373d;
+    --secondary-ink: #ecedef;
+    --scrim: rgb(0 0 0 / 55%);
+    --face-0: #7db8f2;
+    --face-1: #f2a27e;
+    --face-2: #b9a2f0;
+    --face-3: #ee93b8;
+    --face-4: #6ccfd0;
+    --face-5: #e3c07a;
+    --face-6: #8f9cf0;
+    --face-7: #9cc79a;
+    --face-off: #5d5f66;
+    --face-ink: #17181b;
+    --face-glint: #f4f4f5;
+  }
+}
+
+:root[data-theme='dark'] {
+  --bg: #17181b;
+  --surface: #1e1f23;
+  --line: #313238;
+  --text: #ecedef;
+  --muted: #9fa1a8;
+  --working: #3fb5a3;
+  --needs-you: #e9a23b;
+  --failed: #ec6f64;
+  --paused: #9a9df0;
+  --working-text: var(--working);
+  --needs-you-text: var(--needs-you);
+  --failed-text: var(--failed);
+  --paused-text: var(--paused);
+  --widget: #17181b;
+  --card: #222327;
+  --card-edge: #2a2b30;
+  --card-inset: #2b2c31;
+  --primary-fill: #eceef0;
+  --primary-ink: #17181b;
+  --secondary-fill: #36373d;
+  --secondary-ink: #ecedef;
+  --scrim: rgb(0 0 0 / 55%);
+  --face-0: #7db8f2;
+  --face-1: #f2a27e;
+  --face-2: #b9a2f0;
+  --face-3: #ee93b8;
+  --face-4: #6ccfd0;
+  --face-5: #e3c07a;
+  --face-6: #8f9cf0;
+  --face-7: #9cc79a;
+  --face-off: #5d5f66;
+  --face-ink: #17181b;
+  --face-glint: #f4f4f5;
+}

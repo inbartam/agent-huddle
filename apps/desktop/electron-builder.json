@@ -1,0 +1,46 @@
+{
+  "$schema": "../../node_modules/app-builder-lib/scheme.json",
+  "appId": "AgentHuddle.Desktop",
+  "productName": "Agent Huddle",
+  "extraMetadata": { "name": "Agent Huddle" },
+  "copyright": "Copyright (c) 2026 Agent Huddle contributors",
+  "electronVersion": "45.3.2",
+  "electronDist": "../../node_modules/electron/dist",
+  "directories": {
+    "output": "dist",
+    "buildResources": "build"
+  },
+  "files": ["out/main/**", "out/preload/**", "out/renderer/**", "package.json"],
+  "asar": true,
+  "npmRebuild": false,
+  "extraResources": [
+    { "from": "../../scripts/huddle-forward-hook.mjs", "to": "huddle-forward-hook.mjs" },
+    { "from": "../../scripts/huddle-statusline.mjs", "to": "huddle-statusline.mjs" },
+    { "from": "../../scripts/huddle-mcp.mjs", "to": "huddle-mcp.mjs" },
+    { "from": "out/phone", "to": "phone" },
+    { "from": "resources/tray.ico", "to": "tray.ico" }
+  ],
+  "publish": null,
+  "electronFuses": {
+    "runAsNode": false,
+    "enableNodeOptionsEnvironmentVariable": false,
+    "enableNodeCliInspectArguments": false,
+    "enableEmbeddedAsarIntegrityValidation": true,
+    "onlyLoadAppFromAsar": true
+  },
+  "win": {
+    "target": [{ "target": "nsis", "arch": ["x64"] }],
+    "icon": "resources/icon.ico",
+    "signAndEditExecutable": true
+  },
+  "nsis": {
+    "oneClick": true,
+    "perMachine": false,
+    "createDesktopShortcut": false,
+    "createStartMenuShortcut": true,
+    "shortcutName": "Agent Huddle",
+    "runAfterFinish": false,
+    "deleteAppDataOnUninstall": false,
+    "include": "build/installer.nsh"
+  }
+}

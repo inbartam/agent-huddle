@@ -1,0 +1,681 @@
+/*
+ * Main window shell (main window redesign, WP2): title bar, 56 px icon rail, sidebar (Needs you, projects), Library
+ * tabs. Home, the session view, explanations and the guide are in home.css. Same contract as main.css: tokens only,
+ * 4 px grid, focus ring from :focus-visible.
+ */
+
+/* Grid: rail | sidebar | splitter | main. Columns are set inline from view/shell.ts `shellColumns`. */
+.main-window.has-rail > .rail-nav {
+  grid-column: 1;
+  grid-row: 3;
+}
+.main-window.has-rail > .side-pane {
+  grid-column: 2;
+  grid-row: 3;
+}
+.main-window.has-rail > .splitter {
+  grid-column: 3;
+}
+.main-window.has-rail > .detail-pane {
+  grid-column: 4;
+}
+
+/* Title bar: brand left, search in the middle, counts before the caption buttons. */
+.titlebar .app-title {
+  margin-right: 0;
+}
+.titlebar-search {
+  flex: 1;
+  justify-content: center;
+  margin-left: var(--space-4);
+  margin-right: var(--space-4);
+}
+.titlebar-search .search-button {
+  width: 100%;
+  max-width: 460px;
+}
+.titlebar > .counts {
+  margin-left: auto;
+}
+.count.tone-idle {
+  color: var(--muted);
+}
+
+/* Rail: icon over a word, the current place in the selection tint. */
+.rail-nav {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  padding: 10px 0;
+  min-height: 0;
+  border-right: 1px solid var(--line);
+}
+.rail-gap {
+  flex: 1;
+}
+.rail-button {
+  width: 44px;
+  height: 44px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 2px;
+  border: 0;
+  border-radius: var(--radius-window);
+  background: none;
+  color: var(--muted);
+  cursor: pointer;
+}
+.rail-button:hover {
+  background: color-mix(in srgb, var(--text) 7%, transparent);
+  color: var(--text);
+}
+.rail-button.is-current {
+  background: var(--select-fill);
+  color: var(--text);
+}
+.rail-word {
+  font-size: var(--text-meta);
+  line-height: 1.1;
+}
+
+/* Sidebar: one scroll for Needs you and the projects. */
+.side-pane {
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
+  min-width: 0;
+  overflow: hidden;
+}
+.side-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: var(--space-1);
+  padding: var(--space-1) var(--space-2) 0;
+}
+.side-actions .control {
+  height: 24px;
+  padding: 0 10px;
+  font-size: var(--text-dense);
+}
+.sidebar {
+  flex: 1;
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+.side-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-2);
+  padding: 12px var(--space-2) var(--space-1);
+}
+.side-title {
+  font-size: var(--text-dense);
+  font-weight: var(--weight-strong);
+  color: var(--muted);
+}
+.needs-you > .side-title {
+  padding: 12px var(--space-2) var(--space-1);
+}
+.side-badge {
+  display: inline-block;
+  min-width: 18px;
+  margin-left: var(--space-1);
+  padding: 1px 6px;
+  border-radius: var(--radius-pill);
+  text-align: center;
+  font-size: var(--text-meta);
+  font-variant-numeric: tabular-nums;
+  color: var(--needs-you-text);
+  background: color-mix(in srgb, var(--needs-you) 18%, transparent);
+}
+.side-new {
+  height: 24px;
+  padding: 0 10px;
+  font-size: var(--text-dense);
+}
+
+/* Needs you */
+.need-group {
+  display: grid;
+  gap: 6px;
+}
+.need-sub {
+  font-size: var(--text-meta);
+  font-weight: var(--weight-strong);
+  color: var(--muted);
+  padding: var(--space-1) var(--space-2) 0;
+}
+.need-sub-count {
+  font-weight: normal;
+  font-variant-numeric: tabular-nums;
+}
+.need-card {
+  margin-bottom: 0;
+}
+.need-card.kind-approval,
+.need-card.kind-question {
+  border-color: var(--needs-you);
+  box-shadow: 0 0 0 0.5px var(--needs-you);
+}
+.need-line {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  min-width: 0;
+}
+.need-place {
+  font-size: var(--text-dense);
+  color: var(--muted);
+}
+.need-asked.card-request,
+.need-asked.need-line {
+  font-size: var(--text-dense);
+  padding: 4px var(--space-2);
+  border-radius: var(--radius-control);
+  background: var(--card-inset);
+}
+.need-less {
+  margin: 2px 0 0 var(--space-2);
+}
+.need-recent-link {
+  display: block;
+  margin: var(--space-2) var(--space-2) 0;
+  font-size: var(--text-dense);
+  color: var(--muted);
+}
+
+/* Projects */
+/* Needs you keeps at most about half the sidebar and scrolls on its own; the projects take the rest. */
+.sidebar > .needs-you {
+  flex: 0 1 auto;
+  max-height: 50%;
+  overflow: auto;
+  padding: 0 var(--space-2) var(--space-2);
+  border-bottom: 1px solid var(--line);
+}
+.projects {
+  flex: 1 1 auto;
+  min-height: 120px;
+  overflow: auto;
+  padding: var(--space-1) var(--space-2) var(--space-4);
+}
+.project-head {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  width: 100%;
+  height: 32px;
+  padding: 0 var(--space-2);
+  border: 0;
+  border-radius: var(--radius-select);
+  background: none;
+  color: var(--text);
+  font-weight: var(--weight-strong);
+  text-align: left;
+  cursor: pointer;
+}
+.project-head:hover {
+  background: color-mix(in srgb, var(--text) 5%, transparent);
+}
+.project-chev {
+  width: 14px;
+  flex: none;
+  color: var(--muted);
+  font-size: 10px;
+}
+.project-name {
+  flex: 1;
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.project-counts {
+  display: flex;
+  gap: var(--space-2);
+  font-size: var(--text-dense);
+  font-weight: var(--weight-regular);
+  font-variant-numeric: tabular-nums;
+}
+.project-counts .tone-working {
+  color: var(--working-text);
+}
+.project-counts .tone-needs-you {
+  color: var(--needs-you-text);
+}
+.project-body {
+  padding-left: var(--space-2);
+}
+.project-empty {
+  padding: var(--space-1) var(--space-2) var(--space-2) 22px;
+  font-size: var(--text-dense);
+  color: var(--muted);
+}
+.side-foot {
+  display: grid;
+  gap: var(--space-1);
+  margin-top: var(--space-2);
+}
+.side-earlier {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 0 var(--space-1);
+  padding: var(--space-2) 10px;
+  border: 1px dashed var(--line);
+  border-radius: var(--radius-window);
+  background: none;
+  color: var(--muted);
+  font-size: var(--text-dense);
+  cursor: pointer;
+}
+.side-earlier:hover {
+  color: var(--text);
+  border-color: var(--muted);
+}
+.side-showall {
+  justify-self: start;
+  margin-left: var(--space-1);
+}
+.side-showall[aria-pressed='true'] {
+  color: var(--text);
+}
+
+/* Library: the tab row above the chosen panel (which keeps its own head). */
+.library {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  min-height: 0;
+}
+.library-tabs {
+  margin-left: 0;
+  padding: var(--space-2) var(--space-4) 0;
+  border-bottom: 1px solid var(--line);
+}
+.library-panel {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  min-height: 0;
+}
+
+/* Sidebar session rows: the title gives way (ellipsis, full title in its tooltip and the row's name) so model · age
+   and the status word stay readable at 280 px. */
+.project-body .tree-row.is-root .tree-name {
+  flex: 0 1 auto;
+  min-width: 4ch;
+  max-width: none;
+}
+.project-body .tree-row.is-root .tree-meta {
+  flex: 0 0 auto;
+  max-width: 60%;
+}
+.need-older-link {
+  justify-self: start;
+  margin: var(--space-1) 0 0 var(--space-1);
+}
+.sidebar > .needs-you.is-quiet {
+  display: grid;
+  gap: var(--space-1);
+  padding-top: var(--space-2);
+}
+/* Compact cards keep their buttons small so Allow, Deny and Open fit on one line at 280 px. */
+.need-card .control {
+  height: 24px;
+  padding: 0 10px;
+  font-size: var(--text-dense);
+}
+.need-card .card-body {
+  gap: var(--space-1);
+}
+
+/* Phone access mark (M6, F26): in the title bar after the counts, and in the widget head. Shape and words. */
+.phone-mark {
+  display: inline-flex;
+  align-items: baseline;
+  gap: 0.3ch;
+  font-size: var(--text-dense);
+  white-space: nowrap;
+}
+.titlebar > .phone-mark {
+  margin-left: var(--space-4);
+}
+.phone-mark.tone-working {
+  color: var(--working-text);
+}
+.phone-mark.tone-working .glyph {
+  color: var(--working);
+}
+.phone-mark.tone-idle {
+  color: var(--muted);
+}
+.phone-mark .glyph {
+  font-size: 10px;
+}
+
+/* Settings → Phone access */
+.phone-settings {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+}
+.phone-settings .setting-help {
+  margin: 0;
+}
+.phone-state {
+  margin: 0;
+  font-weight: var(--weight-strong);
+}
+.phone-state.tone-working .glyph {
+  color: var(--working);
+}
+.phone-state.tone-working {
+  color: var(--working-text);
+}
+.phone-state.tone-idle {
+  color: var(--muted);
+}
+.phone-reason {
+  font-weight: var(--weight-regular);
+}
+.phone-url-lead {
+  margin: 0;
+}
+.phone-url {
+  user-select: text;
+  font-size: var(--text-title);
+}
+.phone-actions {
+  display: flex;
+  gap: var(--space-2);
+  flex-wrap: wrap;
+}
+.phone-select {
+  min-width: 240px;
+}
+.phone-code {
+  background: var(--card-inset);
+  border-radius: var(--radius-inset);
+  padding: var(--space-2) var(--space-4);
+  align-self: flex-start;
+}
+.phone-code .setting-help {
+  margin: 0;
+}
+.phone-code-digits {
+  font-size: 28px;
+  letter-spacing: 0.12em;
+  margin: var(--space-1) 0;
+  font-variant-numeric: tabular-nums;
+  user-select: text;
+}
+.phone-countdown {
+  font-variant-numeric: tabular-nums;
+}
+.phone-devices-title {
+  font-size: var(--text-body);
+  font-weight: var(--weight-strong);
+  margin: var(--space-2) 0 0;
+}
+.phone-devices {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+.phone-device {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto auto;
+  align-items: center;
+  column-gap: var(--space-4);
+  padding: 6px 0;
+  border-top: 1px solid var(--line);
+}
+.phone-device:first-child {
+  border-top: none;
+}
+.phone-device-name {
+  font-weight: var(--weight-strong);
+  overflow-wrap: anywhere;
+}
+.phone-device-meta {
+  grid-column: 1 / 2;
+  font-size: var(--text-dense);
+}
+.phone-device .control {
+  grid-column: 3;
+  grid-row: 1 / span 2;
+}
+.phone-device-conn {
+  font-size: var(--text-dense);
+  white-space: nowrap;
+}
+.phone-device-conn.tone-working {
+  color: var(--working-text);
+}
+.phone-device-conn.tone-working .glyph {
+  color: var(--working);
+}
+.phone-device-conn.tone-idle {
+  color: var(--muted);
+}
+.phone-confirm p {
+  margin: 0 0 var(--space-2);
+}
+
+/* Settings → Self-reported progress (F27) */
+.sr-attached {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+}
+.sr-preview {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+  padding: var(--space-2) var(--space-4);
+  background: var(--card-inset);
+  border-radius: var(--radius-inset);
+}
+.sr-preview .diff {
+  min-height: 0;
+}
+.sr-file {
+  margin: 0;
+}
+.sr-lead {
+  margin: 0;
+}
+.sr-commands {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1);
+}
+.sr-command-text {
+  display: block;
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+  user-select: text;
+  font-size: var(--text-dense);
+}
+.sr-notes li {
+  font-size: var(--text-dense);
+  overflow-wrap: anywhere;
+}
+.sr-notes li::before {
+  content: '·';
+  color: var(--muted);
+}
+.sr-refusal {
+  margin: 0;
+  color: var(--failed-text);
+  overflow-wrap: anywhere;
+}
+.sr-question {
+  margin: 0;
+  font-weight: var(--weight-strong);
+}
+.sr-question .muted {
+  font-weight: var(--weight-regular);
+}
+.sr-clip {
+  align-self: flex-start;
+}
+
+/* Pause all / Resume all: one compact row at the foot of the sidebar, with the reason in words when off. */
+.side-pane > .side-actions {
+  flex: none;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  align-items: center;
+  padding: 6px var(--space-2);
+  border-top: 1px solid var(--line);
+}
+.side-actions-reason {
+  font-size: var(--text-meta);
+  color: var(--muted);
+}
+/* Recently handled and older items, when nothing waits: below the projects, not above them. */
+.sidebar > .projects {
+  order: 1;
+}
+.sidebar > .needs-you.is-quiet {
+  order: 2;
+  flex: none;
+  border-bottom: 0;
+  border-top: 1px solid var(--line);
+  padding-top: var(--space-1);
+}
+/* The Simple / Advanced switch, after the counts, clear of the window's caption buttons. */
+.titlebar .titlebar-view {
+  margin-left: var(--space-2);
+  app-region: no-drag;
+  -webkit-app-region: no-drag;
+}
+.titlebar .titlebar-view .segment {
+  height: 24px;
+  padding: 0 8px;
+}
+/* A long line in a compact card must not widen the sidebar (grid items default to their content's width). */
+.need-group {
+  grid-template-columns: minmax(0, 1fr);
+}
+.sidebar > .needs-you {
+  overflow-x: hidden;
+}
+/* A long agent or session name gives way in a compact card instead of pushing the glyph onto a line of its own. */
+.need-card .card-head > .card-agent {
+  flex: 0 1 auto;
+  min-width: 6ch;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/*
+ * Tree rows put the name first (slop review 2026-11-18). The role, model or age after the name never squeezes the
+ * name into "Write parser t…" next to a "t…" stub: the text box is one line tall and wraps, so a meta that does not
+ * fit whole drops out of view instead of being cut to a letter. The name ellipsizes only when it alone is too long
+ * (its full text is in the tooltip and the row's accessible name).
+ */
+.tree-text {
+  flex-wrap: wrap;
+  align-content: flex-start;
+  row-gap: 12px;
+  max-height: 1.6em;
+}
+.tree-text > .tree-name,
+.tree-row.is-root .tree-text > .tree-name,
+.project-body .tree-row.is-root .tree-text > .tree-name {
+  flex: 0 1 auto;
+  min-width: 0;
+  max-width: 100%;
+}
+.tree-text > .tree-meta,
+.project-body .tree-row.is-root .tree-text > .tree-meta {
+  flex: 0 0 auto;
+  max-width: 100%;
+}
+
+/*
+ * A compact Needs-you card with a long name: the name gives way on the first line (it may not wrap the glyph onto a
+ * line of its own), the kind word follows it, and the time limit takes the second line.
+ */
+.need-card .card-head > .card-agent {
+  flex: 1 1 0;
+  max-width: max-content;
+}
+.need-card .card-head > .card-limit {
+  flex-basis: 100%;
+  text-align: right;
+}
+
+/*
+ * The title bar's counts are the two-second answer ("who is waiting on me"), so they are the loudest words in the
+ * chrome: body size, the needs-you count in its strong colour, zero counts muted. The search box is narrower so it
+ * does not outweigh them. The Simple / Advanced switch lives in Settings and the palette, not here (2026-11-18).
+ */
+.titlebar > .counts {
+  font-size: var(--text-body);
+}
+.titlebar > .counts .glyph {
+  font-size: 11px;
+}
+.titlebar-search .search-button {
+  max-width: 360px;
+}
+
+/*
+ * 2026-11-18 design pass. The sidebar is one scrolling column: Needs you first, whole, then Projects. Before, Needs
+ * you was its own box capped at half the height, so one card was always cut in half. Inside a compact card the request
+ * is set apart by the code face alone; the card's outline is the one frame (no fill inside the frame).
+ */
+.sidebar {
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+.sidebar > .needs-you,
+.sidebar > .projects {
+  flex: none;
+  max-height: none;
+  min-height: 0;
+  overflow: visible;
+}
+.need-asked.card-request,
+.need-asked.need-line {
+  padding: 2px 0;
+  background: none;
+}
+/* A warning in the sidebar is a row, not a card: things waiting on you are framed, warnings are not. */
+.need-row {
+  display: flex;
+  align-items: baseline;
+  gap: var(--space-2);
+  min-width: 0;
+  padding: 2px var(--space-2);
+  font-size: var(--text-dense);
+}
+.need-row > .card-agent {
+  flex: 0 1 auto;
+  min-width: 4ch;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.need-row > .card-kind {
+  flex: none;
+}
+.need-row > .control {
+  margin-left: auto;
+  height: 22px;
+  padding: 0 8px;
+}

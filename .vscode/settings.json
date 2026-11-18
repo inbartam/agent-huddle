@@ -1,0 +1,14 @@
+{
+  "files.eol": "\n",
+  "editor.formatOnSave": true,
+  "editor.tabSize": 2,
+  "search.exclude": {
+    "**/node_modules": true,
+    "**/dist": true,
+    "**/out": true,
+    "**/.huddle": true
+  },
+  "files.watcherExclude": {
+    "**/.huddle/**": true
+  }
+}

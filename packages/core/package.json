@@ -1,0 +1,28 @@
+{
+  "name": "@huddle/core",
+  "version": "0.0.0",
+  "private": true,
+  "description": "Agent Huddle core: ingest, normalize, state, store and setup (runs inside Electron main)",
+  "author": "Agent Huddle contributors",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/inbartam/agent-huddle.git",
+    "directory": "packages/core"
+  },
+  "homepage": "https://github.com/inbartam/agent-huddle#readme",
+  "bugs": {
+    "url": "https://github.com/inbartam/agent-huddle/issues"
+  },
+  "type": "module",
+  "exports": {
+    ".": "./src/index.ts"
+  },
+  "scripts": {
+    "typecheck": "tsc -p . --noEmit"
+  },
+  "dependencies": {
+    "@huddle/shared": "*",
+    "zod": "^4.6.7"
+  }
+}

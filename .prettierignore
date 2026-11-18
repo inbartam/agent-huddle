@@ -1,0 +1,23 @@
+node_modules/
+out/
+dist/
+release/
+coverage/
+package-lock.json
+
+# runtime data and tool state
+.huddle/
+.omc/
+.superpowers/
+.claude/
+
+# recorded payloads are kept byte-for-byte as scrubbed
+fixtures/
+
+# prose is wrapped by hand; Prettier would rewrite tables and lists
+*.md
+# M0 spike tools: zero-dependency, hand-formatted, outside lint too
+scripts/
+
+# golden snapshots are written by Vitest and compared byte-for-byte
+__snapshots__/

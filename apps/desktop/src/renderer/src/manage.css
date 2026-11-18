@@ -1,0 +1,424 @@
+/*
+ * M4 surfaces (F16 launch, F17 templates, F18 rules, F19 budgets, F20 worktrees). Tokens only (tokens.css); the
+ * panes follow the detail layout: sections under a hairline, no cards. Status-like marks carry a glyph and a word,
+ * the colour only repeats them.
+ */
+
+/* ---------- forms (launch dialog, template and rule editors) ---------- */
+.manage .panel {
+  max-width: 720px;
+}
+.manage .panel > .form-field {
+  max-width: 640px;
+  margin-bottom: 12px;
+}
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  max-width: 640px;
+}
+.form-field {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1);
+  min-width: 0;
+}
+.form-inline {
+  flex-direction: row;
+  align-items: center;
+  gap: var(--space-2);
+  margin-bottom: var(--space-2);
+}
+.form-inline .select-input {
+  width: auto;
+  max-width: 320px;
+}
+.form-label {
+  font-size: var(--text-dense);
+  font-weight: var(--weight-strong);
+  color: var(--text);
+  padding: 0;
+}
+.form-note {
+  margin: 0;
+  font-size: var(--text-dense);
+  color: var(--muted);
+  max-width: 80ch;
+}
+.form-warning {
+  color: var(--needs-you-text);
+  font-weight: var(--weight-strong);
+}
+p.form-warning {
+  margin: 0;
+  font-size: var(--text-dense);
+}
+.form-pair {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+.form-trio {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 12px;
+}
+.form-trio .number-input {
+  width: 100%;
+}
+.form-group {
+  border: 0;
+  border-top: 1px solid var(--line);
+  margin: 4px 0 0;
+  padding: 10px 0 0;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  min-width: 0;
+}
+.field-with-button {
+  display: flex;
+  gap: var(--space-2);
+  align-items: center;
+}
+.field-with-button .text-input {
+  flex: 1;
+}
+.form-prompt {
+  min-height: 96px;
+}
+.select-input {
+  height: 28px;
+  padding: 0 var(--space-2);
+}
+.text-input[aria-invalid='true'] {
+  border-color: var(--failed);
+}
+.field-error {
+  margin: 0;
+}
+.form-actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--space-2);
+  margin: 16px 0 var(--space-2);
+}
+.form-sent {
+  margin: 0;
+  color: var(--working-text);
+  font-size: var(--text-dense);
+}
+.agent-draft {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 10px 0 12px 12px;
+  border-left: var(--rail) solid var(--line);
+}
+.agent-draft > .control {
+  align-self: flex-start;
+}
+.agents-editor > .control {
+  align-self: flex-start;
+}
+.checkbox {
+  width: 14px;
+  height: 14px;
+  accent-color: var(--select);
+}
+.control-danger {
+  /* --failed-text under --bg: 6.4:1 dark, about 5.2:1 light (AA for text). */
+  background: var(--failed-text);
+  color: var(--bg);
+  font-weight: var(--weight-strong);
+}
+.control-danger:hover:not(.is-off) {
+  background: color-mix(in srgb, var(--failed-text) 88%, var(--text));
+}
+
+/* ---------- lists (templates, rules) ---------- */
+.manage-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  max-width: 720px;
+}
+.manage-row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  gap: var(--space-2) 12px;
+  padding: 10px 0;
+  border-bottom: 1px solid var(--line);
+}
+.manage-row-main {
+  flex: 1 1 260px;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+.manage-row .inline-error,
+.manage-row .form-sent {
+  flex-basis: 100%;
+}
+.manage-name {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: var(--space-2);
+  font-weight: var(--weight-strong);
+}
+.manage-meta {
+  font-size: var(--text-dense);
+  color: var(--muted);
+  overflow-wrap: anywhere;
+}
+.manage-desc {
+  font-size: var(--text-dense);
+  max-width: 80ch;
+}
+.manage-actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 6px;
+}
+.manage-actions .control,
+.run-actions .control {
+  height: 26px;
+  padding: 0 12px;
+  font-size: var(--text-dense);
+}
+.confirm-words {
+  font-size: var(--text-dense);
+  margin: 0;
+}
+.rule-editor-note {
+  margin-bottom: 12px;
+}
+.rule-row .switch {
+  margin-top: 2px;
+}
+.rule-row.is-off .manage-name label {
+  color: var(--muted);
+}
+/*
+ * A rule's effect is not a status, so it takes no status colour and no outlined pill (2026-11-18): the glyph and
+ * the word (✓ allow, ? ask me, ✕ deny) carry it, in the text colour. Teal, amber and red keep meaning
+ * working, needs you and failed.
+ */
+.action-badge {
+  display: inline-flex;
+  align-items: baseline;
+  gap: 3px;
+  font-size: var(--text-dense);
+  color: var(--text);
+}
+.default-mark {
+  font-size: var(--text-meta);
+  font-weight: var(--weight-regular);
+  color: var(--muted);
+  border: 1px dashed var(--line);
+  border-radius: var(--radius-select);
+  padding: 0 5px;
+}
+/* Strong text, not the needs-you colour: status colours only mean status (slop review 2026-11-18). */
+.rules-scope {
+  margin: 4px 0 0;
+  font-weight: var(--weight-strong);
+  color: var(--text);
+}
+
+/* ---------- preview and decision log ---------- */
+.rule-preview {
+  margin-top: 16px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 6px;
+}
+.preview-result {
+  width: 100%;
+}
+.decision-list {
+  list-style: none;
+  margin: 4px 0 0;
+  padding: 0;
+  width: 100%;
+  font-size: var(--text-dense);
+}
+.decision-row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 2px 10px;
+  min-height: var(--row);
+  padding: 4px 0;
+  border-bottom: 1px solid color-mix(in srgb, var(--line) 60%, transparent);
+}
+.decision-time {
+  flex: none;
+  width: 5ch;
+  color: var(--muted);
+  font-variant-numeric: tabular-nums;
+}
+.decision-outcome {
+  flex: none;
+  font-weight: var(--weight-strong);
+}
+.outcome-allowed {
+  color: var(--working-text);
+}
+.outcome-denied {
+  color: var(--failed-text);
+}
+.decision-what {
+  flex: 1 1 240px;
+  min-width: 0;
+  overflow-wrap: anywhere;
+}
+.decision-agent,
+.decision-rule {
+  flex: none;
+  color: var(--muted);
+}
+
+/* ---------- budgets ---------- */
+.budget + .budget {
+  margin-top: var(--space-2);
+}
+.budget-head {
+  gap: var(--space-2);
+}
+.budget-level {
+  color: var(--tone-text);
+  font-weight: var(--weight-strong);
+}
+.budget-kind {
+  flex: none;
+  width: 6ch;
+  color: var(--muted);
+}
+.bar-none {
+  flex: 1;
+  max-width: 320px;
+  font-size: var(--text-dense);
+}
+.budget-value {
+  min-width: 16ch;
+}
+.budget-value.tone-needs-you,
+.budget-value.tone-failed {
+  color: var(--tone-text);
+}
+.scard-budget {
+  flex: none;
+  white-space: nowrap;
+}
+.scard-budget.level-warning,
+.scard-budget.level-over {
+  color: var(--tone-text);
+  font-weight: var(--weight-strong);
+}
+
+/* ---------- run and worktree ---------- */
+.run-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-top: var(--space-2);
+}
+.tabular {
+  font-variant-numeric: tabular-nums;
+}
+.wt-path {
+  overflow-wrap: anywhere;
+}
+.wt-files {
+  list-style: none;
+  margin: 6px 0 0;
+  padding: 0;
+  max-height: 240px;
+  overflow-y: auto;
+  font-size: var(--text-dense);
+}
+.wt-files li {
+  display: flex;
+  gap: var(--space-2);
+  min-height: 22px;
+  align-items: baseline;
+}
+.wt-mark {
+  flex: none;
+  width: 2ch;
+  color: var(--muted);
+}
+.wt-file {
+  overflow-wrap: anywhere;
+}
+.diff-add {
+  color: var(--working-text);
+}
+.diff-del {
+  color: var(--failed-text);
+}
+.confirm-inline {
+  margin-top: var(--space-2);
+  padding: 10px 12px;
+  border-left: var(--rail) solid var(--failed);
+  background: color-mix(in srgb, var(--failed) 7%, transparent);
+  border-radius: 0 var(--radius-select) var(--radius-select) 0;
+}
+
+/* ---------- M4 runbook fixes: paused-by-budget line, budget editor, tool-state groups ---------- */
+.budget-paused {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: var(--space-2);
+  margin-top: var(--space-1);
+}
+.budget-paused .form-note {
+  margin: 0;
+}
+.budget-editor {
+  margin-top: var(--space-2);
+}
+.wt-group {
+  margin-top: 6px;
+  font-size: var(--text-dense);
+}
+.wt-group > summary {
+  cursor: pointer;
+}
+.wt-group > summary:focus-visible {
+  outline: 2px solid currentColor;
+  outline-offset: 2px;
+}
+.save-reason {
+  margin-top: var(--space-1);
+}
+
+/* ---------- Library › Roles (2026-11-18): one group per type, a menu per role ---------- */
+.role-group + .role-group {
+  margin-top: var(--space-4);
+}
+.role-group .section-title {
+  margin-bottom: 2px;
+}
+.role-about {
+  margin: 0 0 var(--space-2);
+  font-size: var(--text-dense);
+}
+.role-select {
+  min-width: 160px;
+}
+.role-set {
+  color: var(--text);
+}
+.role-type {
+  color: var(--text);
+}

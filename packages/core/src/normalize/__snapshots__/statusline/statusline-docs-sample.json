@@ -1,0 +1,95 @@
+[
+  {
+    "id": "evt-0001",
+    "type": "context.measured",
+    "ts": 1794650420000,
+    "sessionId": "5f3c9a1e-0d2b-4c7e-9a41-statusline01",
+    "agentKey": "5f3c9a1e-0d2b-4c7e-9a41-statusline01",
+    "source": "statusline",
+    "usedTokens": 15500,
+    "windowTokens": 200000,
+    "measuredBy": "statusline"
+  },
+  {
+    "id": "evt-0002",
+    "type": "limits.measured",
+    "ts": 1794650420000,
+    "sessionId": "5f3c9a1e-0d2b-4c7e-9a41-statusline01",
+    "agentKey": "5f3c9a1e-0d2b-4c7e-9a41-statusline01",
+    "source": "statusline",
+    "limits": {
+      "fiveHourUsedPct": 23.5,
+      "fiveHourResetsAt": 1794668400000,
+      "sevenDayUsedPct": 41.2,
+      "sevenDayResetsAt": 1794960000000,
+      "measuredAt": 1794650420000
+    }
+  },
+  {
+    "id": "evt-0003",
+    "type": "context.measured",
+    "ts": 1794650460000,
+    "sessionId": "5f3c9a1e-0d2b-4c7e-9a41-statusline01",
+    "agentKey": "5f3c9a1e-0d2b-4c7e-9a41-statusline01",
+    "source": "statusline",
+    "usedTokens": 48200,
+    "windowTokens": 200000,
+    "measuredBy": "statusline"
+  },
+  {
+    "id": "evt-0004",
+    "type": "limits.measured",
+    "ts": 1794650460000,
+    "sessionId": "5f3c9a1e-0d2b-4c7e-9a41-statusline01",
+    "agentKey": "5f3c9a1e-0d2b-4c7e-9a41-statusline01",
+    "source": "statusline",
+    "limits": {
+      "fiveHourUsedPct": 24,
+      "fiveHourResetsAt": 1794668400000,
+      "sevenDayUsedPct": 41.3,
+      "sevenDayResetsAt": 1794960000000,
+      "measuredAt": 1794650460000
+    }
+  },
+  {
+    "id": "evt-0005",
+    "type": "limits.measured",
+    "ts": 1794650520000,
+    "sessionId": "5f3c9a1e-0d2b-4c7e-9a41-statusline01",
+    "agentKey": "5f3c9a1e-0d2b-4c7e-9a41-statusline01",
+    "source": "statusline",
+    "limits": {
+      "fiveHourUsedPct": 25,
+      "fiveHourResetsAt": 1794668400000,
+      "sevenDayUsedPct": 41.5,
+      "sevenDayResetsAt": 1794960000000,
+      "measuredAt": 1794650520000
+    }
+  },
+  {
+    "id": "evt-0006",
+    "type": "context.measured",
+    "ts": 1794650580000,
+    "sessionId": "5f3c9a1e-0d2b-4c7e-9a41-statusline01",
+    "agentKey": "5f3c9a1e-0d2b-4c7e-9a41-statusline01",
+    "source": "statusline",
+    "usedTokens": 12000,
+    "windowTokens": 200000,
+    "measuredBy": "statusline"
+  },
+  {
+    "id": "evt-0007",
+    "type": "limits.measured",
+    "ts": 1794650580000,
+    "sessionId": "5f3c9a1e-0d2b-4c7e-9a41-statusline01",
+    "agentKey": "5f3c9a1e-0d2b-4c7e-9a41-statusline01",
+    "source": "statusline",
+    "limits": {
+      "fiveHourUsedPct": 26,
+      "fiveHourResetsAt": 1794668400000,
+      "sevenDayUsedPct": null,
+      "sevenDayResetsAt": null,
+      "measuredAt": 1794650580000
+    }
+  }
+]

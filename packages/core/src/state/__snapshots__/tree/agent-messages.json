@@ -1,0 +1,70 @@
+[
+  {
+    "sessionId": "session-1",
+    "rootKey": "session-1",
+    "cwd": "C:/Users/user/project",
+    "ended": false,
+    "lastActivityAt": 1794597338500,
+    "agentCount": 3,
+    "statusCounts": {
+      "starting": 0,
+      "working": 0,
+      "waiting_approval": 0,
+      "waiting_answer": 0,
+      "paused": 0,
+      "idle": 1,
+      "done": 2,
+      "failed": 0,
+      "stopped": 0
+    },
+    "root": {
+      "key": "session-1",
+      "agentId": null,
+      "kind": "main",
+      "name": "main",
+      "role": "main",
+      "roleDescription": null,
+      "model": "claude-opus-5-5",
+      "status": "idle",
+      "currentActivity": null,
+      "link": null,
+      "dimmed": false,
+      "startedAt": 1794597250477,
+      "endedAt": null,
+      "children": [
+        {
+          "key": "session-1::agent-1",
+          "agentId": "agent-1",
+          "kind": "subagent",
+          "name": "(scrubbed text)",
+          "role": "Explore",
+          "roleDescription": null,
+          "model": "claude-opus-5-5",
+          "status": "done",
+          "currentActivity": null,
+          "link": "exact",
+          "dimmed": true,
+          "startedAt": 1794597282540,
+          "endedAt": 1794597325252,
+          "children": []
+        },
+        {
+          "key": "session-1::agent-2",
+          "agentId": "agent-2",
+          "kind": "subagent",
+          "name": "(scrubbed text)",
+          "role": "Explore",
+          "roleDescription": null,
+          "model": "claude-opus-5-5",
+          "status": "done",
+          "currentActivity": null,
+          "link": "exact",
+          "dimmed": true,
+          "startedAt": 1794597282596,
+          "endedAt": 1794597318698,
+          "children": []
+        }
+      ]
+    }
+  }
+]

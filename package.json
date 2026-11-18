@@ -1,0 +1,53 @@
+{
+  "name": "agent-huddle",
+  "version": "0.0.0",
+  "private": true,
+  "description": "Desktop widget and app to watch, steer and manage Claude Code agents",
+  "author": "Agent Huddle contributors",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/inbartam/agent-huddle.git"
+  },
+  "homepage": "https://github.com/inbartam/agent-huddle#readme",
+  "bugs": {
+    "url": "https://github.com/inbartam/agent-huddle/issues"
+  },
+  "type": "module",
+  "engines": {
+    "node": ">=24"
+  },
+  "workspaces": [
+    "packages/*",
+    "apps/*"
+  ],
+  "scripts": {
+    "dev": "npm run dev -w @huddle/desktop",
+    "build:desktop": "npm run build -w @huddle/desktop",
+    "package:desktop": "npm run package -w @huddle/desktop",
+    "hooks:preview": "node scripts/install-hooks.mjs",
+    "hooks:install": "node scripts/install-hooks.mjs --apply",
+    "hooks:uninstall": "node scripts/install-hooks.mjs --uninstall --apply",
+    "typecheck": "npm run typecheck --workspaces --if-present",
+    "test:scripts": "node --test \"scripts/**/*.test.mjs\"",
+    "m3:exit": "node scripts/m3-exit.mjs",
+    "m4:exit": "node scripts/m4-exit.mjs",
+    "m5:exit": "node scripts/m5-exit.mjs",
+    "m6:exit": "node scripts/m6-exit.mjs",
+    "test": "vitest run",
+    "eval:eta": "vitest run packages/core/src/runtime/eta-eval.test.ts --reporter verbose",
+    "lint": "eslint .",
+    "format": "prettier --write .",
+    "format:check": "prettier --check ."
+  },
+  "devDependencies": {
+    "@eslint/js": "^10.0.1",
+    "@types/node": "^22.20.5",
+    "eslint": "^10.14.0",
+    "eslint-plugin-react-hooks": "7.1.1",
+    "prettier": "^3.10.1",
+    "typescript": "~6.0.3",
+    "typescript-eslint": "^8.72.2",
+    "vitest": "^5.1.0"
+  }
+}

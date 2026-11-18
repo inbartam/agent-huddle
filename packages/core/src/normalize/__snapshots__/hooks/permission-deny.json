@@ -1,0 +1,131 @@
+[
+  {
+    "t": "2026-11-13T16:31:58.841Z",
+    "hook": "InstructionsLoaded",
+    "events": [
+      {
+        "id": "evt-0001",
+        "type": "instructions.loaded",
+        "ts": 1794587518841,
+        "sessionId": "session-1",
+        "agentKey": "session-1",
+        "source": "hook",
+        "filePath": "C:/Users/user/project\\.claude\\CLAUDE.md"
+      }
+    ]
+  },
+  {
+    "t": "2026-11-13T16:32:08.071Z",
+    "hook": "SessionStart",
+    "events": [
+      {
+        "id": "evt-0002",
+        "type": "session.started",
+        "ts": 1794587528071,
+        "sessionId": "session-1",
+        "agentKey": "session-1",
+        "source": "hook",
+        "origin": "attached",
+        "cwd": "C:/Users/user/project",
+        "title": null,
+        "model": null,
+        "startKind": "startup"
+      }
+    ]
+  },
+  {
+    "t": "2026-11-13T16:32:27.097Z",
+    "hook": "UserPromptSubmit",
+    "events": [
+      {
+        "id": "evt-0003",
+        "type": "prompt.submitted",
+        "ts": 1794587547097,
+        "sessionId": "session-1",
+        "agentKey": "session-1",
+        "source": "hook",
+        "text": "(scrubbed text)",
+        "promptId": "prompt-1",
+        "kind": "user",
+        "cwd": "C:/Users/user/project"
+      }
+    ]
+  },
+  {
+    "t": "2026-11-13T16:32:41.054Z",
+    "hook": "PreToolUse",
+    "events": [
+      {
+        "id": "evt-0004",
+        "type": "tool.started",
+        "ts": 1794587561054,
+        "sessionId": "session-1",
+        "agentKey": "session-1",
+        "source": "hook",
+        "toolUseId": "tool_use-1",
+        "toolName": "Bash",
+        "summary": "npm view zod version",
+        "filePath": null,
+        "inputDigest": "0a9c530b4d1f9699bc8e48d0104db092"
+      }
+    ]
+  },
+  {
+    "t": "2026-11-13T16:32:46.152Z",
+    "hook": "PermissionRequest",
+    "events": [
+      {
+        "id": "evt-0006",
+        "type": "approval.requested",
+        "ts": 1794587566152,
+        "sessionId": "session-1",
+        "agentKey": "session-1",
+        "source": "hook",
+        "request": {
+          "requestId": "evt-0005",
+          "agentKey": "session-1",
+          "toolName": "Bash",
+          "toolInput": {
+            "command": "npm view zod version",
+            "description": "(scrubbed text)"
+          },
+          "summary": "npm view zod version",
+          "receivedAt": 1794587566152,
+          "expiresAt": null,
+          "channel": "hook"
+        }
+      }
+    ]
+  },
+  {
+    "t": "2026-11-13T16:32:51.795Z",
+    "hook": "Stop",
+    "events": [
+      {
+        "id": "evt-0007",
+        "type": "turn.ended",
+        "ts": 1794587571795,
+        "sessionId": "session-1",
+        "agentKey": "session-1",
+        "source": "hook",
+        "lastMessage": "(scrubbed text)",
+        "backgroundAgentIds": []
+      }
+    ]
+  },
+  {
+    "t": "2026-11-13T16:33:06.948Z",
+    "hook": "SessionEnd",
+    "events": [
+      {
+        "id": "evt-0008",
+        "type": "session.ended",
+        "ts": 1794587586948,
+        "sessionId": "session-1",
+        "agentKey": "session-1",
+        "source": "hook",
+        "reason": "other"
+      }
+    ]
+  }
+]

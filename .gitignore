@@ -1,0 +1,32 @@
+# dependencies and build output
+node_modules/
+dist/
+out/
+coverage/
+release/
+*.tsbuildinfo
+
+# Huddle runtime data: event logs contain prompts, commands and file paths
+.huddle/
+
+# local-only Claude Code files
+.claude/settings.local.json
+.claude/worktrees/
+CLAUDE.local.md
+
+# secrets and machine-specific files
+.env
+.env.*
+!.env.example
+*.log
+.DS_Store
+Thumbs.db
+
+# oh-my-claudecode session state
+.omc/
+
+# superpowers plan workspaces (ledger, briefs)
+.superpowers/
+
+# Browser-automation output from local UI checks
+.playwright-mcp/
