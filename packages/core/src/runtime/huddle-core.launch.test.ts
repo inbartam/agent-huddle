@@ -86,7 +86,7 @@ interface Env {
 }
 
 async function makeEnv(): Promise<Env> {
-  const root = await fsp.mkdtemp(path.join(os.tmpdir(), 'huddle-launch-'));
+  const root = await fsp.realpath(await fsp.mkdtemp(path.join(os.tmpdir(), 'huddle-launch-')));
   cleanups.push(() => fsp.rm(root, { recursive: true, force: true, maxRetries: 5, retryDelay: 100 }));
   const git = createGitRunner({
     configArgs: [
@@ -492,6 +492,23 @@ describe('HuddleCore run.launch', () => {
       }
       expect(env.spawned).toEqual([]);
       expect(core.getState().rootKeys).toEqual([]);
+    },
+  );
+
+  // The allow rules refuse 8.3 short names (RUNNER~1) and need the trusted folder and the agent's cwd in one spelling:
+  // a folder chosen through another spelling (a junction here, a short TEMP on CI) runs in its long, real form.
+  it(
+    'runs in the canonical folder when the chosen folder is reached through a junction',
+    { timeout: TIMEOUT },
+    async () => {
+      const env = await makeEnv();
+      const link = path.join(path.dirname(env.plain), 'plain-link');
+      await fsp.symlink(env.plain, link, 'junction');
+      const { core } = await startCore(env);
+      const runId = await launch(core, template(env, { cwd: link }));
+      expect(env.spawned[0]?.options.cwd).toBe(env.plain);
+      expect(ofType(core, runId, 'run.launched')[0]).toMatchObject({ cwd: env.plain, worktree: null });
+      expect(core.getState().agents[runId]).toMatchObject({ origin: 'managed', sessionCwd: env.plain });
     },
   );
 

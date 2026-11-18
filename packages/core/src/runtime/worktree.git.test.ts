@@ -90,7 +90,7 @@ const notAlive = { isProcessAlive: () => false };
 
 describe.skipIf(!HAS_GIT)('worktrees against a real git repository (skipped when git is not on PATH)', () => {
   beforeEach(async () => {
-    tmp = await fsp.mkdtemp(path.join(os.tmpdir(), 'huddle-wt-'));
+    tmp = await fsp.realpath(await fsp.mkdtemp(path.join(os.tmpdir(), 'huddle-wt-')));
     repo = path.join(tmp, 'repo');
     dataDir = path.join(tmp, 'data');
     git = isolatedGit();
@@ -125,6 +125,22 @@ describe.skipIf(!HAS_GIT)('worktrees against a real git repository (skipped when
     expect(records[0]).toMatchObject({ runId: 'run-1', branch: 'huddle/run-1', baseCommit: head, state: 'active' });
     // Ownership survives a restart: a new manager reads the same registry.
     expect(await manager().listWorktrees()).toEqual(records);
+  });
+
+  // The worktree path becomes the agent's cwd and its trusted session folder, and the allow rules refuse 8.3 short names
+  // (RUNNER~1): a data folder reached through another spelling (a junction here, a short TEMP on CI) must still give
+  // the long, real path, and the worktree must still be the Huddle's to discard.
+  it('makes the worktree under the canonical data folder when it is reached through a junction', async () => {
+    const real = path.join(tmp, 'real-data');
+    await fsp.mkdir(real);
+    const link = path.join(tmp, 'link-data');
+    await fsp.symlink(real, link, 'junction');
+    const m = new WorktreeManager({ dataDir: link, git, now: () => 1000 });
+    const entry = await m.createWorktree({ repoDir: repo, runId: 'run-1' });
+    expect(samePath(entry.path, path.join(await fsp.realpath(real), 'worktrees', 'run-1'))).toBe(true);
+    expect(samePath(m.root, path.join(await fsp.realpath(real), 'worktrees'))).toBe(true);
+    expect(await m.discardWorktree(entry, notAlive)).toEqual({ outcome: 'discarded', error: null });
+    expect(await exists(entry.path)).toBe(false);
   });
 
   it('creating from a subfolder uses the repository root; a second create for the run is refused', async () => {

@@ -149,6 +149,21 @@ export function samePath(a, b) {
   return norm(a) === norm(b);
 }
 
+/** The long, real form of a path (8.3 short names like RUNNER~1, junctions): its deepest existing folder resolved. */
+function realForm(p) {
+  const rest = [];
+  for (let head = path.resolve(String(p)); ; head = path.dirname(head)) {
+    try { return path.join(fs.realpathSync.native(head), ...rest); } catch { /* not there: try the parent */ }
+    if (path.dirname(head) === head) return String(p);
+    rest.unshift(path.basename(head));
+  }
+}
+
+/** samePath, or the same in long, real form. */
+export function sameFolder(a, b) {
+  return samePath(a, b) || samePath(realForm(a), realForm(b));
+}
+
 /**
  * May the harness ALLOW this request? Only the exact scripted command through Bash. The run's agents have the Bash tool,
  * so anything else asked (another command, a compound command, a write tool) is refused. Pure.
@@ -229,7 +244,7 @@ export function evaluateExit({ events, runId, worktreeBase, steps, facts }) {
     const expectedPath = runId ? path.join(worktreeBase, 'worktrees', runId) : '';
     const gb = facts.gitBefore ?? {};
     out.worktree = [
-      check('worktree.created path is <base>/worktrees/<runId>', created && runId && samePath(created.path, expectedPath), created ? `${created.path} (expected ${expectedPath})` : 'no worktree.created'),
+      check('worktree.created path is <base>/worktrees/<runId>', created && runId && sameFolder(created.path, expectedPath), created ? `${created.path} (expected ${expectedPath})` : 'no worktree.created'),
       check('branch is huddle/<runId>', created && runId && created.branch === `huddle/${runId}`, created?.branch ?? 'no worktree.created'),
       check('the folder exists and git lists it as a worktree of the repo', gb.folderExists === true && gb.listed === true, `folder:${String(gb.folderExists)} listed:${String(gb.listed)}`),
       check('the branch exists in the repo', gb.branchExists === true, String(gb.branchExists)),
@@ -429,7 +444,7 @@ export function makeRepo() {
 /** What git says about a worktree path and branch, from the repo. */
 export function gitFacts(repo, worktreePath, branch) {
   const list = git(repo, ['worktree', 'list', '--porcelain'], { quiet: true }).stdout;
-  const listed = list.split(/\r?\n/).some((l) => l.startsWith('worktree ') && samePath(l.slice('worktree '.length), worktreePath));
+  const listed = list.split(/\r?\n/).some((l) => l.startsWith('worktree ') && sameFolder(l.slice('worktree '.length), worktreePath));
   const branches = git(repo, ['branch', '--list', branch], { quiet: true }).stdout.trim();
   return { folderExists: fs.existsSync(worktreePath), listed, branchExists: branches !== '', worktreeList: list.trim(), branchList: branches };
 }

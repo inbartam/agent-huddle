@@ -357,6 +357,13 @@ export class RunHost {
       return fail('invalid', 'The folder must be a full local path (C:\\…), not a network or device path.');
     }
     if (!(await isDirectory(template.cwd))) return fail('not_found', 'That folder does not exist.');
+    // The canonical path (8.3 short names like RUNNER~1 expanded, junctions resolved): the trusted session folder and
+    // the agent's own cwd in its hooks are then one spelling, which the allow rules need (they refuse short names).
+    const folder = await fsp.realpath(template.cwd).catch(() => null);
+    if (folder === null) return fail('not_found', 'That folder does not exist.');
+    if (!isLocalAbsolutePath(folder)) {
+      return fail('invalid', 'The folder must be a full local path (C:\\…), not a network or device path.');
+    }
 
     const sessionId = (this.options.newSessionId ?? randomUUID)();
     if (!UUID.test(sessionId)) return fail('failed', 'Could not make an id for the run.');
@@ -382,7 +389,7 @@ export class RunHost {
     const command = await this.claudeCommand(runEnv);
     if (!command.ok) {
       const agentNames = agents === null ? [] : Object.keys(agents);
-      await this.emit(this.launchedEvent(sessionId, templateId, template, template.cwd, agentNames, null));
+      await this.emit(this.launchedEvent(sessionId, templateId, template, folder, agentNames, null));
       await this.spawnFailed({ runId, sessionId, worktree: null, exited: false, selfReport: false }, command.message);
       return fail('failed', `claude could not be started: ${command.message}`);
     }
@@ -391,7 +398,7 @@ export class RunHost {
     let worktree: WorktreeEntry | null = null;
     if (template.worktree) {
       try {
-        worktree = await this.worktrees().createWorktree({ repoDir: template.cwd, runId });
+        worktree = await this.worktrees().createWorktree({ repoDir: folder, runId });
       } catch (error) {
         this.deps.logger.warn('run worktree not made', { error: messageOf(error) });
         return fail(
@@ -409,7 +416,7 @@ export class RunHost {
         }),
       );
     }
-    const cwd = worktree?.path ?? template.cwd;
+    const cwd = worktree?.path ?? folder;
 
     // 2. The run, before the process: the reducer makes the root managed and sets its trusted folder first.
     const agentNames = agents === null ? [] : Object.keys(agents);

@@ -704,6 +704,26 @@ function canonical(p: string): string {
   }
 }
 
+/**
+ * The long, real form of a folder that may not exist yet: its deepest existing ancestor in canonical form, with the
+ * rest appended. Local paths only (resolving a network path would contact its host); other input is returned as is.
+ */
+function canonicalFolder(p: string, platform: NodeJS.Platform): string {
+  if (platform !== process.platform || !isLocalAbsolutePath(p, platform)) return p;
+  const rest: string[] = [];
+  let head = p;
+  for (;;) {
+    try {
+      return path.join(realpathSync.native(head), ...rest);
+    } catch {
+      const parent = path.dirname(head);
+      if (parent === head) return p;
+      rest.unshift(path.basename(head));
+      head = parent;
+    }
+  }
+}
+
 // --- the manager --------------------------------------------------------------------------------------------------
 
 /** Makes, summarizes, keeps and discards the Huddle's worktrees. One instance per data folder. */
@@ -724,7 +744,9 @@ export class WorktreeManager {
   constructor(options: WorktreeManagerOptions) {
     this.platform = options.platform ?? process.platform;
     const dataDir = pathApi(this.platform).resolve(options.dataDir);
-    this.root = pathApi(this.platform).join(dataDir, WORKTREES_DIRNAME);
+    // Canonical (8.3 short names expanded, junctions resolved): a worktree's path is the agent's cwd and its trusted
+    // session folder, and the allow rules refuse short names.
+    this.root = pathApi(this.platform).join(canonicalFolder(dataDir, this.platform), WORKTREES_DIRNAME);
     this.registryPath = pathApi(this.platform).join(dataDir, WORKTREE_REGISTRY_FILENAME);
     this.hooksOff = pathApi(this.platform).join(dataDir, DISABLED_HOOKS_DIRNAME);
     this.attributesOff = pathApi(this.platform).join(dataDir, DISABLED_ATTRIBUTES_FILENAME);
